@@ -1,5 +1,5 @@
 //
-//  DSAPIUrlResponseSerialization.h
+//  DSAPIURLResponseSerialization.h
 //  DeskAPIClient
 //
 //  Created by Desk.com on 1/12/15.
@@ -199,7 +199,7 @@ static id DSAPIJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadi
 
 @end
 
-#pragma mark -
+#pragma mark - KEEP
 
 @implementation DSAPIJSONResponseSerializer
 
@@ -214,14 +214,12 @@ static id DSAPIJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadi
     return serializer;
 }
 
-- (instancetype)init {
+- (instancetype)init
+{
     self = [super init];
-    if (!self) {
-        return nil;
+    if (self) {
+        self.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", nil];
     }
-    
-    self.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", nil];
-    
     return self;
 }
 
@@ -286,14 +284,12 @@ static id DSAPIJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadi
 
 #pragma mark - NSecureCoding
 
-- (id)initWithCoder:(NSCoder *)decoder {
-    self = [super initWithCoder:decoder];
-    if (!self) {
-        return nil;
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _readingOptions = [[coder decodeObjectOfClass:[NSNumber class] forKey:NSStringFromSelector(@selector(readingOptions))] unsignedIntegerValue];
     }
-    
-    self.readingOptions = [[decoder decodeObjectOfClass:[NSNumber class] forKey:NSStringFromSelector(@selector(readingOptions))] unsignedIntegerValue];
-    
     return self;
 }
 
@@ -324,14 +320,12 @@ static id DSAPIJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadi
     return serializer;
 }
 
-- (instancetype)init {
+- (instancetype)init
+{
     self = [super init];
-    if (!self) {
-        return nil;
+    if (self) {
+        self.acceptableContentTypes = [[NSSet alloc] initWithObjects:@"application/xml", @"text/xml", nil];
     }
-    
-    self.acceptableContentTypes = [[NSSet alloc] initWithObjects:@"application/xml", @"text/xml", nil];
-    
     return self;
 }
 
@@ -369,14 +363,12 @@ static id DSAPIJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadi
     return serializer;
 }
 
-- (instancetype)init {
+- (instancetype)init
+{
     self = [super init];
-    if (!self) {
-        return nil;
+    if (self) {
+        self.acceptableContentTypes = [[NSSet alloc] initWithObjects:@"application/xml", @"text/xml", nil];
     }
-    
-    self.acceptableContentTypes = [[NSSet alloc] initWithObjects:@"application/xml", @"text/xml", nil];
-    
     return self;
 }
 
@@ -404,14 +396,12 @@ static id DSAPIJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadi
 
 #pragma mark - NSecureCoding
 
-- (id)initWithCoder:(NSCoder *)decoder {
-    self = [super initWithCoder:decoder];
-    if (!self) {
-        return nil;
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _options = [[coder decodeObjectOfClass:[NSNumber class] forKey:NSStringFromSelector(@selector(options))] unsignedIntegerValue];
     }
-    
-    self.options = [[decoder decodeObjectOfClass:[NSNumber class] forKey:NSStringFromSelector(@selector(options))] unsignedIntegerValue];
-    
     return self;
 }
 
@@ -452,14 +442,12 @@ static id DSAPIJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadi
     return serializer;
 }
 
-- (instancetype)init {
+- (instancetype)init
+{
     self = [super init];
-    if (!self) {
-        return nil;
+    if (self) {
+        self.acceptableContentTypes = [[NSSet alloc] initWithObjects:@"application/x-plist", nil];
     }
-    
-    self.acceptableContentTypes = [[NSSet alloc] initWithObjects:@"application/x-plist", nil];
-    
     return self;
 }
 
@@ -491,15 +479,13 @@ static id DSAPIJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadi
 
 #pragma mark - NSecureCoding
 
-- (id)initWithCoder:(NSCoder *)decoder {
-    self = [super initWithCoder:decoder];
-    if (!self) {
-        return nil;
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _format = [[coder decodeObjectOfClass:[NSNumber class] forKey:NSStringFromSelector(@selector(format))] unsignedIntegerValue];
+        _readOptions = [[coder decodeObjectOfClass:[NSNumber class] forKey:NSStringFromSelector(@selector(readOptions))] unsignedIntegerValue];
     }
-    
-    self.format = [[decoder decodeObjectOfClass:[NSNumber class] forKey:NSStringFromSelector(@selector(format))] unsignedIntegerValue];
-    self.readOptions = [[decoder decodeObjectOfClass:[NSNumber class] forKey:NSStringFromSelector(@selector(readOptions))] unsignedIntegerValue];
-    
     return self;
 }
 
@@ -624,19 +610,17 @@ static UIImage * DSAPIInflatedImageFromResponseWithDataAtScale(NSHTTPURLResponse
 
 @implementation DSAPIImageResponseSerializer
 
-- (instancetype)init {
+- (instancetype)init
+{
     self = [super init];
-    if (!self) {
-        return nil;
-    }
-    
-    self.acceptableContentTypes = [[NSSet alloc] initWithObjects:@"image/tiff", @"image/jpeg", @"image/gif", @"image/png", @"image/ico", @"image/x-icon", @"image/bmp", @"image/x-bmp", @"image/x-xbitmap", @"image/x-win-bitmap", nil];
-    
+    if (self) {
+        self.acceptableContentTypes = [[NSSet alloc] initWithObjects:@"image/tiff", @"image/jpeg", @"image/gif", @"image/png", @"image/ico", @"image/x-icon", @"image/bmp", @"image/x-bmp", @"image/x-xbitmap", @"image/x-win-bitmap", nil];
+        
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-    self.imageScale = [[UIScreen mainScreen] scale];
-    self.automaticallyInflatesResponseImage = YES;
+        _imageScale = [[UIScreen mainScreen] scale];
+        _automaticallyInflatesResponseImage = YES;
 #endif
-    
+    }
     return self;
 }
 
@@ -672,23 +656,21 @@ static UIImage * DSAPIInflatedImageFromResponseWithDataAtScale(NSHTTPURLResponse
 
 #pragma mark - NSecureCoding
 
-- (id)initWithCoder:(NSCoder *)decoder {
-    self = [super initWithCoder:decoder];
-    if (!self) {
-        return nil;
-    }
-    
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-    NSNumber *imageScale = [decoder decodeObjectOfClass:[NSNumber class] forKey:NSStringFromSelector(@selector(imageScale))];
+        NSNumber *imageScale = [coder decodeObjectOfClass:[NSNumber class] forKey:NSStringFromSelector(@selector(imageScale))];
 #if CGFLOAT_IS_DOUBLE
-    self.imageScale = [imageScale doubleValue];
+        _imageScale = [imageScale doubleValue];
 #else
-    self.imageScale = [imageScale floatValue];
+        _imageScale = [imageScale floatValue];
 #endif
-    
-    self.automaticallyInflatesResponseImage = [decoder decodeBoolForKey:NSStringFromSelector(@selector(automaticallyInflatesResponseImage))];
+        
+        _automaticallyInflatesResponseImage = [coder decodeBoolForKey:NSStringFromSelector(@selector(automaticallyInflatesResponseImage))];
 #endif
-    
+    }
     return self;
 }
 
@@ -758,14 +740,12 @@ static UIImage * DSAPIInflatedImageFromResponseWithDataAtScale(NSHTTPURLResponse
 
 #pragma mark - NSecureCoding
 
-- (id)initWithCoder:(NSCoder *)decoder {
-    self = [super initWithCoder:decoder];
-    if (!self) {
-        return nil;
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _responseSerializers = [coder decodeObjectOfClass:[NSArray class] forKey:NSStringFromSelector(@selector(responseSerializers))];
     }
-    
-    self.responseSerializers = [decoder decodeObjectOfClass:[NSArray class] forKey:NSStringFromSelector(@selector(responseSerializers))];
-    
     return self;
 }
 

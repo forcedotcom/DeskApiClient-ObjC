@@ -42,19 +42,19 @@
 {
     [super setUp];
     [Expecta setAsynchronousTestTimeout:5.0];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
 - (void)testShowAttachment
 {
     __block DSAPIAttachment *_attachment = nil;
     
-    [DSAPICase searchCasesWithParameters:@{@"attachments":@"png"} success:^(DSAPIPage *page) {
+    [DSAPICase searchCasesWithParameters:@{@"attachments":@"png"} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         DSAPICase *caseWithAttachments = page.entries.firstObject;
         
-        [caseWithAttachments showWithParameters:nil success:^(DSAPICase *theCase) {
-            [theCase listAttachmentsWithParameters:nil success:^(DSAPIPage *page) {
-                [(DSAPIAttachment *)page.entries[0] showWithParameters:nil success:^(DSAPIAttachment *attachment) {
+        [caseWithAttachments showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPICase *theCase) {
+            [theCase listAttachmentsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+                [(DSAPIAttachment *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIAttachment *attachment) {
                     _attachment = attachment;
                     [self done];
                 } failure:^(NSHTTPURLResponse *response, NSError *error) {

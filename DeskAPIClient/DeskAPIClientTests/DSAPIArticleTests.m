@@ -44,14 +44,14 @@
     [super setUp];
 
     [Expecta setAsynchronousTestTimeout:10.f];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
 - (void)testListArticles
 {
     __block NSArray *_resources = nil;
 
-    [DSAPIArticle listArticlesWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPIArticle listArticlesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _resources = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -69,10 +69,10 @@
     __block DSAPIArticle *responseResource = nil;
     __block NSString *subject = [[NSDate date] description];
 
-    [DSAPITopic createTopic:@{@"name":[DSAPITestUtils epochTimeAsString]} success:^(DSAPITopic *topic) {
+    [DSAPITopic createTopic:@{@"name":[DSAPITestUtils epochTimeAsString]} queue:self.APICallbackQueue success:^(DSAPITopic *topic) {
         NSDictionary *params = [self newArticleParamsForTopic:topic andSubject:subject];
 
-        [DSAPIArticle createArticle:params success:^(DSAPIArticle *article) {
+        [DSAPIArticle createArticle:params queue:self.APICallbackQueue success:^(DSAPIArticle *article) {
             responseResource = article;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -99,10 +99,10 @@
     __block BOOL created = NO;
     __block BOOL searched = NO;
 
-    [DSAPITopic createTopic:@{@"name":[DSAPITestUtils epochTimeAsString]} success:^(DSAPITopic *topic) {
+    [DSAPITopic createTopic:@{@"name":[DSAPITestUtils epochTimeAsString]} queue:self.APICallbackQueue success:^(DSAPITopic *topic) {
         NSDictionary *params = [self newArticleParamsForTopic:topic andSubject:expectedValue];
 
-        [DSAPIArticle createArticle:params success:^(DSAPIArticle *article) {
+        [DSAPIArticle createArticle:params queue:self.APICallbackQueue success:^(DSAPIArticle *article) {
             _article = article;
             created = YES;
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -117,7 +117,7 @@
     expect(created).will.beTruthy();
     expect(_article[articleKey]).will.equal(expectedValue);
 
-    [DSAPIArticle searchArticlesWithParameters:@{searchKey: expectedValue} success:^(DSAPIPage *page) {
+    [DSAPIArticle searchArticlesWithParameters:@{searchKey: expectedValue} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _article = [page.entries firstObject];
         searched = YES;
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -144,11 +144,11 @@
 
     CGFloat delay = 3.0f;
 
-    [DSAPITopic createTopic:@{@"name":[DSAPITestUtils epochTimeAsString]} success:^(DSAPITopic *topic) {
+    [DSAPITopic createTopic:@{@"name":[DSAPITestUtils epochTimeAsString]} queue:self.APICallbackQueue success:^(DSAPITopic *topic) {
         _topic = topic;
         NSDictionary *params = [self newArticleParamsForTopic:topic andSubject:expectedValue];
 
-        [DSAPIArticle createArticle:params success:^(DSAPIArticle *article) {
+        [DSAPIArticle createArticle:params queue:self.APICallbackQueue success:^(DSAPIArticle *article) {
             _article = article;
             created = YES;
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -170,7 +170,7 @@
     NSString *topicIds = [_topic idFromSelfLink];
     NSDictionary *parameters = @{searchKey: expectedValue, @"topic_ids": topicIds};
 
-    [DSAPIArticle searchArticlesWithParameters:parameters success:^(DSAPIPage *page) {
+    [DSAPIArticle searchArticlesWithParameters:parameters queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _article = [page.entries firstObject];
         searched = YES;
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -188,8 +188,8 @@
 {
     __block DSAPIArticle *_article = nil;
 
-    [DSAPIArticle listArticlesWithParameters:@{@"per_page": @1} success:^(DSAPIPage *page) {
-        [(DSAPIArticle *)page.entries[0] showWithParameters:nil success:^(DSAPIArticle *article) {
+    [DSAPIArticle listArticlesWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPIArticle *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIArticle *article) {
             _article = article;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -214,11 +214,11 @@
     NSString *subject = [[NSDate date] description];
     NSString *expectedSubject = [DSAPITestUtils epochTimeAsString];
 
-    [DSAPITopic createTopic:@{@"name":[DSAPITestUtils epochTimeAsString]} success:^(DSAPITopic *topic) {
+    [DSAPITopic createTopic:@{@"name":[DSAPITestUtils epochTimeAsString]} queue:self.APICallbackQueue success:^(DSAPITopic *topic) {
         NSDictionary *params = [self newArticleParamsForTopic:topic andSubject:subject];
 
-        [DSAPIArticle createArticle:params success:^(DSAPIArticle *article) {
-            [article updateWithDictionary:@{subjectKey:expectedSubject} success:^(DSAPIArticle *updatedArticle) {
+        [DSAPIArticle createArticle:params queue:self.APICallbackQueue success:^(DSAPIArticle *article) {
+            [article updateWithDictionary:@{subjectKey:expectedSubject} queue:self.APICallbackQueue success:^(DSAPIArticle *updatedArticle) {
                 _updatedArticle = updatedArticle;
                 [self done];
             } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -242,11 +242,11 @@
 {
     NSString *subject = [[NSDate date] description];
 
-    [DSAPITopic createTopic:@{@"name":[DSAPITestUtils epochTimeAsString]} success:^(DSAPITopic *topic) {
+    [DSAPITopic createTopic:@{@"name":[DSAPITestUtils epochTimeAsString]} queue:self.APICallbackQueue success:^(DSAPITopic *topic) {
         NSDictionary *params = [self newArticleParamsForTopic:topic andSubject:subject];
 
-        [DSAPIArticle createArticle:params success:^(DSAPIArticle *article) {
-            [article deleteWithParameters:nil success:^(void) {
+        [DSAPIArticle createArticle:params queue:self.APICallbackQueue success:^(DSAPIArticle *article) {
+            [article deleteWithParameters:nil queue:self.APICallbackQueue success:^(void) {
                 [self done];
             } failure:^(NSHTTPURLResponse *response, NSError *error) {
                 EXPFail(self, __LINE__, __FILE__, [error description]);

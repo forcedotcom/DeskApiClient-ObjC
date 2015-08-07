@@ -5,19 +5,19 @@
 //  Created by Desk.com on 9/17/13.
 //  Copyright (c) 2015, Salesforce.com, Inc.
 //  All rights reserved.
-//  
+//
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided
 //  that the following conditions are met:
-//  
+//
 //     Redistributions of source code must retain the above copyright notice, this list of conditions and the
 //     following disclaimer.
-//  
+//
 //     Redistributions in binary form must reproduce the above copyright notice, this list of conditions and
 //     the following disclaimer in the documentation and/or other materials provided with the distribution.
-//  
+//
 //     Neither the name of Salesforce.com, Inc. nor the names of its contributors may be used to endorse or
 //     promote products derived from this software without specific prior written permission.
-//  
+//
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
 //  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
 //  PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
@@ -61,11 +61,11 @@ extern NSString * const DSAPIResponseKey;
  Sets the `DSAPIClient` object with the specified hostname and API token.
  
  @param hostname The hostname for a Desk.com site.
- @param apiToken A token to authenticate the api
+ @param APIToken A token to authenticate the API
  
  */
 - (void)setHostname:(NSString *)hostname
-           apiToken:(NSString *)apiToken;
+           APIToken:(NSString *)apiToken;
 
 /**
  Sets the `DSAPIClient` object with the specified hostname, username, and password.
@@ -120,31 +120,37 @@ extern NSString * const DSAPIResponseKey;
 /**
  Acquires a request token from the web service and asks user to authorize. Must initialize the client with the OAuth Initializer before making this request.
  
+ @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the verified request token, and the raw response data returned by the web service.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
  */
 
-- (void)authorizeUsingOAuthWithBlock:(void (^)(DSAPIOAuth1Token *requestToken, NSURLRequest *authorizeRequest))success
+- (void)authorizeUsingOAuthWithQueue:(NSOperationQueue *)queue
+                             success:(void (^)(DSAPIOAuth1Token *requestToken, NSURLRequest *authorizeRequest))success
                              failure:(DSAPIFailureBlock)failure;
 
 /**
  Acquires a request token from the web service. Must initialize the client with the OAuth Initializer before making this request.
  
+ @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the unverified request token, and the raw response data returned by the web service.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
  */
 
-- (void)acquireOAuthRequestTokenWithBlock:(void (^)(DSAPIOAuth1Token *requestToken))success
+- (void)acquireOAuthRequestTokenWithQueue:(NSOperationQueue *)queue
+                                  success:(void (^)(DSAPIOAuth1Token *requestToken))success
                                   failure:(DSAPIFailureBlock)failure;
 
 /**
  Acquires an access token from the web service. Must initialize the client with the OAuth Initializer and have a verified requestToken before making this request.
  
+ @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the access token, and the raw response data returned by the web service.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
  */
 
 - (void)acquireOAuthAccessTokenWithRequestToken:(DSAPIOAuth1Token *)requestToken
+                                          queue:(NSOperationQueue *)queue
                                         success:(void (^)(DSAPIOAuth1Token *accessToken))success
                                         failure:(DSAPIFailureBlock)failure;
 
@@ -154,37 +160,44 @@ extern NSString * const DSAPIResponseKey;
 ///-----------------------------------
 
 - (NSURLSessionDataTask *)dataTaskWithRequest:(NSURLRequest *)request
+                                        queue:(NSOperationQueue *)queue
                                       success:(void (^)(NSHTTPURLResponse *response, id responseObject))success
                                       failure:(void (^)(NSHTTPURLResponse *response, NSError *error))failure;
 
 - (NSURLSessionDataTask *)GET:(NSString *)URLString
                    parameters:(id)parameters
+                        queue:(NSOperationQueue *)queue
                       success:(void (^)(NSHTTPURLResponse *response, id responseObject))success
                       failure:(void (^)(NSHTTPURLResponse *response, NSError *error))failure;
 
 - (NSURLSessionDataTask *)POST:(NSString *)URLString
                     parameters:(id)parameters
+                         queue:(NSOperationQueue *)queue
                        success:(void (^)(NSHTTPURLResponse *response, id responseObject))success
                        failure:(void (^)(NSHTTPURLResponse *response, NSError *error))failure;
 
 - (NSURLSessionDataTask *)PUT:(NSString *)URLString
                    parameters:(id)parameters
+                        queue:(NSOperationQueue *)queue
                       success:(void (^)(NSHTTPURLResponse *response, id responseObject))success
                       failure:(void (^)(NSHTTPURLResponse *response, NSError *error))failure;
 
 - (NSURLSessionDataTask *)PATCH:(NSString *)URLString
                      parameters:(id)parameters
+                          queue:(NSOperationQueue *)queue
                         success:(void (^)(NSHTTPURLResponse *response, id responseObject))success
                         failure:(void (^)(NSHTTPURLResponse *response, NSError *error))failure;
 
 - (NSURLSessionDataTask *)DELETE:(NSString *)URLString
                       parameters:(id)parameters
+                           queue:(NSOperationQueue *)queue
                          success:(void (^)(NSHTTPURLResponse *response, id responseObject))success
                          failure:(void (^)(NSHTTPURLResponse *response, NSError *error))failure;
 
 - (void)cancelAllDataTasks:(void (^)(void))completionHandler;
 
 - (NSURLSessionDownloadTask *)downloadTaskWithURL:(NSURL *)url
+                                            queue:(NSOperationQueue *)queue
                                   progressHandler:(DSAPIDownloadProgressHandler)progressHandler
                                 completionHandler:(DSAPIDownloadCompletionHandler)completionHandler;
 

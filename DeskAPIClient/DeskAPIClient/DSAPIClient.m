@@ -43,6 +43,10 @@ NSString *const DSAPIResponseKey = @"response";
 
 static NSString *const DSAPIOAuthCallbackKey = @"oauth_callback";
 static NSString *const DSAPIClientLockName = @"com.desk.networking.session.client.lock";
+static NSString *const DSAPIQueueKey = @"queue";
+static NSString *const DSAPIBlockHandlerKey = @"blockHandler";
+static NSString *const DSAPIDataKey = @"data";
+static NSString *const DSAPIErrorKey = @"error";
 
 @interface DSAPIClient ()
 
@@ -65,7 +69,6 @@ static NSDictionary *ClassNames;
     static DSAPIClient *sharedInstance;
     dispatch_once(&once, ^{
         sharedInstance = [[DSAPIClient alloc] init];
-        [sharedInstance initialize];
     });
     return sharedInstance;
 }
@@ -125,7 +128,7 @@ static NSDictionary *ClassNames;
     _lock.name = DSAPIClientLockName;
 }
 
-- (void)setHostname:(NSString *)hostname apiToken:(NSString *)apiToken
+- (void)setHostname:(NSString *)hostname APIToken:(NSString *)apiToken
 {
     [self setBaseURLFromHostname:hostname];
     self.authType = DSAPIClientAuthTypeOAuth2Token;
@@ -201,36 +204,40 @@ static NSDictionary *ClassNames;
 
 #pragma mark - OAuth Authentication
 
-- (void)authorizeUsingOAuthWithBlock:(void (^)(DSAPIOAuth1Token *requestToken, NSURLRequest *authorizeRequest))success
+- (void)authorizeUsingOAuthWithQueue:(NSOperationQueue *)queue
+                             success:(void (^)(DSAPIOAuth1Token *requestToken, NSURLRequest *authorizeRequest))success
                              failure:(DSAPIFailureBlock)failure
 {
     NSAssert(self.authType == DSAPIClientAuthTypeOAuth, @"Client not initialized for OAuth.");
     
-    [self acquireOAuthRequestTokenWithBlock:^(DSAPIOAuth1Token *requestToken) {
-        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-        NSString *urlString = [NSString stringWithFormat:@"%@%@?oauth_token=%@", self.baseURL, @"/oauth/authorize", requestToken.key];
-        NSError *error = nil;
-        NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"GET"
-                                                                       URLString:urlString
-                                                                      parameters:parameters
-                                                                           error:&error];
-        if (error && failure) {
-            if (failure) {
-                failure(nil, error);
-            }
-        } else if (!error && success) {
-            if (success) {
-                success(requestToken, request);
-            }
-        }
-    } failure:^(NSHTTPURLResponse *response, NSError *error) {
-        if (failure) {
-            failure(response, error);
-        }
-    }];
+    [self acquireOAuthRequestTokenWithQueue:queue
+                                    success:^(DSAPIOAuth1Token *requestToken) {
+                                        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+                                        NSString *urlString = [NSString stringWithFormat:@"%@%@?oauth_token=%@", self.baseURL, @"/oauth/authorize", requestToken.key];
+                                        NSError *error = nil;
+                                        NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"GET"
+                                                                                                       URLString:urlString
+                                                                                                      parameters:parameters
+                                                                                                           error:&error];
+                                        if (error && failure) {
+                                            if (failure) {
+                                                failure(nil, error);
+                                            }
+                                        } else if (!error && success) {
+                                            if (success) {
+                                                success(requestToken, request);
+                                            }
+                                        }
+                                    }
+                                    failure:^(NSHTTPURLResponse *response, NSError *error) {
+                                        if (failure) {
+                                            failure(response, error);
+                                        }
+                                    }];
 }
 
-- (void)acquireOAuthRequestTokenWithBlock:(void (^)(DSAPIOAuth1Token *))success
+- (void)acquireOAuthRequestTokenWithQueue:(NSOperationQueue *)queue
+                                  success:(void (^)(DSAPIOAuth1Token *requestToken))success
                                   failure:(DSAPIFailureBlock)failure
 {
     NSAssert(self.authType == DSAPIClientAuthTypeOAuth, @"Client not initialized for OAuth.");
@@ -242,20 +249,25 @@ static NSDictionary *ClassNames;
     manager.requestSerializer = self.requestSerializer;
     manager.responseSerializer = [DSAPIHTTPResponseSerializer serializer];
     
-    [manager POST:@"/oauth/request_token" parameters:parameters success:^(NSHTTPURLResponse *response, id responseObject) {
-        DSAPIOAuth1Token *token = [[DSAPIOAuth1Token alloc] initWithQueryString:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]];
-        if (success) {
-            success(token);
-        }
-    } failure:^(NSHTTPURLResponse *response, NSError *error) {
-        [self postRateLimitingNotificationIfNecessary:response];
-        if (failure) {
-            failure(response, error);
-        }
-    }];
+    [manager POST:@"/oauth/request_token"
+       parameters:parameters
+            queue:queue
+          success:^(NSHTTPURLResponse *response, id responseObject) {
+              DSAPIOAuth1Token *token = [[DSAPIOAuth1Token alloc] initWithQueryString:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]];
+              if (success) {
+                  success(token);
+              }
+          }
+          failure:^(NSHTTPURLResponse *response, NSError *error) {
+              [self postRateLimitingNotificationIfNecessary:response];
+              if (failure) {
+                  failure(response, error);
+              }
+          }];
 }
 
 - (void)acquireOAuthAccessTokenWithRequestToken:(DSAPIOAuth1Token *)requestToken
+                                          queue:(NSOperationQueue *)queue
                                         success:(void (^)(DSAPIOAuth1Token *))success
                                         failure:(DSAPIFailureBlock)failure
 {
@@ -269,18 +281,22 @@ static NSDictionary *ClassNames;
     manager.requestSerializer = serializer;
     manager.responseSerializer = [DSAPIHTTPResponseSerializer serializer];
     
-    [manager POST:@"/oauth/access_token" parameters:nil success:^(NSHTTPURLResponse *response, id responseObject) {
-        DSAPIOAuth1Token *accessToken = [[DSAPIOAuth1Token alloc] initWithQueryString:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]];
-        serializer.accessToken = accessToken;
-        if (success) {
-            success(accessToken);
-        }
-    } failure:^(NSHTTPURLResponse *response, NSError *error) {
-        [self postRateLimitingNotificationIfNecessary:response];
-        if (failure) {
-            failure(response, error);
-        }
-    }];
+    [manager POST:@"/oauth/access_token"
+       parameters:nil
+            queue:queue
+          success:^(NSHTTPURLResponse *response, id responseObject) {
+              DSAPIOAuth1Token *accessToken = [[DSAPIOAuth1Token alloc] initWithQueryString:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]];
+              serializer.accessToken = accessToken;
+              if (success) {
+                  success(accessToken);
+              }
+          }
+          failure:^(NSHTTPURLResponse *response, NSError *error) {
+              [self postRateLimitingNotificationIfNecessary:response];
+              if (failure) {
+                  failure(response, error);
+              }
+          }];
 }
 
 - (void)setAccessToken:(DSAPIOAuth1Token *)accessToken
@@ -294,35 +310,39 @@ static NSDictionary *ClassNames;
 }
 
 - (NSURLSessionDataTask *)dataTaskWithRequest:(NSURLRequest *)request
+                                        queue:(NSOperationQueue *)queue
                                       success:(void (^)(NSHTTPURLResponse *response, id))success
                                       failure:(void (^)(NSHTTPURLResponse *response, NSError *))failure
 {
     return [self.session dataTaskWithRequest:request
                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                               dispatch_async(dispatch_get_main_queue(), ^{
-                                   if (error) {
-                                       if (failure) {
-                                           failure((NSHTTPURLResponse *)response, error);
-                                       }
-                                   } else {
-                                       if (success) {
-                                           NSError *serializationError = nil;
-                                           id responseObject = [self.responseSerializer responseObjectForResponse:response
-                                                                                                             data:data
-                                                                                                            error:&serializationError];
-                                           if (serializationError && failure) {
-                                               failure((NSHTTPURLResponse *)response, serializationError);
-                                           } else {
-                                               success((NSHTTPURLResponse *)response, responseObject);
+                               if (error == nil || error.code != NSURLErrorCancelled) {
+                                   [queue addOperationWithBlock:^{
+                                       if (error) {
+                                           if (failure) {
+                                               failure((NSHTTPURLResponse *)response, error);
+                                           }
+                                       } else {
+                                           if (success) {
+                                               NSError *serializationError = nil;
+                                               id responseObject = [self.responseSerializer responseObjectForResponse:response
+                                                                                                                 data:data
+                                                                                                                error:&serializationError];
+                                               if (serializationError && failure) {
+                                                   failure((NSHTTPURLResponse *)response, serializationError);
+                                               } else {
+                                                   success((NSHTTPURLResponse *)response, responseObject);
+                                               }
                                            }
                                        }
-                                   }
-                               });
+                                   }];
+                               }
                            }];
 }
 
 - (NSURLSessionDataTask *)GET:(NSString *)URLString
                    parameters:(id)parameters
+                        queue:(NSOperationQueue *)queue
                       success:(void (^)(NSHTTPURLResponse *response, id responseObject))success
                       failure:(void (^)(NSHTTPURLResponse *response, NSError *error))failure
 {
@@ -334,6 +354,7 @@ static NSDictionary *ClassNames;
                                                                        error:nil];
     
     NSURLSessionDataTask *task = [self dataTaskWithRequest:request
+                                                     queue:queue
                                                    success:success
                                                    failure:failure];
     
@@ -342,7 +363,9 @@ static NSDictionary *ClassNames;
     return task;
 }
 
-- (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(id)parameters
+- (NSURLSessionDataTask *)POST:(NSString *)URLString
+                    parameters:(id)parameters
+                         queue:(NSOperationQueue *)queue
                        success:(void (^)(NSHTTPURLResponse *, id))success
                        failure:(void (^)(NSHTTPURLResponse *, NSError *))failure
 {
@@ -352,15 +375,19 @@ static NSDictionary *ClassNames;
                                                                               absoluteString]
                                                                   parameters:parameters
                                                                        error:nil];
-    
-    NSURLSessionDataTask *task = [self dataTaskWithRequest:request success:success failure:failure];
+    NSURLSessionDataTask *task = [self dataTaskWithRequest:request
+                                                     queue:queue
+                                                   success:success
+                                                   failure:failure];
     
     [task resume];
     
     return task;
 }
 
-- (NSURLSessionDataTask *)PUT:(NSString *)URLString parameters:(id)parameters
+- (NSURLSessionDataTask *)PUT:(NSString *)URLString
+                   parameters:(id)parameters
+                        queue:(NSOperationQueue *)queue
                       success:(void (^)(NSHTTPURLResponse *, id))success
                       failure:(void (^)(NSHTTPURLResponse *, NSError *))failure
 {
@@ -371,14 +398,19 @@ static NSDictionary *ClassNames;
                                                                   parameters:parameters
                                                                        error:nil];
     
-    NSURLSessionDataTask *task = [self dataTaskWithRequest:request success:success failure:failure];
+    NSURLSessionDataTask *task = [self dataTaskWithRequest:request
+                                                     queue:queue
+                                                   success:success
+                                                   failure:failure];
     
     [task resume];
     
     return task;
 }
 
-- (NSURLSessionDataTask *)PATCH:(NSString *)URLString parameters:(id)parameters
+- (NSURLSessionDataTask *)PATCH:(NSString *)URLString
+                     parameters:(id)parameters
+                          queue:(NSOperationQueue *)queue
                         success:(void (^)(NSHTTPURLResponse *, id))success
                         failure:(void (^)(NSHTTPURLResponse *, NSError *))failure
 {
@@ -389,7 +421,10 @@ static NSDictionary *ClassNames;
                                                                   parameters:parameters
                                                                        error:nil];
     
-    NSURLSessionDataTask *task = [self dataTaskWithRequest:request success:success failure:failure];
+    NSURLSessionDataTask *task = [self dataTaskWithRequest:request
+                                                     queue:queue
+                                                   success:success
+                                                   failure:failure];
     
     [task resume];
     
@@ -398,6 +433,7 @@ static NSDictionary *ClassNames;
 
 - (NSURLSessionDataTask *)DELETE:(NSString *)URLString
                       parameters:(id)parameters
+                           queue:(NSOperationQueue *)queue
                          success:(void (^)(NSHTTPURLResponse *, id))success
                          failure:(void (^)(NSHTTPURLResponse *, NSError *))failure
 {
@@ -408,7 +444,10 @@ static NSDictionary *ClassNames;
                                                                   parameters:parameters
                                                                        error:nil];
     
-    NSURLSessionDataTask *task = [self dataTaskWithRequest:request success:success failure:failure];
+    NSURLSessionDataTask *task = [self dataTaskWithRequest:request
+                                                     queue:queue
+                                                   success:success
+                                                   failure:failure];
     
     [task resume];
     
@@ -430,6 +469,7 @@ static NSDictionary *ClassNames;
 #pragma mark - Downloads
 
 - (NSURLSessionDownloadTask *)downloadTaskWithURL:(NSURL *)url
+                                            queue:(NSOperationQueue *)queue
                                   progressHandler:(DSAPIDownloadProgressHandler)progressHandler
                                 completionHandler:(DSAPIDownloadCompletionHandler)completionHandler
 {
@@ -447,10 +487,10 @@ static NSDictionary *ClassNames;
         
         [self.lock lock];
         if (progressHandler) {
-            self.downloadProgressBlocks[@(task.taskIdentifier)] = progressHandler;
+            self.downloadProgressBlocks[@(task.taskIdentifier)] = [self dictionaryWithQueue:queue blockHandler:progressHandler];
         }
         if (completionHandler) {
-            self.downloadCompletionBlocks[@(task.taskIdentifier)] = completionHandler;
+            self.downloadCompletionBlocks[@(task.taskIdentifier)] = [self dictionaryWithQueue:queue blockHandler:completionHandler];
         }
         [self.lock unlock];
         
@@ -458,8 +498,18 @@ static NSDictionary *ClassNames;
     }
 }
 
+- (NSMutableDictionary *)dictionaryWithQueue:(NSOperationQueue *)queue blockHandler:(id)blockHandler
+{
+    NSMutableDictionary *dict = [@{
+                                   DSAPIQueueKey : queue,
+                                   DSAPIBlockHandlerKey : blockHandler
+                                   } mutableCopy];
+    return dict;
+}
+
 - (void)cancelDownloadTask:(NSURLSessionDownloadTask *)downloadTask
 {
+    [downloadTask cancel];
     [self.lock lock];
     if (self.downloadProgressBlocks[@(downloadTask.taskIdentifier)]) {
         [self.downloadProgressBlocks removeObjectForKey:@(downloadTask.taskIdentifier)];
@@ -469,7 +519,6 @@ static NSDictionary *ClassNames;
         [self.downloadCompletionBlocks removeObjectForKey:@(downloadTask.taskIdentifier)];
     }
     [self.lock unlock];
-    [downloadTask cancel];
 }
 
 #pragma mark - NSURLSessionDelegate
@@ -496,17 +545,19 @@ didFinishDownloadingToURL:(NSURL *)location
     NSError *error = nil;
     NSData *data = [NSData dataWithContentsOfURL:location options:NSDataReadingMappedIfSafe error:&error];
     
+    
     [self.lock lock];
     if (self.downloadProgressBlocks[@(downloadTask.taskIdentifier)]) {
         [self.downloadProgressBlocks removeObjectForKey:@(downloadTask.taskIdentifier)];
     }
     
-    if (self.downloadCompletionBlocks[@(downloadTask.taskIdentifier)]) {
-        DSAPIDownloadCompletionHandler downloadCompletion = self.downloadCompletionBlocks[@(downloadTask.taskIdentifier)];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            downloadCompletion(data, error);
-        });
-        [self.downloadCompletionBlocks removeObjectForKey:@(downloadTask.taskIdentifier)];
+    NSMutableDictionary *downloadDictionary;
+    if ((downloadDictionary = self.downloadCompletionBlocks[@(downloadTask.taskIdentifier)])) {
+        if (error) {
+            downloadDictionary[DSAPIErrorKey] = error;
+        } else if (data) {
+            downloadDictionary[DSAPIDataKey] = data;
+        }
     }
     [self.lock unlock];
 }
@@ -519,12 +570,37 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 {
     [self.lock lock];
     if (self.downloadProgressBlocks[@(downloadTask.taskIdentifier)]) {
-        DSAPIDownloadProgressHandler downloadProgress = self.downloadProgressBlocks[@(downloadTask.taskIdentifier)];
-        dispatch_async(dispatch_get_main_queue(), ^{
+        NSOperationQueue *queue = self.downloadProgressBlocks[@(downloadTask.taskIdentifier)][DSAPIQueueKey];
+        DSAPIDownloadProgressHandler downloadProgress = self.downloadProgressBlocks[@(downloadTask.taskIdentifier)][DSAPIBlockHandlerKey];
+        [queue addOperationWithBlock:^{
             downloadProgress(session, downloadTask, bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
-        });
+        }];
     }
     [self.lock unlock];
+}
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)downloadTask didCompleteWithError:(NSError *)error
+{
+    [self.lock lock];
+    
+    NSDictionary *downloadDictionary;
+    if ((downloadDictionary = self.downloadCompletionBlocks[@(downloadTask.taskIdentifier)])) {
+        NSOperationQueue *queue = downloadDictionary[DSAPIQueueKey];
+        DSAPIDownloadCompletionHandler downloadCompletion = downloadDictionary[DSAPIBlockHandlerKey];
+        
+        NSData *data = nil;
+        if (!error) {
+            data = downloadDictionary[DSAPIDataKey];
+            error = downloadDictionary[DSAPIErrorKey];
+        }
+        [queue addOperationWithBlock:^{
+            downloadCompletion(data, error);
+        }];
+
+        [self.downloadCompletionBlocks removeObjectForKey:@(downloadTask.taskIdentifier)];
+    }
+    [self.lock unlock];
+    
 }
 
 @end

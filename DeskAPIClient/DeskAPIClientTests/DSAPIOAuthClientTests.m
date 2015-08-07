@@ -20,7 +20,7 @@
 - (void)setUp
 {
     [super setUp];
-    _client = [DSAPITestUtils apiClientOAuthUnauthorized];
+    _client = [DSAPITestUtils APIClientOAuthUnauthorized];
 
 }
 - (void)testInitializationOfOAuthClient
@@ -56,7 +56,7 @@
 - (void)testCanAcquireRequestToken
 {
     __block DSAPIOAuth1Token *blockRequestToken = nil;
-    [_client acquireOAuthRequestTokenWithBlock:^(DSAPIOAuth1Token *requestToken) {
+    [_client acquireOAuthRequestTokenWithQueue:self.APICallbackQueue success:^(DSAPIOAuth1Token *requestToken) {
         blockRequestToken = requestToken;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -72,7 +72,7 @@
 {
     __block DSAPIOAuth1Token *blockRequestToken = nil;
     __block NSURLRequest *blockAuthorizeRequest = nil;
-    [_client authorizeUsingOAuthWithBlock:^(DSAPIOAuth1Token *requestToken, NSURLRequest *authorizeRequest) {
+    [_client authorizeUsingOAuthWithQueue:self.APICallbackQueue success:^(DSAPIOAuth1Token *requestToken, NSURLRequest *authorizeRequest) {
         blockRequestToken = requestToken;
         blockAuthorizeRequest = authorizeRequest;
         [self done];

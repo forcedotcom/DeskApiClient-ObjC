@@ -42,13 +42,13 @@
 {
     [super setUp];
     [Expecta setAsynchronousTestTimeout:5.f];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
 - (void)testListJobs
 {
     __block NSArray *_jobs = nil;
-    [DSAPIJob listJobsWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPIJob listJobsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _jobs = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -63,10 +63,11 @@
 
 - (void)testCreateJob
 {
-    [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] success:^(DSAPIResource *newCase) {
+    [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] queue:self.APICallbackQueue success:^(DSAPIResource *newCase) {
         [DSAPIJob createJob:@{@"type":@"bulk_case_update",
                               @"case_ids":@[newCase[@"id"]],
                               @"case": @{@"status":@"resolved"}}
+                      queue:self.APICallbackQueue
                     success:^(DSAPIJob *newJob) {
                         expect(newJob[@"progress"]).to.equal(0);
                         expect(newJob[@"status_message"]).toNot.beNil();

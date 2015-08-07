@@ -47,7 +47,7 @@
 - (BOOL)saveETagCache;
 - (void)loadETagCache;
 - (NSMutableDictionary *)newETagCache;
-- (NSURL *)urlWithBaseUrl:(NSURL *)url fromAbsoluteUrlString:(NSString *)urlString;
+- (NSURL *)URLWithAbsoluteURLString:(NSString *)absoluteURLString relativeToBaseOfURL:(NSURL *)baseOfURL;
 
 @end
 
@@ -91,7 +91,7 @@
     self.eTagCache = eTagCache;
 }
 
-- (void)setETag:(NSString *)eTag forUrl:(NSURL *)url nextPageUrl:(NSURL *)nextPageURL
+- (void)setETag:(NSString *)eTag forURL:(NSURL *)url nextPageURL:(NSURL *)nextPageURL
 {
     if (!self.eTagCache) {
         self.eTagCache = [self newETagCache];
@@ -101,7 +101,7 @@
     [self saveETagCache];
 }
 
-- (NSString *)eTagForUrl:(NSURL *)url
+- (NSString *)eTagForURL:(NSURL *)url
 {
     if (!self.eTagCache) {
         [self loadETagCache];
@@ -110,12 +110,12 @@
     return valueDictionary[kETagKey];
 }
 
-- (NSURL *)pageUrlForUrl:(NSURL *)url
+- (NSURL *)pageURLForURL:(NSURL *)url
 {
-    return [self urlWithBaseUrl:url fromAbsoluteUrlString:url.absoluteString];
+    return [self URLWithAbsoluteURLString:url.absoluteString relativeToBaseOfURL:url];
 }
 
-- (NSURL *)nextPageUrlForUrl:(NSURL *)url
+- (NSURL *)nextPageURLForURL:(NSURL *)url
 {
     if (!self.eTagCache) {
         [self loadETagCache];
@@ -127,15 +127,15 @@
     if ([nextPageURLAbsoluteString isEqualToString:kNullValue] || !nextPageURLAbsoluteString) {
         return nil;
     } else {
-        return [self urlWithBaseUrl:url fromAbsoluteUrlString:nextPageURLAbsoluteString];
+        return [self URLWithAbsoluteURLString:nextPageURLAbsoluteString relativeToBaseOfURL:url];
     }
 }
 
-- (NSURL *)urlWithBaseUrl:(NSURL *)url fromAbsoluteUrlString:(NSString *)urlString
+- (NSURL *)URLWithAbsoluteURLString:(NSString *)absoluteURLString relativeToBaseOfURL:(NSURL *)baseOfURL
 {
-    NSArray *components = [urlString componentsSeparatedByString:url.host];
+    NSArray *components = [absoluteURLString componentsSeparatedByString:baseOfURL.host];
     if (components.count > 1) {
-        NSURL *baseURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", url.scheme, url.host]];
+        NSURL *baseURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", baseOfURL.scheme, baseOfURL.host]];
         return [NSURL URLWithString:components[1] relativeToURL:baseURL];
     } else {
         return nil;

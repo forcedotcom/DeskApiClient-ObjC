@@ -1,11 +1,11 @@
 PODS:
   - DeskCommon (1.0.3)
   - DeskCommonTest (1.0.0)
-  - Expecta (0.3.1)
+  - Expecta (0.3.2)
   - OCMock (3.0.2)
-  - OHHTTPStubs (3.1.10):
-    - OHHTTPStubs/Core (= 3.1.10)
-  - OHHTTPStubs/Core (3.1.10)
+  - OHHTTPStubs (3.1.12):
+    - OHHTTPStubs/Core (= 3.1.12)
+  - OHHTTPStubs/Core (3.1.12)
 
 DEPENDENCIES:
   - DeskCommon (from `git@github.com:forcedotcom/DeskCommon-Cocoa.git`, tag `1.0.3`)
@@ -26,14 +26,14 @@ CHECKOUT OPTIONS:
     :git: git@github.com:forcedotcom/DeskCommon-Cocoa.git
     :tag: 1.0.3
   DeskCommonTest:
-    :commit: 9430384181582187c917925fba08d7c355294700
+    :commit: e604f6ba56d8331ba99e2cc23aa668f034a143a3
     :git: git@github.com:forcedotcom/DeskCommonTest-Cocoa.git
 
 SPEC CHECKSUMS:
-  DeskCommon: e4f7845e2dc91bfb03cd142e67de8ee8e2f89c82
-  DeskCommonTest: 453b457f319553101d7fcbb141de01b2cec3964e
-  Expecta: a354d4633409dd9fe8c4f5ff5130426adbe31628
+  DeskCommon: 540341996fb4e2c82a2f00f3cf6c7ebfd66480ff
+  DeskCommonTest: 6ba48b805c966c0184270d06eacb62fb5b81c113
+  Expecta: 8c507baf13211207b1e9d0a741480600e6b4ed15
   OCMock: 1f0871af0f397183f33e7552cca088bd2b485c25
-  OHHTTPStubs: 00152a63400246fcbc4b772a2a547ea34c97cbd6
+  OHHTTPStubs: 8cf0cfe6f34f13fc88fdf5b2a1b2c2536e8c0261
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.37.1

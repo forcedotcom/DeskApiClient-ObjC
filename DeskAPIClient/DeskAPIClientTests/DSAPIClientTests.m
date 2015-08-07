@@ -27,13 +27,13 @@
 {
     [super setUp];
     [Expecta setAsynchronousTestTimeout:5.0];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 - (void)testThatWeCanCommunicateWithTheWebService
 {
     __block id blockResponseObject = nil;
     
-    [_client GET:@"/api/v2/cases" parameters:nil success:^(NSHTTPURLResponse *response, id responseObject) {
+    [_client GET:@"/api/v2/cases" parameters:nil queue:self.APICallbackQueue success:^(NSHTTPURLResponse *response, id responseObject) {
         //NSLog(@"%@", responseObject);
         blockResponseObject = responseObject;
         [self done];
@@ -54,7 +54,7 @@
 
 - (void)testCannotUseOAuth
 {
-    XCTAssertThrows([_client acquireOAuthRequestTokenWithBlock:^(DSAPIOAuth1Token *requestToken) {
+    XCTAssertThrows([_client acquireOAuthRequestTokenWithQueue:self.APICallbackQueue success:^(DSAPIOAuth1Token *requestToken) {
         //
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
         //
@@ -64,7 +64,7 @@
 - (void)testThatWebServiceSendsResponseObject
 {
     __block id blockResponseObject = nil;
-    [_client GET:@"/api/v2/cases" parameters:nil success:^(NSHTTPURLResponse *response, id responseObject) {
+    [_client GET:@"/api/v2/cases" parameters:nil queue:self.APICallbackQueue success:^(NSHTTPURLResponse *response, id responseObject) {
         NSLog(@"%@", responseObject);
         blockResponseObject = responseObject;
         [self done];
@@ -101,11 +101,11 @@
 
 - (void)testTokenAuthentication
 {
-    DSAPIClient *client = [DSAPITestUtils apiClientTokenAuth];
+    DSAPIClient *client = [DSAPITestUtils APIClientTokenAuth];
     
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"Should get 200 response"];
     
-    [client GET:@"/api/v2/articles" parameters:nil success:^(NSHTTPURLResponse *response, id responseObject) {
+    [client GET:@"/api/v2/articles" parameters:nil queue:self.APICallbackQueue success:^(NSHTTPURLResponse *response, id responseObject) {
         expect(response.statusCode).to.equal(DSC_HTTP_STATUS_OK);
         [expectation fulfill];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -121,6 +121,7 @@
     
     __weak XCTestExpectation *exp = [self expectationWithDescription:@"wait for download progress"];
     NSURLSessionDownloadTask *task = [_client downloadTaskWithURL:url
+                                                            queue:self.APICallbackQueue
                                                   progressHandler:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
                                                       expect([[_client downloadProgressBlocks] count]).to.equal(1);
                                                       [exp fulfill];
@@ -139,6 +140,7 @@
     __weak XCTestExpectation *exp = [self expectationWithDescription:@"wait for download"];
     
     NSURLSessionDownloadTask *task = [_client downloadTaskWithURL:url
+                                                            queue:self.APICallbackQueue
                                                   progressHandler:nil
                                                 completionHandler:^(NSData *data, NSError *error) {
                                                     expect(data).toNot.beNil();
@@ -157,6 +159,7 @@
     NSURL *url = [NSURL URLWithString:@"http://google.com/favicon.ico"];
     
     NSURLSessionDownloadTask *task = [_client downloadTaskWithURL:url
+                                                            queue:self.APICallbackQueue
                                                   progressHandler:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
                                                       // dummy block
                                                   }
@@ -169,7 +172,7 @@
     [_client cancelDownloadTask:task];
     expect([[_client downloadProgressBlocks] count]).to.equal(0);
     expect([[_client downloadCompletionBlocks] count]).to.equal(0);
-    expect(task.state).will.equal(NSURLSessionTaskStateCanceling);
+    expect(task.state).will.equal(NSURLSessionTaskStateCompleted);
 }
 
 @end

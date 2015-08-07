@@ -50,7 +50,7 @@
  @return A serialized request.
  */
 - (NSURLRequest *)requestBySerializingRequest:(NSURLRequest *)request
-                               withParameters:(id)parameters
+                               parameters:(id)parameters
                                         error:(NSError * __autoreleasing *)error;
 
 @end
@@ -221,149 +221,6 @@ forHTTPHeaderField:(NSString *)field;
                                  URLString:(NSString *)URLString
                                 parameters:(id)parameters
                                      error:(NSError * __autoreleasing *)error;
-
-/**
- @deprecated This method has been deprecated. Use -multipartFormRequestWithMethod:URLString:parameters:constructingBodyWithBlock:error: instead.
- */
-- (NSMutableURLRequest *)multipartFormRequestWithMethod:(NSString *)method
-                                              URLString:(NSString *)URLString
-                                             parameters:(NSDictionary *)parameters
-                              constructingBodyWithBlock:(void (^)(id <DSAPIMultipartFormData> formData))block DEPRECATED_ATTRIBUTE;
-
-/**
- Creates an `NSMutableURLRequest` object with the specified HTTP method and URLString, and constructs a `multipart/form-data` HTTP body, using the specified parameters and multipart form data block. See http://www.w3.org/TR/html4/interact/forms.html#h-17.13.4.2
- 
- Multipart form requests are automatically streamed, reading files directly from disk along with in-memory data in a single HTTP body. The resulting `NSMutableURLRequest` object has an `HTTPBodyStream` property, so refrain from setting `HTTPBodyStream` or `HTTPBody` on this request object, as it will clear out the multipart form body stream.
- 
- @param method The HTTP method for the request. This parameter must not be `GET` or `HEAD`, or `nil`.
- @param URLString The URL string used to create the request URL.
- @param parameters The parameters to be encoded and set in the request HTTP body.
- @param block A block that takes a single argument and appends data to the HTTP body. The block argument is an object adopting the `DSAPIMultipartFormData` protocol.
- @param error The error that occured while constructing the request.
- 
- @return An `NSMutableURLRequest` object
- */
-- (NSMutableURLRequest *)multipartFormRequestWithMethod:(NSString *)method
-                                              URLString:(NSString *)URLString
-                                             parameters:(NSDictionary *)parameters
-                              constructingBodyWithBlock:(void (^)(id <DSAPIMultipartFormData> formData))block
-                                                  error:(NSError * __autoreleasing *)error;
-
-/**
- Creates an `NSMutableURLRequest` by removing the `HTTPBodyStream` from a request, and asynchronously writing its contents into the specified file, invoking the completion handler when finished.
- 
- @param request The multipart form request.
- @param fileURL The file URL to write multipart form contents to.
- @param handler A handler block to execute.
- 
- @discussion There is a bug in `NSURLSessionTask` that causes requests to not send a `Content-Length` header when streaming contents from an HTTP body, which is notably problematic when interacting with the Amazon S3 webservice. As a workaround, this method takes a request constructed with `multipartFormRequestWithMethod:URLString:parameters:constructingBodyWithBlock:error:`, or any other request with an `HTTPBodyStream`, writes the contents to the specified file and returns a copy of the original request with the `HTTPBodyStream` property set to `nil`. From here, the file can either be passed to `DSAPIURLSessionManager -uploadTaskWithRequest:fromFile:progress:completionHandler:`, or have its contents read into an `NSData` that's assigned to the `HTTPBody` property of the request.
- 
- @see https://github.com/DSAPINetworking/DSAPINetworking/issues/1398
- */
-- (NSMutableURLRequest *)requestWithMultipartFormRequest:(NSURLRequest *)request
-                             writingStreamContentsToFile:(NSURL *)fileURL
-                                       completionHandler:(void (^)(NSError *error))handler;
-
-@end
-
-#pragma mark -
-
-/**
- The `DSAPIMultipartFormData` protocol defines the methods supported by the parameter in the block argument of `DSAPIHTTPRequestSerializer -multipartFormRequestWithMethod:URLString:parameters:constructingBodyWithBlock:`.
- */
-@protocol DSAPIMultipartFormData
-
-/**
- Appends the HTTP header `Content-Disposition: file; filename=#{generated filename}; name=#{name}"` and `Content-Type: #{generated mimeType}`, followed by the encoded file data and the multipart form boundary.
- 
- The filename and MIME type for this data in the form will be automatically generated, using the last path component of the `fileURL` and system associated MIME type for the `fileURL` extension, respectively.
- 
- @param fileURL The URL corresponding to the file whose content will be appended to the form. This parameter must not be `nil`.
- @param name The name to be associated with the specified data. This parameter must not be `nil`.
- @param error If an error occurs, upon return contains an `NSError` object that describes the problem.
- 
- @return `YES` if the file data was successfully appended, otherwise `NO`.
- */
-- (BOOL)appendPartWithFileURL:(NSURL *)fileURL
-                         name:(NSString *)name
-                        error:(NSError * __autoreleasing *)error;
-
-/**
- Appends the HTTP header `Content-Disposition: file; filename=#{filename}; name=#{name}"` and `Content-Type: #{mimeType}`, followed by the encoded file data and the multipart form boundary.
- 
- @param fileURL The URL corresponding to the file whose content will be appended to the form. This parameter must not be `nil`.
- @param name The name to be associated with the specified data. This parameter must not be `nil`.
- @param fileName The file name to be used in the `Content-Disposition` header. This parameter must not be `nil`.
- @param mimeType The declared MIME type of the file data. This parameter must not be `nil`.
- @param error If an error occurs, upon return contains an `NSError` object that describes the problem.
- 
- @return `YES` if the file data was successfully appended otherwise `NO`.
- */
-- (BOOL)appendPartWithFileURL:(NSURL *)fileURL
-                         name:(NSString *)name
-                     fileName:(NSString *)fileName
-                     mimeType:(NSString *)mimeType
-                        error:(NSError * __autoreleasing *)error;
-
-/**
- Appends the HTTP header `Content-Disposition: file; filename=#{filename}; name=#{name}"` and `Content-Type: #{mimeType}`, followed by the data from the input stream and the multipart form boundary.
- 
- @param inputStream The input stream to be appended to the form data
- @param name The name to be associated with the specified input stream. This parameter must not be `nil`.
- @param fileName The filename to be associated with the specified input stream. This parameter must not be `nil`.
- @param length The length of the specified input stream in bytes.
- @param mimeType The MIME type of the specified data. (For example, the MIME type for a JPEG image is image/jpeg.) For a list of valid MIME types, see http://www.iana.org/assignments/media-types/. This parameter must not be `nil`.
- */
-- (void)appendPartWithInputStream:(NSInputStream *)inputStream
-                             name:(NSString *)name
-                         fileName:(NSString *)fileName
-                           length:(int64_t)length
-                         mimeType:(NSString *)mimeType;
-
-/**
- Appends the HTTP header `Content-Disposition: file; filename=#{filename}; name=#{name}"` and `Content-Type: #{mimeType}`, followed by the encoded file data and the multipart form boundary.
- 
- @param data The data to be encoded and appended to the form data.
- @param name The name to be associated with the specified data. This parameter must not be `nil`.
- @param fileName The filename to be associated with the specified data. This parameter must not be `nil`.
- @param mimeType The MIME type of the specified data. (For example, the MIME type for a JPEG image is image/jpeg.) For a list of valid MIME types, see http://www.iana.org/assignments/media-types/. This parameter must not be `nil`.
- */
-- (void)appendPartWithFileData:(NSData *)data
-                          name:(NSString *)name
-                      fileName:(NSString *)fileName
-                      mimeType:(NSString *)mimeType;
-
-/**
- Appends the HTTP headers `Content-Disposition: form-data; name=#{name}"`, followed by the encoded data and the multipart form boundary.
- 
- @param data The data to be encoded and appended to the form data.
- @param name The name to be associated with the specified data. This parameter must not be `nil`.
- */
-
-- (void)appendPartWithFormData:(NSData *)data
-                          name:(NSString *)name;
-
-
-/**
- Appends HTTP headers, followed by the encoded data and the multipart form boundary.
- 
- @param headers The HTTP headers to be appended to the form data.
- @param body The data to be encoded and appended to the form data.
- */
-- (void)appendPartWithHeaders:(NSDictionary *)headers
-                         body:(NSData *)body;
-
-/**
- Throttles request bandwidth by limiting the packet size and adding a delay for each chunk read from the upload stream.
- 
- When uploading over a 3G or EDGE connection, requests may fail with "request body stream exhausted". Setting a maximum packet size and delay according to the recommended values (`kDSAPIUploadStream3GSuggestedPacketSize` and `kDSAPIUploadStream3GSuggestedDelay`) lowers the risk of the input stream exceeding its allocated bandwidth. Unfortunately, there is no definite way to distinguish between a 3G, EDGE, or LTE connection over `NSURLConnection`. As such, it is not recommended that you throttle bandwidth based solely on network reachability. Instead, you should consider checking for the "request body stream exhausted" in a failure block, and then retrying the request with throttled bandwidth.
- 
- @param numberOfBytes Maximum packet size, in number of bytes. The default packet size for an input stream is 16kb.
- @param delay Duration of delay each time a packet is read. By default, no delay is set.
- */
-- (void)throttleBandwidthWithPacketSize:(NSUInteger)numberOfBytes
-                                  delay:(NSTimeInterval)delay;
-
 @end
 
 #pragma mark -
@@ -440,22 +297,6 @@ extern NSString * const DSAPIURLRequestSerializationErrorDomain;
  The corresponding value is an `NSURLRequest` containing the request of the operation associated with an error. This key is only present in the `DSAPIURLRequestSerializationErrorDomain`.
  */
 extern NSString * const DSAPINetworkingOperationFailingURLRequestErrorKey;
-
-/**
- ## Throttling Bandwidth for HTTP Request Input Streams
- 
- @see -throttleBandwidthWithPacketSize:delay:
- 
- ### Constants
- 
- `kDSAPIUploadStream3GSuggestedPacketSize`
- Maximum packet size, in number of bytes. Equal to 16kb.
- 
- `kDSAPIUploadStream3GSuggestedDelay`
- Duration of delay each time a packet is read. Equal to 0.2 seconds.
- */
-extern NSUInteger const kDSAPIUploadStream3GSuggestedPacketSize;
-extern NSTimeInterval const kDSAPIUploadStream3GSuggestedDelay;
 
 ///-----------------------------------
 /// @name OAuth Request Serializer

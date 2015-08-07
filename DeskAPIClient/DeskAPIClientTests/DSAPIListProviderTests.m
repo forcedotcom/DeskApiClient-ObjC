@@ -63,6 +63,7 @@ static NSUInteger const DSAPIResourcesPerPageTest = 25;
 @implementation DSAPIListEndpointTest : NSObject
 
 - (void)listResourcesOnPageNumber:(NSUInteger)pageNumber
+                            queue:(NSOperationQueue *)queue
                           success:(DSAPIPageSuccessBlock)success
                           failure:(DSAPIFailureBlock)failure
 {
@@ -95,7 +96,7 @@ static NSUInteger const DSAPIResourcesPerPageTest = 25;
     DSAPIListProvider *listProvider = [self testProvider];
     id mock = OCMPartialMock(self.endpoint);
     
-    OCMExpect([mock listResourcesOnPageNumber:1 success:OCMOCK_ANY failure:OCMOCK_ANY]);
+    OCMExpect([mock listResourcesOnPageNumber:1 queue:OCMOCK_ANY success:OCMOCK_ANY failure:OCMOCK_ANY]);
     
     [listProvider fetchResourcesOnPageNumber:1];
     
@@ -136,7 +137,7 @@ static NSUInteger const DSAPIResourcesPerPageTest = 25;
     
     OCMStub([mock shouldFetchResourcesOnPageNumber:1]).andReturn(YES);
     
-    OCMExpect([endpointMock listResourcesOnPageNumber:1 success:OCMOCK_ANY failure:OCMOCK_ANY]);
+    OCMExpect([endpointMock listResourcesOnPageNumber:1 queue:OCMOCK_ANY success:OCMOCK_ANY failure:OCMOCK_ANY]);
     
     [listProvider fetchResourcesOnPageNumber:1];
     

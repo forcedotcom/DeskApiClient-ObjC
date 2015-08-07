@@ -43,17 +43,17 @@
     [super setUp];
 
     [Expecta setAsynchronousTestTimeout:5.0];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
 - (void)testShowCurrentSite
 {
     __block DSAPISite *_site = nil;
     
-    [DSAPISite showCurrentSiteWithSuccess:^(DSAPISite *site) {
+    [DSAPISite showCurrentSiteWithQueue:self.APICallbackQueue success:^(DSAPISite *site) {
         _site = site;
         [self done];
-    } andFailure:^(NSHTTPURLResponse *response, NSError *error) {
+    } failure:^(NSHTTPURLResponse *response, NSError *error) {
         EXPFail(self, __LINE__, __FILE__, [error description]);
         [self done];
     }];
@@ -70,6 +70,7 @@
     __block DSAPISite *_site = nil;
     
     [DSAPISite showCurrentSiteWithParameters:@{}
+                                       queue:self.APICallbackQueue
                                      success:^(DSAPISite *site) {
                                          _site = site;
                                          [self done];
@@ -86,15 +87,15 @@
 {
     __block DSAPISite *_site = nil;
     
-    [DSAPISite showCurrentSiteWithSuccess:^(DSAPISite *site) {
-        [site showWithSuccess:^(DSAPISite *site) {
+    [DSAPISite showCurrentSiteWithQueue:self.APICallbackQueue success:^(DSAPISite *site) {
+        [site showWithQueue:self.APICallbackQueue success:^(DSAPISite *site) {
             _site = site;
             [self done];
-         } andFailure:^(NSHTTPURLResponse *response, NSError *error) {
+         } failure:^(NSHTTPURLResponse *response, NSError *error) {
             EXPFail(self, __LINE__, __FILE__, [error description]);
             [self done];
         }];
-    } andFailure:^(NSHTTPURLResponse *response, NSError *error) {
+    } failure:^(NSHTTPURLResponse *response, NSError *error) {
         EXPFail(self, __LINE__, __FILE__, [error description]);
         [self done];
     }];
@@ -110,15 +111,16 @@
 {
     __block DSAPISite *_site = nil;
     
-    [DSAPISite showCurrentSiteWithSuccess:^(DSAPISite *site) {
+    [DSAPISite showCurrentSiteWithQueue:self.APICallbackQueue success:^(DSAPISite *site) {
         [site showWithParameters:@{}
+                           queue:self.APICallbackQueue
                          success:^(DSAPISite *site) {
                              _site = site;
                              [self done];
                          } failure:^(NSHTTPURLResponse *response, NSError *error) {
                              EXPFail(self, __LINE__, __FILE__, [error description]);
                          }];
-    } andFailure:^(NSHTTPURLResponse *response, NSError *error) {
+    } failure:^(NSHTTPURLResponse *response, NSError *error) {
         EXPFail(self, __LINE__, __FILE__, [error description]);
         [self done];
     }];
@@ -132,7 +134,7 @@
 {
     __block DSAPIBilling *_billing = nil;
     
-    [DSAPISite showCurrentSiteBillingWithSuccess:^(DSAPIBilling *billing) {
+    [DSAPISite showCurrentSiteBillingWithQueue:self.APICallbackQueue success:^(DSAPIBilling *billing) {
         _billing = billing;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {

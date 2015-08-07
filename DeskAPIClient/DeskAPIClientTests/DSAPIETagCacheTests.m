@@ -69,16 +69,16 @@
 
 - (void)testSetAndGetEtag
 {
-    [[DSAPIETagCache sharedManager] setETag:@"1234567" forUrl:_link1.URL nextPageUrl:_link2.URL];
-    expect([[DSAPIETagCache sharedManager] eTagForUrl:_link1.URL]).to.equal(@"1234567");
-    expect([[DSAPIETagCache sharedManager] eTagForUrl:_link2.URL]).to.equal(@"1234567");
-    expect([[DSAPIETagCache sharedManager] nextPageUrlForUrl:_link1.URL].relativeString).to.equal(_link2.href);
-    expect([[DSAPIETagCache sharedManager] eTagForUrl:_link3.URL]).to.beNil();
+    [[DSAPIETagCache sharedManager] setETag:@"1234567" forURL:_link1.URL nextPageURL:_link2.URL];
+    expect([[DSAPIETagCache sharedManager] eTagForURL:_link1.URL]).to.equal(@"1234567");
+    expect([[DSAPIETagCache sharedManager] eTagForURL:_link2.URL]).to.equal(@"1234567");
+    expect([[DSAPIETagCache sharedManager] nextPageURLForURL:_link1.URL].relativeString).to.equal(_link2.href);
+    expect([[DSAPIETagCache sharedManager] eTagForURL:_link3.URL]).to.beNil();
 }
 
 - (void)testSettingETagUpdatesPlistFile
 {
-    [[DSAPIETagCache sharedManager] setETag:@"1234567" forUrl:_link1.URL nextPageUrl:_link2.URL];
+    [[DSAPIETagCache sharedManager] setETag:@"1234567" forURL:_link1.URL nextPageURL:_link2.URL];
     
     NSURL *plistURL = [[[[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject] URLByAppendingPathComponent:@"eTagCache.plist"];
     NSDictionary *plist = [NSDictionary dictionaryWithContentsOfURL:plistURL];
@@ -88,43 +88,43 @@
 
 - (void)testLoadsFromFileWhenMemoryCacheIsNil
 {
-    [[DSAPIETagCache sharedManager] setETag:@"1234567" forUrl:_link1.URL nextPageUrl:_link2.URL];
+    [[DSAPIETagCache sharedManager] setETag:@"1234567" forURL:_link1.URL nextPageURL:_link2.URL];
     
     [DSAPIETagCache sharedManager].eTagCache = nil;
     
     id mockCache = [OCMockObject partialMockForObject:[DSAPIETagCache sharedManager]];
     [[mockCache expect] loadETagCache];
     
-    __unused NSString *etag = [mockCache eTagForUrl:_link1.URL];
+    __unused NSString *etag = [mockCache eTagForURL:_link1.URL];
     [mockCache verify];
 }
 
 - (void)testCache
 {
-    [[DSAPIETagCache sharedManager] setETag:@"1234567" forUrl:_link1.URL nextPageUrl:_link2.URL];
+    [[DSAPIETagCache sharedManager] setETag:@"1234567" forURL:_link1.URL nextPageURL:_link2.URL];
     
-    expect([[DSAPIETagCache sharedManager] eTagForUrl:_link1.URL]).to.equal(@"1234567");
+    expect([[DSAPIETagCache sharedManager] eTagForURL:_link1.URL]).to.equal(@"1234567");
 }
 
 - (void)testClearCache
 {
-    [[DSAPIETagCache sharedManager] setETag:@"1234567" forUrl:_link1.URL nextPageUrl:_link2.URL];
+    [[DSAPIETagCache sharedManager] setETag:@"1234567" forURL:_link1.URL nextPageURL:_link2.URL];
     [[DSAPIETagCache sharedManager] clearCache];
     
-    expect([[DSAPIETagCache sharedManager] eTagForUrl:_link1.URL]).to.beNil();
+    expect([[DSAPIETagCache sharedManager] eTagForURL:_link1.URL]).to.beNil();
 }
 
-- (void)testnextPageUrl
+- (void)testnextPageURL
 {
-    [[DSAPIETagCache sharedManager] setETag:@"1234567" forUrl:_link1.URL nextPageUrl:_link2.URL];
+    [[DSAPIETagCache sharedManager] setETag:@"1234567" forURL:_link1.URL nextPageURL:_link2.URL];
     
-    expect([[DSAPIETagCache sharedManager] nextPageUrlForUrl:_link1.URL].relativeString).to.equal(_link2.href);
+    expect([[DSAPIETagCache sharedManager] nextPageURLForURL:_link1.URL].relativeString).to.equal(_link2.href);
 }
 
-- (void)testnextPageUrlIsNull
+- (void)testnextPageURLIsNull
 {
-    [[DSAPIETagCache sharedManager] setETag:@"1234567" forUrl:_link1.URL nextPageUrl:nil];
-    expect([[DSAPIETagCache sharedManager] nextPageUrlForUrl:_link1.URL]).to.beNil();
+    [[DSAPIETagCache sharedManager] setETag:@"1234567" forURL:_link1.URL nextPageURL:nil];
+    expect([[DSAPIETagCache sharedManager] nextPageURLForURL:_link1.URL]).to.beNil();
 }
 
 - (void)testEtagCachingForGroups
@@ -132,8 +132,8 @@
     [[DSAPIETagCache sharedManager] clearCache];
     XCTestExpectation *expectation = [self expectationWithDescription:@"should receive 304 response"];
     
-    [DSAPIGroup listGroupsWithParameters:nil success:^(DSAPIPage *page) {
-        [DSAPIGroup listGroupsWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPIGroup listGroupsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [DSAPIGroup listGroupsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
             EXPFail(self, __LINE__, __FILE__, @"did not receive 304 response");
             [expectation fulfill];
         } notModified:^(DSAPIPage *notModifiedPage) {
@@ -156,8 +156,8 @@
     [[DSAPIETagCache sharedManager] clearCache];
     XCTestExpectation *expectation = [self expectationWithDescription:@"should receive 304 response"];
     
-    [DSAPILabel listLabelsWithParameters:nil success:^(DSAPIPage *page) {
-        [DSAPILabel listLabelsWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPILabel listLabelsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [DSAPILabel listLabelsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
             EXPFail(self, __LINE__, __FILE__, @"did not receive 304 response");
             [expectation fulfill];
         } notModified:^(DSAPIPage *page){
@@ -180,8 +180,8 @@
     [[DSAPIETagCache sharedManager] clearCache];
     XCTestExpectation *expectation = [self expectationWithDescription:@"should receive 304 response"];
     
-    [DSAPILabel listLabelsWithParameters:nil success:^(DSAPIPage *page) {
-        [DSAPILabel listLabelsWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPILabel listLabelsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [DSAPILabel listLabelsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
             EXPFail(self, __LINE__, __FILE__, @"did not receive 304 response");
             [expectation fulfill];
         } notModified:^(DSAPIPage *page){
@@ -198,7 +198,7 @@
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout handler:nil];
+    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout * 2.f handler:nil];
 }
 
 - (void)testEtagCachingForUsers
@@ -206,8 +206,8 @@
     [[DSAPIETagCache sharedManager] clearCache];
     XCTestExpectation *expectation = [self expectationWithDescription:@"should receive 304 response"];
     
-    [DSAPIUser listUsersWithParameters:nil success:^(DSAPIPage *page) {
-        [DSAPIUser listUsersWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPIUser listUsersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [DSAPIUser listUsersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
             EXPFail(self, __LINE__, __FILE__, @"did not receive 304 response");
             [expectation fulfill];
         } notModified:^(DSAPIPage *page){
@@ -230,8 +230,8 @@
     [[DSAPIETagCache sharedManager] clearCache];
     XCTestExpectation *expectation = [self expectationWithDescription:@"should receive 304 response"];
     
-    [DSAPIFilter listFiltersWithParameters:nil success:^(DSAPIPage *page) {
-        [DSAPIFilter listFiltersWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPIFilter listFiltersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [DSAPIFilter listFiltersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
             EXPFail(self, __LINE__, __FILE__, @"did not receive 304 response");
             [expectation fulfill];
         } notModified:^(DSAPIPage *page){
@@ -253,10 +253,10 @@
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"should receive 304 response"];
     
-    [DSAPIFilter listFiltersWithParameters:@{@"per_page":@1} success:^(DSAPIPage *page) {
+    [DSAPIFilter listFiltersWithParameters:@{@"per_page":@1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         DSAPIFilter *filter = (DSAPIFilter *)page.entries[0];
-        [filter listCasesWithParameters:nil success:^(DSAPIPage *page) {
-            [filter listCasesWithParameters:nil success:^(DSAPIPage *page) {
+        [filter listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+            [filter listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
                 EXPFail(self, __LINE__, __FILE__, @"did not receive 304 response");
                 [expectation fulfill];
             } notModified:^(DSAPIPage *page){
@@ -283,7 +283,7 @@
     [[DSAPIETagCache sharedManager] clearCache];
     XCTestExpectation *expectation = [self expectationWithDescription:@"should receive 200 response"];
     
-    [DSAPILabel listLabelsWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPILabel listLabelsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         expect(page.notModified).toNot.beTruthy();
         [expectation fulfill];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {

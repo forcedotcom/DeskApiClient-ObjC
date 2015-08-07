@@ -42,15 +42,15 @@
 {
     [super setUp];
     [Expecta setAsynchronousTestTimeout:5.0];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
 - (void)testShowNote
 {
     __block DSAPINote *_note = nil;
-    [DSAPICase listCasesWithParameters:nil success:^(DSAPIPage *page) {
-        [page.entries[0] listNotesWithParameters:nil success:^(DSAPIPage *notesPage) {
-            [(DSAPINote *)notesPage.entries[0] showWithParameters:nil success:^(DSAPINote *note) {
+    [DSAPICase listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [page.entries[0] listNotesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *notesPage) {
+            [(DSAPINote *)notesPage.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPINote *note) {
                 _note = note;
                 [self done];
             } failure:^(NSHTTPURLResponse *response, NSError *error) {

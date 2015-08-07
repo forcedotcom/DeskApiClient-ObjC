@@ -11,6 +11,8 @@
 
 @interface DSAPITestCase : XCTestCase
 
+@property (nonatomic) NSOperationQueue *APICallbackQueue;
+
 - (void)done;
 - (BOOL)isDone;
 

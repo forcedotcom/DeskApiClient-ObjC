@@ -42,7 +42,7 @@
 {
     [super setUp];
     [Expecta setAsynchronousTestTimeout:10.f];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
 
@@ -50,7 +50,7 @@
 {
     __block NSArray *_companies = nil;
     
-    [DSAPICompany listCompaniesWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPICompany listCompaniesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _companies = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -68,7 +68,7 @@
 {
     __block NSArray *_companies = nil;
     
-    [DSAPICompany listCompaniesWithParameters:@{@"per_page": @1} success:^(DSAPIPage *page) {
+    [DSAPICompany listCompaniesWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _companies = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -85,9 +85,9 @@
 {
     __block DSAPILink *previousLink = nil;
     
-    [DSAPICompany listCompaniesWithParameters:@{@"per_page": @1} success:^(DSAPIPage *page) {
+    [DSAPICompany listCompaniesWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         DSAPILink *nextLink = page.links[@"next"][0];
-        [DSAPICompany listCompaniesWithParameters:nextLink.parameters success:^(DSAPIPage *nextPage) {
+        [DSAPICompany listCompaniesWithParameters:nextLink.parameters queue:self.APICallbackQueue success:^(DSAPIPage *nextPage) {
             previousLink = nextPage.links[@"previous"][0];
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -109,8 +109,8 @@
 {
     __block DSAPICompany *_company = nil;
     
-    [DSAPICompany listCompaniesWithParameters:@{@"per_page": @1} success:^(DSAPIPage *page) {
-        [(DSAPICompany *)page.entries[0] showWithParameters:nil success:^(DSAPICompany *company) {
+    [DSAPICompany listCompaniesWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPICompany *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPICompany *company) {
             _company = company;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -133,7 +133,7 @@
     __block DSAPICompany *responseResource = nil;
     
     NSString *companyName = [[NSDate date] description];
-    [DSAPICompany createCompany:@{@"name":companyName} success:^(DSAPICompany *company) {
+    [DSAPICompany createCompany:@{@"name":companyName} queue:self.APICallbackQueue success:^(DSAPICompany *company) {
         responseResource = company;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -151,8 +151,8 @@
     __block DSAPICompany *_updatedCompany = nil;
     
     NSString *companyName = [[NSDate date] description];
-    [DSAPICompany createCompany:@{@"name":[[NSDate date] description]} success:^(DSAPICompany *company) {
-        [company updateWithDictionary:@{@"name":companyName} success:^(DSAPICompany *updatedCompany) {
+    [DSAPICompany createCompany:@{@"name":[[NSDate date] description]} queue:self.APICallbackQueue success:^(DSAPICompany *company) {
+        [company updateWithDictionary:@{@"name":companyName} queue:self.APICallbackQueue success:^(DSAPICompany *updatedCompany) {
             _updatedCompany = updatedCompany;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -175,11 +175,12 @@
     __block DSAPICompany *company = nil;
     __block NSString *companyName = nil;
     
-    [DSAPICompany listCompaniesWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPICompany listCompaniesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         NSUInteger randomIndex = arc4random() % page.entries.count;
         DSAPICompany *randomCompany = (DSAPICompany *)page.entries[randomIndex];
         companyName = randomCompany[@"name"];
         [DSAPICompany searchCompaniesWithParameters:@{@"q": [NSString stringWithFormat:@"\"%@\"", companyName]}
+                                              queue:self.APICallbackQueue
                                             success:^(DSAPIPage *page) {
                                                 company = [page.entries firstObject];
                                                 [self done];
@@ -201,8 +202,8 @@
 - (void)testListCases
 {
     __block DSAPIPage *_page = nil;
-    [DSAPICompany listCompaniesWithParameters:nil success:^(DSAPIPage *page) {
-        [(DSAPICompany *)page.entries[0] listCasesWithParameters:nil success:^(DSAPIPage *casesPage) {
+    [DSAPICompany listCompaniesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPICompany *)page.entries[0] listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *casesPage) {
             _page = casesPage;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {

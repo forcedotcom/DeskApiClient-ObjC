@@ -45,7 +45,7 @@
 {
     [super setUp];
     [Expecta setAsynchronousTestTimeout:3.f];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
     _resourceFixture = [DSAPITestUtils resourceFromJSONFile:@"case6"];
     _replies = [DSAPITestUtils resourceFromJSONFile:@"case41replies"];
     _linkToCases = [[DSAPILink alloc] initWithDictionary:@{kHrefKey : @"/api/v2/cases",
@@ -101,7 +101,7 @@
 - (void)testListResourcesReturnsAtLeastOneResource
 {
     __block NSArray *_resources = nil;
-    [DSAPIResource listResourcesAt:_linkToCases parameters:nil success:^(DSAPIPage *page) {
+    [DSAPIResource listResourcesAt:_linkToCases parameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _resources = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -119,7 +119,7 @@
 {
     __block DSAPIResource *customer = nil;
     
-    [DSAPIResource listResourcesAt:_linkToCases parameters:@{@"embed" : @"customer"} success:^(DSAPIPage *page) {
+    [DSAPIResource listResourcesAt:_linkToCases parameters:@{@"embed" : @"customer"} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         customer = [page.entries[0] resourceForRelation:@"customer"];
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -135,7 +135,7 @@
 - (void)testListResourcesCanSetPerPage
 {
     __block NSArray *_resources = nil;
-    [DSAPIResource listResourcesAt:_linkToCases parameters:@{@"per_page" : @1} success:^(DSAPIPage *page) {
+    [DSAPIResource listResourcesAt:_linkToCases parameters:@{@"per_page" : @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _resources = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -150,9 +150,9 @@
 - (void)testGetCasesCanRetrieveNextPage
 {
     __block DSAPILink *nextNextLink = nil;
-    [DSAPIResource listResourcesAt:_linkToCases parameters:@{@"per_page" : @1} success:^(DSAPIPage *page) {
+    [DSAPIResource listResourcesAt:_linkToCases parameters:@{@"per_page" : @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         DSAPILink *nextLink = page.links[@"next"][0];
-        [DSAPIResource listResourcesAt:_linkToCases parameters:nextLink.parameters success:^(DSAPIPage *nextPage) {
+        [DSAPIResource listResourcesAt:_linkToCases parameters:nextLink.parameters queue:self.APICallbackQueue success:^(DSAPIPage *nextPage) {
             nextNextLink = nextPage.links[@"next"][0];
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -172,7 +172,7 @@
 - (void)testSearchResources
 {
     __block DSAPIResource *randomCase = nil;
-    [DSAPIResource searchResourcesAt:_linkToCases parameters:@{@"subject" : @"getting"} success:^(DSAPIPage *page) {
+    [DSAPIResource searchResourcesAt:_linkToCases parameters:@{@"subject" : @"getting"} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         NSUInteger randomIndex = arc4random() % page.entries.count;
         randomCase = page.entries[randomIndex];
         [self done];
@@ -188,8 +188,8 @@
 - (void)testshowResourceReturnsNonNil
 {
     __block DSAPIResource *_resource = nil;
-    [DSAPIResource listResourcesAt:_linkToCases parameters:nil success:^(DSAPIPage *page) {
-        [page.entries[0] showWithParameters:nil success:^(DSAPIResource *resource) {
+    [DSAPIResource listResourcesAt:_linkToCases parameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIResource *resource) {
             _resource = resource;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -208,7 +208,7 @@
 - (void)testCreateResource
 {
     __block DSAPIResource *responseResource = nil;
-    [DSAPIResource createResource:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] atLink:_linkToCases success:^(DSAPIResource *resource) {
+    [DSAPIResource createResource:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] link:_linkToCases queue:self.APICallbackQueue success:^(DSAPIResource *resource) {
         responseResource = resource;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -229,9 +229,9 @@
 - (void)testUpdateResource
 {
     __block DSAPIResource *anUpdatedCase = nil;
-    [DSAPIResource createResource:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] atLink:_linkToCases success:^(DSAPIResource *resource) {
+    [DSAPIResource createResource:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] link:_linkToCases queue:self.APICallbackQueue success:^(DSAPIResource *resource) {
         NSDictionary *updateCaseDict = [DSAPITestUtils dictionaryFromJSONFile:@"updateCase"];
-        [resource updateWithDictionary:updateCaseDict success:^(DSAPIResource *updatedCase) {
+        [resource updateWithDictionary:updateCaseDict queue:self.APICallbackQueue success:^(DSAPIResource *updatedCase) {
             anUpdatedCase = updatedCase;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {

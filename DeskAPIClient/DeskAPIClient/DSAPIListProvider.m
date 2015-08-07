@@ -36,17 +36,7 @@
 @property (nonatomic) NSUInteger totalResources;
 @property (nonatomic, strong) id<DSAPIListEndpoint> endpoint;
 @property (nonatomic, strong) NSMutableDictionary *loadedPages;
-
-- (void)sendFetchResourcesOnPageNumber:(NSUInteger)pageNumber;
-- (BOOL)shouldFetchResourcesOnPageNumber:(NSUInteger)pageNumber;
-- (BOOL)alreadyLoadedResourcesOnPageNumber:(NSUInteger)pageNumber;
-- (BOOL)pageNumberIsFetchable:(NSUInteger)pageNumber;
-- (void)handleLoadedResourcesOnPage:(DSAPIPage *)page;
-- (void)sendWillFetchPageNumber:(NSUInteger)pageNumber;
-- (void)sendDidFetchPage:(DSAPIPage *)page;
-- (void)sendFetchDidFailOnPageNumber:(NSUInteger)pageNumber;
-- (void)sendNoResults;
-- (DSAPIPage *)loadedPageNumber:(NSInteger)pageNumber;
+@property (nonatomic) NSOperationQueue *APICallbackQueue;
 
 @end
 
@@ -57,7 +47,8 @@
     NSParameterAssert(endpoint);
     self = [super init];
     if (self) {
-        self.endpoint = endpoint;
+        _endpoint = endpoint;
+        _APICallbackQueue = [NSOperationQueue new];
         [self reset];
     }
     return self;
@@ -67,6 +58,7 @@
 {
     self.loadedPages = [NSMutableDictionary new];
     self.totalResources = 0;
+    [self.APICallbackQueue cancelAllOperations];
 }
 
 - (NSInteger)totalPages
@@ -96,11 +88,16 @@
 - (void)sendFetchResourcesOnPageNumber:(NSUInteger)pageNumber
 {
     [self.endpoint listResourcesOnPageNumber:pageNumber
+                                       queue:self.APICallbackQueue
                                      success:^(DSAPIPage *page) {
-                                         [self handleLoadedResourcesOnPage:page];
+                                         dispatch_sync(dispatch_get_main_queue(), ^{
+                                             [self handleLoadedResourcesOnPage:page];
+                                         });
                                      }
                                      failure:^(NSHTTPURLResponse *response, NSError *error) {
-                                         [self sendFetchDidFailOnPageNumber:pageNumber];
+                                         dispatch_sync(dispatch_get_main_queue(), ^{
+                                             [self sendFetchDidFailOnPageNumber:pageNumber];
+                                         });
                                      }];
 }
 

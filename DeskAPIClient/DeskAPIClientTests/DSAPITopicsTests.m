@@ -43,14 +43,14 @@
     [super setUp];
 
     [Expecta setAsynchronousTestTimeout:10.f];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
 - (void)testListTopics
 {
     __block NSArray *_resources = nil;
 
-    [DSAPITopic listTopicsWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPITopic listTopicsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _resources = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -68,7 +68,7 @@
     __block DSAPITopic *responseResource = nil;
 
     NSString *name = [[NSDate date] description];
-    [DSAPITopic createTopic:@{@"name":name} success:^(DSAPITopic *topic) {
+    [DSAPITopic createTopic:@{@"name":name} queue:self.APICallbackQueue success:^(DSAPITopic *topic) {
         responseResource = topic;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -84,8 +84,8 @@
 {
     __block DSAPITopic *_topic = nil;
 
-    [DSAPITopic listTopicsWithParameters:@{@"per_page": @1} success:^(DSAPIPage *page) {
-        [(DSAPITopic *)page.entries[0] showWithParameters:nil success:^(DSAPITopic *topic) {
+    [DSAPITopic listTopicsWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPITopic *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPITopic *topic) {
             _topic = topic;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -109,8 +109,8 @@
     NSString *originalName = [DSAPITestUtils epochTimeAsString];
     NSString *expectedName = [[NSDate date] description];
 
-    [DSAPITopic createTopic:@{@"name":originalName} success:^(DSAPITopic *topic) {
-        [topic updateWithDictionary:@{@"name":expectedName} success:^(DSAPITopic *updatedTopic) {
+    [DSAPITopic createTopic:@{@"name":originalName} queue:self.APICallbackQueue success:^(DSAPITopic *topic) {
+        [topic updateWithDictionary:@{@"name":expectedName} queue:self.APICallbackQueue success:^(DSAPITopic *updatedTopic) {
             _updatedTopic = updatedTopic;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -132,8 +132,8 @@
 {
     NSString *name = @"foo";
 
-    [DSAPITopic createTopic:@{@"name":name} success:^(DSAPITopic *topic) {
-        [topic deleteWithParameters:nil success:^(void) {
+    [DSAPITopic createTopic:@{@"name":name} queue:self.APICallbackQueue success:^(DSAPITopic *topic) {
+        [topic deleteWithParameters:nil queue:self.APICallbackQueue success:^(void) {
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
             EXPFail(self, __LINE__, __FILE__, [error description]);
@@ -150,8 +150,8 @@
 - (void)testListArticles
 {
     __block NSArray *_articles = nil;
-    [DSAPITopic listTopicsWithParameters:nil success:^(DSAPIPage *page) {
-        [(DSAPITopic *)page.entries[0] listArticlesWithParameters:nil success:^(DSAPIPage *articlesPage) {
+    [DSAPITopic listTopicsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPITopic *)page.entries[0] listArticlesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *articlesPage) {
             _articles = articlesPage.entries;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {

@@ -5,19 +5,19 @@
 //  Created by Desk.com on 5/13/14.
 //  Copyright (c) 2015, Salesforce.com, Inc.
 //  All rights reserved.
-//  
+//
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided
 //  that the following conditions are met:
-//  
+//
 //     Redistributions of source code must retain the above copyright notice, this list of conditions and the
 //     following disclaimer.
-//  
+//
 //     Redistributions in binary form must reproduce the above copyright notice, this list of conditions and
 //     the following disclaimer in the documentation and/or other materials provided with the distribution.
-//  
+//
 //     Neither the name of Salesforce.com, Inc. nor the names of its contributors may be used to endorse or
 //     promote products derived from this software without specific prior written permission.
-//  
+//
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
 //  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
 //  PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
@@ -43,7 +43,7 @@
 {
     [super setUp];
     [Expecta setAsynchronousTestTimeout:10.0];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
 - (void)testListTwitterAccounts
@@ -51,10 +51,10 @@
     [OHHTTPStubs stubResponseFromFixtureName:@"twitter_accounts"
                               withStatusCode:DSC_HTTP_STATUS_OK
                                       andTag:@"twitter_accounts"
-                                withTagMatchType:DSCMatchTypeHasSuffix];
+                            withTagMatchType:DSCMatchTypeHasSuffix];
     
     __block NSArray *_twitterAccounts = nil;
-    [DSAPITwitterAccount listTwitterAccountsWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPITwitterAccount listTwitterAccountsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _twitterAccounts = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -82,8 +82,8 @@
                                  andHTTPVerb:@"GET"];
     
     __block DSAPITwitterAccount *_twitterAccount = nil;
-    [DSAPITwitterAccount listTwitterAccountsWithParameters:nil success:^(DSAPIPage *page) {
-        [(DSAPITwitterAccount *)page.entries[0] showWithParameters:nil success:^(DSAPITwitterAccount *twitterAct) {
+    [DSAPITwitterAccount listTwitterAccountsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPITwitterAccount *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPITwitterAccount *twitterAct) {
             _twitterAccount = twitterAct;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -116,8 +116,8 @@
                                  andHTTPVerb:@"GET"];
     
     __block NSArray *_tweets = nil;
-    [DSAPITwitterAccount listTwitterAccountsWithParameters:nil success:^(DSAPIPage *page) {
-        [(DSAPITwitterAccount *)page.entries[0] listTweetsWithParameters:nil success:^(DSAPIPage *tweetsPage) {
+    [DSAPITwitterAccount listTwitterAccountsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPITwitterAccount *)page.entries[0] listTweetsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *tweetsPage) {
             _tweets = tweetsPage.entries;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -156,9 +156,10 @@
                                  andHTTPVerb:@"GET"];
     
     __block DSAPITweet *_tweet = nil;
-    [DSAPITwitterAccount listTwitterAccountsWithParameters:nil success:^(DSAPIPage *page) {
-        [(DSAPITwitterAccount *)page.entries[0] listTweetsWithParameters:nil success:^(DSAPIPage *tweetsPage) {
+    [DSAPITwitterAccount listTwitterAccountsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPITwitterAccount *)page.entries[0] listTweetsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *tweetsPage) {
             [(DSAPITweet *)tweetsPage.entries[0] showWithParameters:nil
+                                                              queue:self.APICallbackQueue
                                                             success:^(DSAPITweet *tweet) {
                                                                 _tweet = tweet;
                                                                 [self done];
@@ -201,9 +202,10 @@
                                  andHTTPVerb:@"POST"];
     
     __block DSAPITweet *_retweet = nil;
-    [DSAPITwitterAccount listTwitterAccountsWithParameters:nil success:^(DSAPIPage *page) {
-        [(DSAPITwitterAccount *)page.entries[0] listTweetsWithParameters:nil success:^(DSAPIPage *tweetsPage) {
+    [DSAPITwitterAccount listTwitterAccountsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPITwitterAccount *)page.entries[0] listTweetsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *tweetsPage) {
             [(DSAPITweet *)tweetsPage.entries[0] postAction:@{@"action_type":@"retweet"}
+                                                      queue:self.APICallbackQueue
                                                     success:^(DSAPITweet *tweet) {
                                                         _retweet = tweet;
                                                         [self done];
@@ -239,15 +241,16 @@
                                  andHTTPVerb:@"POST"];
     
     __block DSAPITweet *_createdTweet = nil;
-    [DSAPITwitterAccount listTwitterAccountsWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPITwitterAccount listTwitterAccountsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPITwitterAccount *)page.entries[0] createTweet:@{@"body":@"test from api"}
+                                                      queue:self.APICallbackQueue
                                                     success:^(DSAPITweet *tweet) {
                                                         _createdTweet = tweet;
                                                         [self done];
-        } failure:^(NSHTTPURLResponse *response, NSError *error) {
-            EXPFail(self, __LINE__, __FILE__, [error description]);
-            [self done];
-        }];
+                                                    } failure:^(NSHTTPURLResponse *response, NSError *error) {
+                                                        EXPFail(self, __LINE__, __FILE__, [error description]);
+                                                        [self done];
+                                                    }];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
         EXPFail(self, __LINE__, __FILE__, [error description]);
         [self done];
@@ -272,9 +275,10 @@
     
     __block DSAPITwitterFollow *_follow = nil;
     
-    [DSAPITwitterAccount listTwitterAccountsWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPITwitterAccount listTwitterAccountsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPITwitterAccount *)page.entries[0] showFollowWithUsername:@"desk"
                                                             parameters:nil
+                                                                 queue:self.APICallbackQueue
                                                                success:^(DSAPITwitterFollow *twitterFollow) {
                                                                    _follow = twitterFollow;
                                                                    [self done];
@@ -309,10 +313,12 @@
                               withStatusCode:DSC_HTTP_STATUS_NO_CONTENT
                                  andHTTPVerb:@"DELETE"];
     
-    [DSAPITwitterAccount listTwitterAccountsWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPITwitterAccount listTwitterAccountsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPITwitterAccount *)page.entries[0] createFollow:@{@"handle":@"foo"}
+                                                       queue:self.APICallbackQueue
                                                      success:^(DSAPITwitterFollow *twitterFollow) {
                                                          [twitterFollow deleteWithParameters:nil
+                                                                                       queue:self.APICallbackQueue
                                                                                      success:^{
                                                                                          expect(twitterFollow).toNot.beNil();
                                                                                          expect(twitterFollow).to.beKindOf([DSAPITwitterFollow class]);

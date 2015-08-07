@@ -43,14 +43,14 @@
 {
     [super setUp];
     [Expecta setAsynchronousTestTimeout:10.0];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
 
 - (void)testListLabelsReturnsAtLeastOneLabel
 {
     __block NSArray *_labels = nil;
-    [DSAPILabel listLabelsWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPILabel listLabelsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _labels = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -67,7 +67,7 @@
 - (void)testListLabelsCanSetPerPage
 {
     __block NSArray *_labels = nil;
-    [DSAPILabel listLabelsWithParameters:@{@"per_page": @1} success:^(DSAPIPage *page) {
+    [DSAPILabel listLabelsWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _labels = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -84,8 +84,8 @@
 - (void)testShowLabel
 {
     __block DSAPIResource *_label = nil;
-    [DSAPILabel listLabelsWithParameters:@{@"per_page": @1} success:^(DSAPIPage *page) {
-        [(DSAPILabel *)page.entries[0] showWithParameters:nil success:^(DSAPILabel *label) {
+    [DSAPILabel listLabelsWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPILabel *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPILabel *label) {
             _label = label;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -110,7 +110,7 @@
     NSMutableDictionary *newLabel = [[DSAPITestUtils dictionaryFromJSONFile:@"newLabel"] mutableCopy];
     newLabel[@"name"] = [DSAPITestUtils uuid];
     
-    [DSAPILabel createLabel:newLabel success:^(DSAPIResource *newLabel) {
+    [DSAPILabel createLabel:newLabel queue:self.APICallbackQueue success:^(DSAPIResource *newLabel) {
         responseResource = newLabel;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -129,7 +129,7 @@
     __block DSAPIResource *_updatedLabel = nil;
     
     NSDictionary *updateLabelDict = [DSAPITestUtils dictionaryFromJSONFile:@"updateLabel"];
-    [labelToUpdate updateWithDictionary:updateLabelDict success:^(DSAPILabel *updatedLabel) {
+    [labelToUpdate updateWithDictionary:updateLabelDict queue:self.APICallbackQueue success:^(DSAPILabel *updatedLabel) {
         _updatedLabel = updatedLabel;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -146,7 +146,7 @@
 {
     __block DSAPILabel *label = nil;
     
-    [DSAPILabel searchLabelsWithParameters:@{@"name": @"escalated"} success:^(DSAPIPage *page) {
+    [DSAPILabel searchLabelsWithParameters:@{@"name": @"escalated"} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         label = page.entries.firstObject;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -164,8 +164,8 @@
 {
     __block BOOL hitCache = NO;
     
-    [DSAPILabel searchLabelsWithParameters:@{@"name": @"1"} success:^(DSAPIPage *page) {
-        [DSAPILabel searchLabelsWithParameters:@{@"name": @"1"} success:^(DSAPIPage *page) {
+    [DSAPILabel searchLabelsWithParameters:@{@"name": @"1"} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [DSAPILabel searchLabelsWithParameters:@{@"name": @"1"} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
             EXPFail(self, __LINE__, __FILE__, @"did not receive 304 response");
             [self done];
         } notModified:^(DSAPIPage *page) {

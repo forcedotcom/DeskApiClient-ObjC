@@ -42,13 +42,13 @@
 {
     [super setUp];
     [Expecta setAsynchronousTestTimeout:5.0];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
 - (void)testListSiteSettings
 {
     __block NSArray *_siteSettings = nil;
-    [DSAPISiteSetting listSiteSettingsWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPISiteSetting listSiteSettingsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _siteSettings = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -64,8 +64,8 @@
 - (void)testShowSiteSetting
 {
     __block DSAPISiteSetting *_siteSetting = nil;
-    [DSAPISiteSetting listSiteSettingsWithParameters:nil success:^(DSAPIPage *page) {
-        [(DSAPISiteSetting *)page.entries[0] showWithParameters:nil success:^(DSAPISiteSetting *siteSetting) {
+    [DSAPISiteSetting listSiteSettingsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPISiteSetting *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPISiteSetting *siteSetting) {
             _siteSetting = siteSetting;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {

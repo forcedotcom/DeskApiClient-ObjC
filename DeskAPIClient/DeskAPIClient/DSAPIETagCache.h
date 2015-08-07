@@ -34,10 +34,10 @@
 
 +(instancetype)sharedManager;
 
-- (void)setETag:(NSString *)eTag forUrl:(NSURL *)url nextPageUrl:(NSURL *)nextPageURL;
-- (NSString *)eTagForUrl:(NSURL *)url;
-- (NSURL *)pageUrlForUrl:(NSURL *)url;
-- (NSURL *)nextPageUrlForUrl:(NSURL *)url;
+- (void)setETag:(NSString *)eTag forURL:(NSURL *)url nextPageURL:(NSURL *)nextPageURL;
+- (NSString *)eTagForURL:(NSURL *)URL;
+- (NSURL *)pageURLForURL:(NSURL *)URL;
+- (NSURL *)nextPageURLForURL:(NSURL *)URL;
 - (void)clearCache;
 
 @end

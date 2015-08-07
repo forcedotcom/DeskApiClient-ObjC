@@ -42,15 +42,15 @@
 {
     [super setUp];
     [Expecta setAsynchronousTestTimeout:5.0];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
 
 - (void)testInteractionClass
 {
     __block DSAPIInteraction *_interaction = nil;
-    [DSAPICase listCasesWithParameters:nil success:^(DSAPIPage *page) {
-        [page.entries[0] listRepliesWithParameters:nil success:^(DSAPIPage *repliesPage) {
+    [DSAPICase listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [page.entries[0] listRepliesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *repliesPage) {
             _interaction = repliesPage.entries[0];
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -70,9 +70,9 @@
 - (void)testShowInteraction
 {
     __block DSAPIInteraction *_interaction = nil;
-    [DSAPICase listCasesWithParameters:nil success:^(DSAPIPage *page) {
-        [page.entries[0] listRepliesWithParameters:nil success:^(DSAPIPage *repliesPage) {
-            [(DSAPIInteraction *)repliesPage.entries[0] showWithParameters:nil success:^(DSAPIInteraction *interaction) {
+    [DSAPICase listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [page.entries[0] listRepliesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *repliesPage) {
+            [(DSAPIInteraction *)repliesPage.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIInteraction *interaction) {
                 _interaction = interaction;
                 [self done];
             } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -99,8 +99,8 @@
     __block DSAPITweet *tweet = nil;
     DSAPICase *twitterCase = (DSAPICase *)[[[DSAPILink alloc] initWithDictionary:@{kHrefKey:@"/api/v2/cases/11", kClassKey:@"case"}] resourceWithSelf];
     
-    [twitterCase showWithParameters:nil success:^(DSAPICase *theCase) {
-        [theCase listRepliesWithParameters:nil success:^(DSAPIPage *page) {
+    [twitterCase showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPICase *theCase) {
+        [theCase listRepliesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
             tweet = page.entries[0];
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {

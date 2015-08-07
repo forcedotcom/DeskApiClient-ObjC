@@ -43,7 +43,7 @@
 {
     [super setUp];
     [Expecta setAsynchronousTestTimeout:10.0];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
 
@@ -52,7 +52,7 @@
 - (void)testListCasesReturnsAtLeastOneCase
 {
     __block NSArray *_cases = nil;
-    [DSAPICase listCasesWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPICase listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _cases = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -70,7 +70,7 @@
 - (void)testListCasesEmbedsCustomer
 {
     __block DSAPIResource *customer = nil;
-    [DSAPICase listCasesWithParameters:@{@"embed": @"customer"} success:^(DSAPIPage *page) {
+    [DSAPICase listCasesWithParameters:@{@"embed": @"customer"} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         customer = [page.entries[0] resourceForRelation:@"customer"];
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -87,7 +87,7 @@
 - (void)testListCasesEmbedsMessage
 {
     __block DSAPIResource *message = nil;
-    [DSAPICase listCasesWithParameters:@{@"embed": @"message"} success:^(DSAPIPage *page) {
+    [DSAPICase listCasesWithParameters:@{@"embed": @"message"} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         message = [page.entries[0] resourceForRelation:@"message"];
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -104,7 +104,7 @@
 - (void)testListCasesCanSetPerPage
 {
     __block NSArray *_cases = nil;
-    [DSAPICase listCasesWithParameters:@{@"per_page": @1} success:^(DSAPIPage *page) {
+    [DSAPICase listCasesWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _cases = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -120,9 +120,9 @@
 - (void)testListCasesCanRetrieveNextPage
 {
     __block DSAPILink *nextNextLink = nil;
-    [DSAPICase listCasesWithParameters:@{@"per_page": @1} success:^(DSAPIPage *page) {
+    [DSAPICase listCasesWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         DSAPILink *nextLink = page.links[@"next"][0];
-        [DSAPICase listCasesWithParameters:nextLink.parameters success:^(DSAPIPage *nextPage) {
+        [DSAPICase listCasesWithParameters:nextLink.parameters queue:self.APICallbackQueue success:^(DSAPIPage *nextPage) {
             nextNextLink = nextPage.links[@"next"][0];
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -143,8 +143,8 @@
 - (void)testShowCase
 {
     __block DSAPIResource *aCase = nil;
-    [DSAPICase listCasesWithParameters:@{@"per_page": @1} success:^(DSAPIPage *page) {
-        [(DSAPICase *)page.entries[0] showWithParameters:nil success:^(DSAPICase *theCase) {
+    [DSAPICase listCasesWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPICase *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPICase *theCase) {
             aCase = theCase;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -164,7 +164,7 @@
 - (void)testShowCaseById
 {
     __block DSAPIResource *aCase = nil;
-    [DSAPICase showById:@6 parameters:nil success:^(DSAPICase *theCase) {
+    [DSAPICase showById:@6 parameters:nil queue:self.APICallbackQueue success:^(DSAPICase *theCase) {
         aCase = theCase;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -183,7 +183,7 @@
 {
     __block DSAPIResource *randomCase = nil;
     __block NSString *subject = nil;
-    [DSAPICase searchCasesWithParameters:@{@"subject": @"getting"} success:^(DSAPIPage *page) {
+    [DSAPICase searchCasesWithParameters:@{@"subject": @"getting"} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         NSUInteger randomIndex = arc4random() % page.entries.count;
         randomCase = page.entries[randomIndex];
         subject = [randomCase objectForKeyedSubscript:@"subject"];
@@ -204,7 +204,7 @@
 {
     __block NSString *randomCaseCustomerName = nil;
     __block DSAPICustomer *customer = nil;
-    [DSAPICase searchCasesWithParameters:@{@"name": @"amzad", @"embed": @"customer"} success:^(DSAPIPage *page) {
+    [DSAPICase searchCasesWithParameters:@{@"name": @"amzad", @"embed": @"customer"} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         NSUInteger randomIndex = arc4random() % page.entries.count;
         customer = (DSAPICustomer *)[page.entries[randomIndex] resourceForRelation:@"customer"];
         randomCaseCustomerName = [customer objectForKeyedSubscript:@"first_name"];
@@ -226,8 +226,8 @@
 // https://desk.atlassian.net/browse/AA-30112
 //    __block BOOL hitCache = NO;
 //    
-//    [DSAPICase searchCasesWithParameters:@{@"subject": @"getting"} success:^(DSAPIPage *page) {
-//        [DSAPICase searchCasesWithParameters:@{@"subject": @"getting"} success:^(DSAPIPage *page) {
+//    [DSAPICase searchCasesWithParameters:@{@"subject": @"getting"} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+//        [DSAPICase searchCasesWithParameters:@{@"subject": @"getting"} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
 //            EXPFail(self, __LINE__, __FILE__, @"did not receive 304 response");
 //            [self done];
 //        } notModified:^(DSAPIPage *page) {
@@ -248,7 +248,7 @@
 - (void)testCreateCase
 {
     __block DSAPIResource *responseResource = nil;
-    [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] success:^(DSAPIResource *newCase) {
+    [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] queue:self.APICallbackQueue success:^(DSAPIResource *newCase) {
         responseResource = newCase;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -264,9 +264,9 @@
 - (void)testUpdateCase
 {
     __block DSAPIResource *anUpdatedCase = nil;
-    [DSAPICase searchCasesWithParameters:@{@"subject": @"Creating a case via the API"} success:^(DSAPIPage *page) {
+    [DSAPICase searchCasesWithParameters:@{@"subject": @"Creating a case via the API"} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         NSDictionary *updateCaseDict = [DSAPITestUtils dictionaryFromJSONFile:@"updateCase"];
-        [(DSAPICase *)page.entries[0] updateWithDictionary:updateCaseDict success:^(DSAPICase *updatedCase) {
+        [(DSAPICase *)page.entries[0] updateWithDictionary:updateCaseDict queue:self.APICallbackQueue success:^(DSAPICase *updatedCase) {
             anUpdatedCase = updatedCase;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -289,8 +289,8 @@
 - (void)testShowMessage
 {
     __block DSAPIResource *_message = nil;
-    [DSAPICase listCasesWithParameters:nil success:^(DSAPIPage *page) {
-        [(DSAPICase *)page.entries[0] showMessageWithParameters:nil success:^(DSAPIInteraction *message) {
+    [DSAPICase listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPICase *)page.entries[0] showMessageWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIInteraction *message) {
             _message = message;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -312,8 +312,8 @@
 - (void)testListReplies
 {
     __block NSArray *_replies = nil;
-    [DSAPICase listCasesWithParameters:nil success:^(DSAPIPage *page) {
-        [page.entries[0] listRepliesWithParameters:nil success:^(DSAPIPage *repliesPage) {
+    [DSAPICase listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [page.entries[0] listRepliesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *repliesPage) {
             _replies = repliesPage.entries;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -334,8 +334,8 @@
 - (void)testCreateReply
 {
     __block DSAPIResource *responseResource = nil;
-    [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] success:^(DSAPICase *newCase) {
-        [newCase createReply:[DSAPITestUtils dictionaryFromJSONFile:@"newReply"] success:^(DSAPIInteraction *newReply) {
+    [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] queue:self.APICallbackQueue success:^(DSAPICase *newCase) {
+        [newCase createReply:[DSAPITestUtils dictionaryFromJSONFile:@"newReply"] queue:self.APICallbackQueue success:^(DSAPIInteraction *newReply) {
             responseResource = newReply;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -356,8 +356,8 @@
 - (void)testCreateDraft
 {
     __block DSAPIResource *responseResource = nil;
-    [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] success:^(DSAPICase *newCase) {
-        [newCase createDraft:[DSAPITestUtils dictionaryFromJSONFile:@"newReply"] success:^(DSAPIInteraction *newDraft) {
+    [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] queue:self.APICallbackQueue success:^(DSAPICase *newCase) {
+        [newCase createDraft:[DSAPITestUtils dictionaryFromJSONFile:@"newReply"] queue:self.APICallbackQueue success:^(DSAPIInteraction *newDraft) {
             responseResource = newDraft;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -378,8 +378,8 @@
 - (void)testShowDraft
 {
     __block DSAPIResource *_draft = nil;
-    [DSAPICase listCasesWithParameters:nil success:^(DSAPIPage *page) {
-        [(DSAPICase *)page.entries[0] showDraftWithParameters:nil success:^(DSAPIInteraction *draft) {
+    [DSAPICase listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPICase *)page.entries[0] showDraftWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIInteraction *draft) {
             _draft = draft;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -401,9 +401,9 @@
 {
     __block DSAPIResource *_updatedDraft = nil;
     
-    [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] success:^(DSAPICase *newCase) {
-        [newCase createDraft:[DSAPITestUtils dictionaryFromJSONFile:@"newReply"] success:^(DSAPIInteraction *newDraft) {
-            [newDraft updateWithDictionary:@{@"body":@"new body"} success:^(DSAPIInteraction *resource) {
+    [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] queue:self.APICallbackQueue success:^(DSAPICase *newCase) {
+        [newCase createDraft:[DSAPITestUtils dictionaryFromJSONFile:@"newReply"] queue:self.APICallbackQueue success:^(DSAPIInteraction *newDraft) {
+            [newDraft updateWithDictionary:@{@"body":@"new body"} queue:self.APICallbackQueue success:^(DSAPIInteraction *resource) {
                 _updatedDraft = resource;
                 [self done];
             } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -429,8 +429,8 @@
 - (void)testListNotes
 {
     __block NSArray *_notes = nil;
-    [DSAPICase listCasesWithParameters:nil success:^(DSAPIPage *page) {
-        [page.entries[0] listNotesWithParameters:nil success:^(DSAPIPage *notesPage) {
+    [DSAPICase listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [page.entries[0] listNotesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *notesPage) {
             _notes = notesPage.entries;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -452,8 +452,8 @@
 - (void)testCreateNote
 {
     __block DSAPINote *responseNote = nil;
-    [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] success:^(DSAPICase *newCase) {
-        [newCase createNote:[DSAPITestUtils dictionaryFromJSONFile:@"newNote"] success:^(DSAPINote *newNote) {
+    [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] queue:self.APICallbackQueue success:^(DSAPICase *newCase) {
+        [newCase createNote:[DSAPITestUtils dictionaryFromJSONFile:@"newNote"] queue:self.APICallbackQueue success:^(DSAPINote *newNote) {
             responseNote = newNote;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -476,12 +476,12 @@
 {
     __block DSAPIAttachment *_attachment = nil;
     
-    [DSAPICase searchCasesWithParameters:@{@"attachments":@"png"} success:^(DSAPIPage *page) {
+    [DSAPICase searchCasesWithParameters:@{@"attachments":@"png"} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         DSAPICase *caseWithAttachments = page.entries.firstObject;
 
-        [caseWithAttachments showWithParameters:nil success:^(DSAPICase *theCase) {
-            [theCase listAttachmentsWithParameters:nil success:^(DSAPIPage *page) {
-                [(DSAPIAttachment *)page.entries[0] showWithParameters:nil success:^(DSAPIAttachment *attachment) {
+        [caseWithAttachments showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPICase *theCase) {
+            [theCase listAttachmentsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+                [(DSAPIAttachment *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIAttachment *attachment) {
                     _attachment = attachment;
                     [self done];
                 } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -508,8 +508,8 @@
 - (void)testCreateAttachment
 {
     __block DSAPIAttachment *responseAttachment = nil;
-    [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] success:^(DSAPICase *newCase) {
-        [newCase createAttachment:[DSAPITestUtils dictionaryFromJSONFile:@"newAttachment"] success:^(DSAPIAttachment *newAttachment) {
+    [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] queue:self.APICallbackQueue success:^(DSAPICase *newCase) {
+        [newCase createAttachment:[DSAPITestUtils dictionaryFromJSONFile:@"newAttachment"] queue:self.APICallbackQueue success:^(DSAPIAttachment *newAttachment) {
             responseAttachment = newAttachment;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -531,9 +531,9 @@
 - (void)testCreateAttachmentOnInteraction
 {
     __block DSAPIAttachment *attachment = nil;
-    [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] success:^(DSAPICase *newCase) {
-        [newCase showMessageWithParameters:nil success:^(DSAPIInteraction *message) {
-            [message createAttachment:[DSAPITestUtils dictionaryFromJSONFile:@"newAttachment"] success:^(DSAPIAttachment *newAttachment) {
+    [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] queue:self.APICallbackQueue success:^(DSAPICase *newCase) {
+        [newCase showMessageWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIInteraction *message) {
+            [message createAttachment:[DSAPITestUtils dictionaryFromJSONFile:@"newAttachment"] queue:self.APICallbackQueue success:^(DSAPIAttachment *newAttachment) {
                     attachment = newAttachment;
                     [self done];
                 } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -556,9 +556,9 @@
 
 - (void)testDeleteAttachment
 {
-    [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] success:^(DSAPICase *newCase) {
-        [newCase createAttachment:[DSAPITestUtils dictionaryFromJSONFile:@"newAttachment"] success:^(DSAPIAttachment *newAttachment) {
-            [newAttachment deleteWithParameters:nil success:^(void) {
+    [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] queue:self.APICallbackQueue success:^(DSAPICase *newCase) {
+        [newCase createAttachment:[DSAPITestUtils dictionaryFromJSONFile:@"newAttachment"] queue:self.APICallbackQueue success:^(DSAPIAttachment *newAttachment) {
+            [newAttachment deleteWithParameters:nil queue:self.APICallbackQueue success:^(void) {
                 [self done];
             } failure:^(NSHTTPURLResponse *response, NSError *error) {
                 EXPFail(self, __LINE__, __FILE__, [error description]);
@@ -577,10 +577,10 @@
 
 - (void)testDeleteAttachmentOnInteraction
 {
-        [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] success:^(DSAPICase *newCase) {
-        [newCase showMessageWithParameters:nil success:^(DSAPIInteraction *message) {
-            [message createAttachment:[DSAPITestUtils dictionaryFromJSONFile:@"newAttachment"] success:^(DSAPIAttachment *newAttachment) {
-                [newAttachment deleteWithParameters:nil success:^{
+        [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] queue:self.APICallbackQueue success:^(DSAPICase *newCase) {
+        [newCase showMessageWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIInteraction *message) {
+            [message createAttachment:[DSAPITestUtils dictionaryFromJSONFile:@"newAttachment"] queue:self.APICallbackQueue success:^(DSAPIAttachment *newAttachment) {
+                [newAttachment deleteWithParameters:nil queue:self.APICallbackQueue success:^{
                     [self done];
                 } failure:^(NSHTTPURLResponse *response, NSError *error) {
                     EXPFail(self, __LINE__, __FILE__, [error description]);
@@ -603,8 +603,8 @@
 - (void)testHistory
 {
     __block NSArray *_history = nil;
-    [DSAPICase listCasesWithParameters:@{@"per_page": @1} success:^(DSAPIPage *page) {
-        [(DSAPICase *)page.entries[0] historyWithBlock:^(DSAPIPage *historyPage) {
+    [DSAPICase listCasesWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPICase *)page.entries[0] historyWithQueue:self.APICallbackQueue success:^(DSAPIPage *historyPage) {
             _history = historyPage.entries;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -627,9 +627,9 @@
 - (void)testPreviewMacros
 {
     DSAPICase *aCase = (DSAPICase *)[DSAPITestUtils resourceFromJSONFile:@"case6"];
-    [DSAPIMacro listMacrosWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPIMacro listMacrosWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         NSArray *macros = @[[page.entries firstObject]];
-        [aCase previewMacros:macros success:^(DSAPIPage *page) {
+        [aCase previewMacros:macros queue:self.APICallbackQueue success:^(DSAPIPage *page) {
             DSAPICase *theCase = (DSAPICase *)[page resourceForRelation:@"case"];
             DSAPIInteraction *reply = (DSAPIInteraction *)[page resourceForRelation:@"reply"];
             expect(theCase).to.beKindOf([DSAPICase class]);
@@ -649,8 +649,8 @@
 - (void)testListCaseFeed
 {
     __block NSArray *_replies = nil;
-    [DSAPICase listCasesWithParameters:nil success:^(DSAPIPage *page) {
-        [page.entries[0] listFeedWithParameters:nil success:^(DSAPIPage *repliesPage) {
+    [DSAPICase listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [page.entries[0] listFeedWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *repliesPage) {
             _replies = repliesPage.entries;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {

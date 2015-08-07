@@ -214,13 +214,13 @@
 		1C28760E17EBF27D004B4CBF /* DSAPILink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPILink.m; sourceTree = "<group>"; };
 		1C28761117EBF72B004B4CBF /* case6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = case6.json; sourceTree = "<group>"; };
 		1C28761317ED2F0C004B4CBF /* DSAPIResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIResource.h; sourceTree = "<group>"; };
-		1C28761417ED2F0C004B4CBF /* DSAPIResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIResource.m; sourceTree = "<group>"; };
+		1C28761417ED2F0C004B4CBF /* DSAPIResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIResource.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1C28761717ED2F27004B4CBF /* DSAPIResourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIResourceTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1C28761917F07388004B4CBF /* case41replies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = case41replies.json; sourceTree = "<group>"; };
 		1C28762117F09AFF004B4CBF /* NSDictionary+DSAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSDictionary+DSAPI.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		1C28762217F09AFF004B4CBF /* NSDictionary+DSAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSDictionary+DSAPI.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1C28762417F0CE04004B4CBF /* DSAPITestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPITestUtils.h; sourceTree = "<group>"; };
-		1C28762517F0CE04004B4CBF /* DSAPITestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPITestUtils.m; sourceTree = "<group>"; };
+		1C28762517F0CE04004B4CBF /* DSAPITestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPITestUtils.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1C2D68B1192F99720076A434 /* DSAPISiteSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPISiteSetting.h; sourceTree = "<group>"; };
 		1C2D68B2192F99720076A434 /* DSAPISiteSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPISiteSetting.m; sourceTree = "<group>"; };
 		1C2D68B4192F9C1E0076A434 /* DSAPISiteSettingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPISiteSettingTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -238,7 +238,7 @@
 		1C399F881A6472A0004366DF /* DSAPIURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIURLRequestSerialization.h; sourceTree = "<group>"; };
 		1C399F891A6472A0004366DF /* DSAPIURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIURLRequestSerialization.m; sourceTree = "<group>"; };
 		1C399F8C1A64735D004366DF /* DSAPIURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIURLResponseSerialization.h; sourceTree = "<group>"; };
-		1C399F8D1A64735D004366DF /* DSAPIURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIURLResponseSerialization.m; sourceTree = "<group>"; };
+		1C399F8D1A64735D004366DF /* DSAPIURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIURLResponseSerialization.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1C399FAF1A648CF0004366DF /* DSAPITestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPITestCase.m; sourceTree = "<group>"; };
 		1C399FB11A64936B004366DF /* DSAPITestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSAPITestCase.h; sourceTree = "<group>"; };
 		1C3D462218EF290400389AEB /* DSAPIMobileDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIMobileDevice.h; sourceTree = "<group>"; };
@@ -357,7 +357,7 @@
 		2D2C4CC219B8D77200565E65 /* DSAPIArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIArticle.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2D2C4CC319B8D77200565E65 /* DSAPIArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIArticle.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2D2C4CC519B8EB1E00565E65 /* DSAPIArticleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIArticleTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		2D4947401A114F5E00D81AF7 /* DSAPISite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPISite.m; sourceTree = "<group>"; };
+		2D4947401A114F5E00D81AF7 /* DSAPISite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPISite.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2D4947421A114F9A00D81AF7 /* DSAPISite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPISite.h; sourceTree = "<group>"; };
 		2D4947431A11521200D81AF7 /* DSAPISiteTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPISiteTests.m; sourceTree = "<group>"; };
 		2DFFB06519B60D1A00683B6C /* DSAPITopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPITopic.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };

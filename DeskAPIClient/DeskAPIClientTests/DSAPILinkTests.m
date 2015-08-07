@@ -73,8 +73,8 @@
 - (void)testParameters
 {
     __block DSAPILink *nextLink = nil;
-    [DSAPITestUtils apiClientBasicAuth];
-    [DSAPICase listCasesWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPITestUtils APIClientBasicAuth];
+    [DSAPICase listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         nextLink = page.links[@"next"][0];
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {

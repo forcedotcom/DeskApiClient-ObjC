@@ -43,7 +43,7 @@
 {
     [super setUp];
     [Expecta setAsynchronousTestTimeout:5.0];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
 
@@ -51,9 +51,9 @@
 {
     __block DSAPIUserPreference *_preference = nil;
     // need to find the user that matches the authenticated user making the request
-    [DSAPIUser showCurrentUserWithParameters:nil success:^(DSAPIUser *authenticatedUser) {
-        [authenticatedUser listPreferencesWithParameters:nil success:^(DSAPIPage *preferencesPage) {
-            [(DSAPIUserPreference *)preferencesPage.entries[0] showWithParameters:nil success:^(DSAPIUserPreference *preference) {
+    [DSAPIUser showCurrentUserWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIUser *authenticatedUser) {
+        [authenticatedUser listPreferencesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *preferencesPage) {
+            [(DSAPIUserPreference *)preferencesPage.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIUserPreference *preference) {
                 _preference = preference;
                 [self done];
             } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -78,9 +78,9 @@
 - (void)testUpdateUserPreference
 {
     __block DSAPIResource *updatedPreference = nil;
-    [DSAPIUser showCurrentUserWithParameters:nil success:^(DSAPIUser *authenticatedUser) {
-        [authenticatedUser listPreferencesWithParameters:nil success:^(DSAPIPage *preferencesPage) {
-            [(DSAPIUserPreference *)preferencesPage.entries[0] updateWithDictionary:@{@"value":@-2} success:^(DSAPIUserPreference *preference) {
+    [DSAPIUser showCurrentUserWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIUser *authenticatedUser) {
+        [authenticatedUser listPreferencesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *preferencesPage) {
+            [(DSAPIUserPreference *)preferencesPage.entries[0] updateWithDictionary:@{@"value":@-2} queue:self.APICallbackQueue success:^(DSAPIUserPreference *preference) {
                 updatedPreference = preference;
                 [self done];
             } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -101,9 +101,9 @@
     expect(updatedPreference).will.beKindOf([DSAPIUserPreference class]);
     
     // revert data back for future tests
-    [DSAPIUser showCurrentUserWithParameters:nil success:^(DSAPIUser *authenticatedUser) {
-        [authenticatedUser listPreferencesWithParameters:nil success:^(DSAPIPage *preferencesPage) {
-            [(DSAPIUserPreference *)preferencesPage.entries[0] updateWithDictionary:@{@"value":@0} success:^(DSAPIUserPreference *preference) {
+    [DSAPIUser showCurrentUserWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIUser *authenticatedUser) {
+        [authenticatedUser listPreferencesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *preferencesPage) {
+            [(DSAPIUserPreference *)preferencesPage.entries[0] updateWithDictionary:@{@"value":@0} queue:self.APICallbackQueue success:^(DSAPIUserPreference *preference) {
                 updatedPreference = preference;
                 [self done];
             } failure:^(NSHTTPURLResponse *response, NSError *error) {

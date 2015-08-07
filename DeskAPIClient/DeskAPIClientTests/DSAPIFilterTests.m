@@ -43,13 +43,13 @@
 {
     [super setUp];
     [Expecta setAsynchronousTestTimeout:10.0];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
 - (void)testListFiltersReturnsAtLeastOneFilter
 {
     __block NSArray *_filters = nil;
-    [DSAPIFilter listFiltersWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPIFilter listFiltersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _filters = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -67,7 +67,7 @@
 - (void)testListFiltersCanSetPerPage
 {
     __block NSArray *_filters = nil;
-    [DSAPIFilter listFiltersWithParameters:@{@"per_page": @1} success:^(DSAPIPage *page) {
+    [DSAPIFilter listFiltersWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _filters = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -83,8 +83,8 @@
 - (void)testShowFilter
 {
     __block DSAPIFilter *_filter = nil;
-    [DSAPIFilter listFiltersWithParameters:nil success:^(DSAPIPage *page) {
-        [(DSAPIFilter *)page.entries[0] showWithParameters:nil success:^(DSAPIFilter *filter) {
+    [DSAPIFilter listFiltersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPIFilter *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIFilter *filter) {
             _filter = filter;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -105,8 +105,8 @@
 - (void)testListCases
 {
     __block NSArray *_cases = nil;
-    [DSAPIFilter listFiltersWithParameters:nil success:^(DSAPIPage *page) {
-        [(DSAPIFilter *)page.entries[0] listCasesWithParameters:nil success:^(DSAPIPage *casesPage) {
+    [DSAPIFilter listFiltersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPIFilter *)page.entries[0] listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *casesPage) {
             _cases = casesPage.entries;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -130,10 +130,10 @@
     NSTimeInterval pollTime = (NSInteger)[[NSDate date] timeIntervalSince1970];
     
     [[DSAPIETagCache sharedManager] clearCache];
-    [DSAPIFilter listFiltersWithParameters:nil success:^(DSAPIPage *page) {
-        [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] success:^(DSAPICase *newCase) {
+    [DSAPIFilter listFiltersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] queue:self.APICallbackQueue success:^(DSAPICase *newCase) {
             DSAPIFilter *filter = (DSAPIFilter *)page.entries[0];
-            [filter listCasesWithParameters:nil success:^(DSAPIPage *casesPage) {
+            [filter listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *casesPage) {
                 NSArray *cases = casesPage.entries;
                 NSMutableArray *caseIds = [NSMutableArray new];
                 [cases enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -142,6 +142,7 @@
                 [filter listCaseChanges:caseIds
                          lastPolledTime:pollTime
                              parameters:nil
+                                  queue:self.APICallbackQueue
                                 success:^(DSAPIPage *polledCasesPage) {
                                     caseChanges = polledCasesPage;
                                     [self done];
@@ -174,14 +175,14 @@
 
 - (void)testNilSuccessBlockInList
 {
-    [DSAPIFilter listFiltersWithParameters:nil success:nil failure:nil];
+    [DSAPIFilter listFiltersWithParameters:nil queue:self.APICallbackQueue success:nil failure:nil];
     expect(YES).to.beTruthy();
 }
 
 - (void)testNilSuccessBlockInShow
 {
-    [DSAPIFilter listFiltersWithParameters:nil success:^(DSAPIPage *page) {
-        [((DSAPIFilter *)page.entries.firstObject) showWithParameters:nil success:nil failure:nil];
+    [DSAPIFilter listFiltersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [((DSAPIFilter *)page.entries.firstObject) showWithParameters:nil queue:self.APICallbackQueue success:nil failure:nil];
         [self done];
     } failure:nil];
     expect([self isDone]).will.beTruthy();
@@ -189,8 +190,8 @@
 
 - (void)testNilSuccessBlockInUpdate
 {
-    [DSAPIFilter listFiltersWithParameters:nil success:^(DSAPIPage *page) {
-        [((DSAPIFilter *)page.entries.firstObject) updateWithDictionary:nil success:nil failure:nil];
+    [DSAPIFilter listFiltersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [((DSAPIFilter *)page.entries.firstObject) updateWithDictionary:nil queue:self.APICallbackQueue success:nil failure:nil];
         [self done];
     } failure:nil];
     expect([self isDone]).will.beTruthy();

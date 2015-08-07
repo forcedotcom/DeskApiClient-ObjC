@@ -1,4 +1,4 @@
-platform :ios, '6.0'
+platform :ios, '7.0'
 
 pod 'DeskCommon', :git => 'git@github.com:forcedotcom/DeskCommon-Cocoa.git', :tag => '1.0.3'
 

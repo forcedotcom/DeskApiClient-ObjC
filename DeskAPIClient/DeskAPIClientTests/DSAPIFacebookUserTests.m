@@ -42,7 +42,7 @@
 {
     [super setUp];
     [Expecta setAsynchronousTestTimeout:10.f];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
 
@@ -50,7 +50,7 @@
 {
     __block NSArray *_facebookUsers = nil;
     
-    [DSAPIFacebookUser listFacebookUsersWithParameters:nil success:^(DSAPIPage *page) {
+    [DSAPIFacebookUser listFacebookUsersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _facebookUsers = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -68,7 +68,7 @@
 {
     __block NSArray *_facebookUsers = nil;
     
-    [DSAPIFacebookUser listFacebookUsersWithParameters:@{@"per_page": @1} success:^(DSAPIPage *page) {
+    [DSAPIFacebookUser listFacebookUsersWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _facebookUsers = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -84,8 +84,8 @@
 - (void)testShowFacebookUser
 {
     __block DSAPIResource *_facebookUser = nil;
-    [DSAPIFacebookUser listFacebookUsersWithParameters:@{@"per_page": @1} success:^(DSAPIPage *page) {
-        [(DSAPIFacebookUser *)page.entries[0] showWithParameters:nil success:^(DSAPIFacebookUser *facebookUser) {
+    [DSAPIFacebookUser listFacebookUsersWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPIFacebookUser *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIFacebookUser *facebookUser) {
             _facebookUser = facebookUser;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {

@@ -64,11 +64,10 @@
 
 @protocol DSAPIListEndpoint <NSObject>
 
-@required
-
 @property (nonatomic) NSUInteger perPage;
 
 - (void)listResourcesOnPageNumber:(NSUInteger)pageNumber
+                            queue:(NSOperationQueue *)queue
                           success:(DSAPIPageSuccessBlock)success
                           failure:(DSAPIFailureBlock)failure;
 
