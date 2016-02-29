@@ -197,4 +197,12 @@ extern NSString * const DSAPIResponseKey;
 
 - (void)cancelAllDownloadTasksWithQueue:(NSOperationQueue *)queue completionHandler:(void (^)(void))completionHandler;
 
+/**
+ Empty all cookies, cache and credential stores, removes disk files
+ 
+ @param completionHandler The completion handler to call when the clear operation is complete.
+ */
+
+- (void)clearWithCompletionHandler:(void (^)(void))completionHandler;
+
 @end
