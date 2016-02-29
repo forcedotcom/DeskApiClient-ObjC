@@ -487,7 +487,7 @@ static NSDictionary *ClassNames;
     }];
 }
 
-- (void)clearWithCompletionHandler:(void (^)(void))completionHandler
+- (void)resetSessionWithCompletionHandler:(void (^)(void))completionHandler
 {
     [self.session resetWithCompletionHandler:completionHandler];
 }

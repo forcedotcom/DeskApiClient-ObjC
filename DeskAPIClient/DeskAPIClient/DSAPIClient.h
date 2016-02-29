@@ -203,6 +203,6 @@ extern NSString * const DSAPIResponseKey;
  @param completionHandler The completion handler to call when the clear operation is complete.
  */
 
-- (void)clearWithCompletionHandler:(void (^)(void))completionHandler;
+- (void)resetSessionWithCompletionHandler:(void (^)(void))completionHandler;
 
 @end
