@@ -486,6 +486,11 @@ static NSDictionary *ClassNames;
         }
     }];
 }
+
+- (void)resetSessionWithCompletionHandler:(void (^)(void))completionHandler
+{
+    [self.session resetWithCompletionHandler:completionHandler];
+}
 #pragma mark - Downloads
 
 - (NSURLSessionDownloadTask *)downloadTaskWithURL:(NSURL *)url
