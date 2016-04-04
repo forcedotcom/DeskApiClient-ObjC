@@ -180,6 +180,8 @@
 		2D4947411A114F5E00D81AF7 /* DSAPISite.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4947401A114F5E00D81AF7 /* DSAPISite.m */; };
 		2DFFB06719B60D1A00683B6C /* DSAPITopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFFB06619B60D1A00683B6C /* DSAPITopic.m */; };
 		3E223CA44C6A4C4380497DB7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B9E55B55FA489EA70BB35A /* libPods.a */; };
+		524F4D5C1C89FF7000237829 /* DSAPICompanyFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 524F4D5A1C89FF7000237829 /* DSAPICompanyFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		524F4D5D1C89FF7000237829 /* DSAPICompanyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 524F4D5B1C89FF7000237829 /* DSAPICompanyFilter.m */; };
 		C748B8B31B7A4D3600AF400A /* DSAPINetworkIndicatorController.h in Headers */ = {isa = PBXBuildFile; fileRef = C748B8B11B7A4D3600AF400A /* DSAPINetworkIndicatorController.h */; };
 		C748B8B41B7A4D3600AF400A /* DSAPINetworkIndicatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C748B8B21B7A4D3600AF400A /* DSAPINetworkIndicatorController.m */; };
 		C7A6B1A61C51624B00D8B83F /* DSAPIResource+Testing.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A6B1A51C51624B00D8B83F /* DSAPIResource+Testing.m */; };
@@ -366,6 +368,8 @@
 		2DFFB06519B60D1A00683B6C /* DSAPITopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPITopic.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2DFFB06619B60D1A00683B6C /* DSAPITopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPITopic.m; sourceTree = "<group>"; };
 		2DFFB06819B6126100683B6C /* DSAPITopicsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPITopicsTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		524F4D5A1C89FF7000237829 /* DSAPICompanyFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPICompanyFilter.h; sourceTree = "<group>"; };
+		524F4D5B1C89FF7000237829 /* DSAPICompanyFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICompanyFilter.m; sourceTree = "<group>"; };
 		53502A1E49457E269F1AB62A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8C379B08E1724939AF847EA7 /* libPods-DeskAPIClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeskAPIClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2B9E55B55FA489EA70BB35A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -696,6 +700,8 @@
 				1CFCA36E1A23E0D3000D9F61 /* DSAPIBilling.m */,
 				1C66A32A1A31FE2C00E694D2 /* DSAPIBrand.h */,
 				1C66A32B1A31FE2C00E694D2 /* DSAPIBrand.m */,
+				524F4D5A1C89FF7000237829 /* DSAPICompanyFilter.h */,
+				524F4D5B1C89FF7000237829 /* DSAPICompanyFilter.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -756,6 +762,7 @@
 				1C7B8DA81A642277005ED4A8 /* DSAPITwitterAccount.h in Headers */,
 				1C7B8DA91A642277005ED4A8 /* DSAPIPermission.h in Headers */,
 				1C7B8DAA1A642278005ED4A8 /* DSAPISiteSetting.h in Headers */,
+				524F4D5C1C89FF7000237829 /* DSAPICompanyFilter.h in Headers */,
 				1CDBDF7A1A78191A00582BE2 /* DSAPIListProvider.h in Headers */,
 				1C7B8DAB1A642278005ED4A8 /* DSAPIMailbox.h in Headers */,
 				1C399F8E1A64735D004366DF /* DSAPIURLResponseSerialization.h in Headers */,
@@ -1049,6 +1056,7 @@
 				1CBC6FB0196B4A8E00E763E1 /* DSAPIJob.m in Sources */,
 				1CF0ECB317F32FF200901969 /* DSAPIChatMessage.m in Sources */,
 				1CF0ECD317F379B200901969 /* DSAPIFilter.m in Sources */,
+				524F4D5D1C89FF7000237829 /* DSAPICompanyFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

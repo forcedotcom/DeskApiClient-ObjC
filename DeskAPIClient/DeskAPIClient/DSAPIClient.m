@@ -112,7 +112,8 @@ static NSDictionary *ClassNames;
                    [DSAPIArticle className]: [DSAPIArticle class],
                    [DSAPISite className]: [DSAPISite class],
                    [DSAPIBilling className]: [DSAPIBilling class],
-                   [DSAPIBrand className]: [DSAPIBrand class]};
+                   [DSAPIBrand className]: [DSAPIBrand class],
+                   [DSAPICompanyFilter className]: [DSAPICompanyFilter class]};
     _downloadProgressBlocks = [NSMutableDictionary new];
     _downloadCompletionBlocks = [NSMutableDictionary new];
     _lock = [NSLock new];
