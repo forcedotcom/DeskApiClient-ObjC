@@ -180,6 +180,7 @@
 		2D4947411A114F5E00D81AF7 /* DSAPISite.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4947401A114F5E00D81AF7 /* DSAPISite.m */; };
 		2DFFB06719B60D1A00683B6C /* DSAPITopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFFB06619B60D1A00683B6C /* DSAPITopic.m */; };
 		3E223CA44C6A4C4380497DB7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B9E55B55FA489EA70BB35A /* libPods.a */; };
+		520D8DD81CB2CBA400545313 /* DSAPICompanyFilterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 520D8DD71CB2CBA400545313 /* DSAPICompanyFilterTests.m */; };
 		524F4D5C1C89FF7000237829 /* DSAPICompanyFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 524F4D5A1C89FF7000237829 /* DSAPICompanyFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		524F4D5D1C89FF7000237829 /* DSAPICompanyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 524F4D5B1C89FF7000237829 /* DSAPICompanyFilter.m */; };
 		C748B8B31B7A4D3600AF400A /* DSAPINetworkIndicatorController.h in Headers */ = {isa = PBXBuildFile; fileRef = C748B8B11B7A4D3600AF400A /* DSAPINetworkIndicatorController.h */; };
@@ -368,6 +369,7 @@
 		2DFFB06519B60D1A00683B6C /* DSAPITopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPITopic.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2DFFB06619B60D1A00683B6C /* DSAPITopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPITopic.m; sourceTree = "<group>"; };
 		2DFFB06819B6126100683B6C /* DSAPITopicsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPITopicsTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		520D8DD71CB2CBA400545313 /* DSAPICompanyFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICompanyFilterTests.m; sourceTree = "<group>"; };
 		524F4D5A1C89FF7000237829 /* DSAPICompanyFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPICompanyFilter.h; sourceTree = "<group>"; };
 		524F4D5B1C89FF7000237829 /* DSAPICompanyFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICompanyFilter.m; sourceTree = "<group>"; };
 		53502A1E49457E269F1AB62A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -580,6 +582,7 @@
 				2D4947431A11521200D81AF7 /* DSAPISiteTests.m */,
 				1C0482A81A3209B700DBF660 /* DSAPIBrandTests.m */,
 				1CE2A2181ADEA7C90067F682 /* DSAPIPermissionTests.m */,
+				520D8DD71CB2CBA400545313 /* DSAPICompanyFilterTests.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1094,6 +1097,7 @@
 				1C399FAC1A648C20004366DF /* DSAPIBrandTests.m in Sources */,
 				1C399FAD1A648C20004366DF /* DSAPILinkTests.m in Sources */,
 				1C399FAE1A648C20004366DF /* DSAPIPageTests.m in Sources */,
+				520D8DD81CB2CBA400545313 /* DSAPICompanyFilterTests.m in Sources */,
 				1C399F931A647FE3004366DF /* DSAPIResourceTests.m in Sources */,
 				1C399F911A6474CE004366DF /* DSAPIOAuthClientTests.m in Sources */,
 				1C399F901A6474B2004366DF /* DSAPIRequestSerializerTests.m in Sources */,
