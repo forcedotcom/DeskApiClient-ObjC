@@ -194,12 +194,12 @@
 }
 
 
-- (NSURLSessionDataTask *)listFiltersWithParameters:(NSDictionary *)parameters
-                                              queue:(NSOperationQueue *)queue
-                                            success:(DSAPIPageSuccessBlock)success
-                                            failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)listCaseFiltersWithParameters:(NSDictionary *)parameters
+                                                  queue:(NSOperationQueue *)queue
+                                                success:(DSAPIPageSuccessBlock)success
+                                                failure:(DSAPIFailureBlock)failure
 {
-    return [self listFiltersWithParameters:parameters
+    return [self listCaseFiltersWithParameters:parameters
                                      queue:queue
                                    success:success
                                notModified:nil
@@ -207,13 +207,13 @@
 }
 
 
-- (NSURLSessionDataTask *)listFiltersWithParameters:(NSDictionary *)parameters
-                                              queue:(NSOperationQueue *)queue
-                                            success:(DSAPIPageSuccessBlock)success
-                                        notModified:(DSAPIPageSuccessBlock)notModified
-                                            failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)listCaseFiltersWithParameters:(NSDictionary *)parameters
+                                                  queue:(NSOperationQueue *)queue
+                                                success:(DSAPIPageSuccessBlock)success
+                                            notModified:(DSAPIPageSuccessBlock)notModified
+                                                failure:(DSAPIFailureBlock)failure
 {
-    return [DSAPIResource listResourcesAt:[self.linkToSelf linkFromRelationWithClass:[DSAPIFilter class]]
+    return [DSAPIResource listResourcesAt:[self.linkToSelf linkFromRelationWithClass:[DSAPICaseFilter class]]
                                parameters:parameters
                                    client:self.client
                                     queue:queue
@@ -265,9 +265,9 @@
 }
 
 - (NSURLSessionDataTask *)listCompanyFiltersWithParameters:(NSDictionary *)parameters
-                                              queue:(NSOperationQueue *)queue
-                                            success:(DSAPIPageSuccessBlock)success
-                                            failure:(DSAPIFailureBlock)failure
+                                                     queue:(NSOperationQueue *)queue
+                                                   success:(DSAPIPageSuccessBlock)success
+                                                   failure:(DSAPIFailureBlock)failure
 {
     return [DSAPIResource listResourcesAt:[self.linkToSelf linkFromRelationWithClass:[DSAPICompanyFilter class]]
                                parameters:parameters

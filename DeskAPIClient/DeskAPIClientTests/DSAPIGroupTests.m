@@ -130,7 +130,7 @@
 {
     __block NSArray *_filters = nil;
     [DSAPIGroup listGroupsWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
-        [(DSAPIGroup *)page.entries[0] listFiltersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *filtersPage) {
+        [(DSAPIGroup *)page.entries[0] listCaseFiltersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *filtersPage) {
             _filters = filtersPage.entries;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -145,7 +145,7 @@
     expect([self isDone]).will.beTruthy();
     expect(_filters.count).will.beGreaterThan(0);
     expect(_filters[0][@"name"]).willNot.beNil();
-    expect(_filters[0]).will.beKindOf([DSAPIFilter class]);
+    expect(_filters[0]).will.beKindOf([DSAPICaseFilter class]);
 }
 
 

@@ -52,7 +52,7 @@
 		1C399F951A648C20004366DF /* DSAPIInteractionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECC617F330B200901969 /* DSAPIInteractionTests.m */; };
 		1C399F961A648C20004366DF /* DSAPINoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECA417F32A1A00901969 /* DSAPINoteTests.m */; };
 		1C399F971A648C20004366DF /* DSAPIAttachmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECCB17F338A800901969 /* DSAPIAttachmentTests.m */; };
-		1C399F981A648C20004366DF /* DSAPIFilterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECCF17F378EF00901969 /* DSAPIFilterTests.m */; };
+		1C399F981A648C20004366DF /* DSAPICaseFilterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECCF17F378EF00901969 /* DSAPICaseFilterTests.m */; };
 		1C399F991A648C20004366DF /* DSAPIUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF4484717FDFD1B009FED5A /* DSAPIUserTests.m */; };
 		1C399F9A1A648C20004366DF /* DSAPIUserPreferenceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF4484C17FE056E009FED5A /* DSAPIUserPreferenceTests.m */; };
 		1C399F9B1A648C20004366DF /* DSAPILabelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC438D8182AE1CC00FB046C /* DSAPILabelTests.m */; };
@@ -104,7 +104,7 @@
 		1C7B8D9B1A642277005ED4A8 /* DSAPIFacebookComment.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECC017F3308400901969 /* DSAPIFacebookComment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C7B8D9C1A642277005ED4A8 /* DSAPIPhoneCall.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECC317F3309100901969 /* DSAPIPhoneCall.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C7B8D9D1A642277005ED4A8 /* DSAPIAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECC817F3384900901969 /* DSAPIAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8D9E1A642277005ED4A8 /* DSAPIFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECD117F379B200901969 /* DSAPIFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8D9E1A642277005ED4A8 /* DSAPICaseFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECD117F379B200901969 /* DSAPICaseFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C7B8D9F1A642277005ED4A8 /* DSAPIUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF4484417FDFCA4009FED5A /* DSAPIUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C7B8DA01A642277005ED4A8 /* DSAPIUserPreference.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF4484917FE017E009FED5A /* DSAPIUserPreference.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C7B8DA11A642277005ED4A8 /* DSAPILabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CC438DA182AE36400FB046C /* DSAPILabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -172,7 +172,7 @@
 		1CF0ECC517F3309100901969 /* DSAPIPhoneCall.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECC417F3309100901969 /* DSAPIPhoneCall.m */; };
 		1CF0ECCA17F3384900901969 /* DSAPIAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECC917F3384900901969 /* DSAPIAttachment.m */; };
 		1CF0ECCE17F33F4B00901969 /* newAttachment.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CF0ECCD17F33F4B00901969 /* newAttachment.json */; };
-		1CF0ECD317F379B200901969 /* DSAPIFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECD217F379B200901969 /* DSAPIFilter.m */; };
+		1CF0ECD317F379B200901969 /* DSAPICaseFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECD217F379B200901969 /* DSAPICaseFilter.m */; };
 		1CF4484617FDFCA4009FED5A /* DSAPIUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF4484517FDFCA4009FED5A /* DSAPIUser.m */; };
 		1CF4484B17FE017E009FED5A /* DSAPIUserPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF4484A17FE017E009FED5A /* DSAPIUserPreference.m */; };
 		1CFCA36F1A23E0D3000D9F61 /* DSAPIBilling.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFCA36E1A23E0D3000D9F61 /* DSAPIBilling.m */; };
@@ -348,9 +348,9 @@
 		1CF0ECC917F3384900901969 /* DSAPIAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIAttachment.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1CF0ECCB17F338A800901969 /* DSAPIAttachmentTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIAttachmentTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1CF0ECCD17F33F4B00901969 /* newAttachment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = newAttachment.json; sourceTree = "<group>"; };
-		1CF0ECCF17F378EF00901969 /* DSAPIFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIFilterTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		1CF0ECD117F379B200901969 /* DSAPIFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIFilter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		1CF0ECD217F379B200901969 /* DSAPIFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIFilter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CF0ECCF17F378EF00901969 /* DSAPICaseFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPICaseFilterTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CF0ECD117F379B200901969 /* DSAPICaseFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPICaseFilter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1CF0ECD217F379B200901969 /* DSAPICaseFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPICaseFilter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1CF4484417FDFCA4009FED5A /* DSAPIUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIUser.h; sourceTree = "<group>"; };
 		1CF4484517FDFCA4009FED5A /* DSAPIUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIUser.m; sourceTree = "<group>"; };
 		1CF4484717FDFD1B009FED5A /* DSAPIUserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIUserTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -560,7 +560,7 @@
 				1CF0ECC617F330B200901969 /* DSAPIInteractionTests.m */,
 				1CF0ECA417F32A1A00901969 /* DSAPINoteTests.m */,
 				1CF0ECCB17F338A800901969 /* DSAPIAttachmentTests.m */,
-				1CF0ECCF17F378EF00901969 /* DSAPIFilterTests.m */,
+				1CF0ECCF17F378EF00901969 /* DSAPICaseFilterTests.m */,
 				1CF4484717FDFD1B009FED5A /* DSAPIUserTests.m */,
 				1CF4484C17FE056E009FED5A /* DSAPIUserPreferenceTests.m */,
 				1CC438D8182AE1CC00FB046C /* DSAPILabelTests.m */,
@@ -659,8 +659,8 @@
 				1CF0ECC417F3309100901969 /* DSAPIPhoneCall.m */,
 				1CF0ECC817F3384900901969 /* DSAPIAttachment.h */,
 				1CF0ECC917F3384900901969 /* DSAPIAttachment.m */,
-				1CF0ECD117F379B200901969 /* DSAPIFilter.h */,
-				1CF0ECD217F379B200901969 /* DSAPIFilter.m */,
+				1CF0ECD117F379B200901969 /* DSAPICaseFilter.h */,
+				1CF0ECD217F379B200901969 /* DSAPICaseFilter.m */,
 				1CF4484417FDFCA4009FED5A /* DSAPIUser.h */,
 				1CF4484517FDFCA4009FED5A /* DSAPIUser.m */,
 				1CF4484917FE017E009FED5A /* DSAPIUserPreference.h */,
@@ -751,7 +751,7 @@
 				1C7B8D9B1A642277005ED4A8 /* DSAPIFacebookComment.h in Headers */,
 				1C7B8D9C1A642277005ED4A8 /* DSAPIPhoneCall.h in Headers */,
 				1C7B8D9D1A642277005ED4A8 /* DSAPIAttachment.h in Headers */,
-				1C7B8D9E1A642277005ED4A8 /* DSAPIFilter.h in Headers */,
+				1C7B8D9E1A642277005ED4A8 /* DSAPICaseFilter.h in Headers */,
 				1C7B8D9F1A642277005ED4A8 /* DSAPIUser.h in Headers */,
 				1C7B8DA01A642277005ED4A8 /* DSAPIUserPreference.h in Headers */,
 				1C7B8DA11A642277005ED4A8 /* DSAPILabel.h in Headers */,
@@ -1058,7 +1058,7 @@
 				1C28760F17EBF27D004B4CBF /* DSAPILink.m in Sources */,
 				1CBC6FB0196B4A8E00E763E1 /* DSAPIJob.m in Sources */,
 				1CF0ECB317F32FF200901969 /* DSAPIChatMessage.m in Sources */,
-				1CF0ECD317F379B200901969 /* DSAPIFilter.m in Sources */,
+				1CF0ECD317F379B200901969 /* DSAPICaseFilter.m in Sources */,
 				524F4D5D1C89FF7000237829 /* DSAPICompanyFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1072,7 +1072,7 @@
 				1C399F961A648C20004366DF /* DSAPINoteTests.m in Sources */,
 				1CE2A2191ADEA7C90067F682 /* DSAPIPermissionTests.m in Sources */,
 				1C399F971A648C20004366DF /* DSAPIAttachmentTests.m in Sources */,
-				1C399F981A648C20004366DF /* DSAPIFilterTests.m in Sources */,
+				1C399F981A648C20004366DF /* DSAPICaseFilterTests.m in Sources */,
 				1C399F991A648C20004366DF /* DSAPIUserTests.m in Sources */,
 				1C399F9A1A648C20004366DF /* DSAPIUserPreferenceTests.m in Sources */,
 				1C399F9B1A648C20004366DF /* DSAPILabelTests.m in Sources */,

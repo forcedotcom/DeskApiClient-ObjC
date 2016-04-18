@@ -1,5 +1,5 @@
 //
-//  DSAPIFilterTests.m
+//  DSAPICaseFilterTests.m
 //  DeskAPIClient
 //
 //  Created by Desk.com on 9/25/13.
@@ -31,13 +31,13 @@
 #import "DSAPITestCase.h"
 #import "DSAPIETagCache.h"
 
-@interface DSAPIFilterTests : DSAPITestCase
+@interface DSAPICaseFilterTests : DSAPITestCase
 
 @property (nonatomic, strong) DSAPIClient *client;
 
 @end
 
-@implementation DSAPIFilterTests
+@implementation DSAPICaseFilterTests
 
 - (void)setUp
 {
@@ -49,7 +49,7 @@
 - (void)testListFiltersReturnsAtLeastOneFilter
 {
     __block NSArray *_filters = nil;
-    [DSAPIFilter listFiltersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICaseFilter listFiltersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _filters = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -59,15 +59,15 @@
     
     expect([self isDone]).will.beTruthy();
     expect(_filters.count).will.beGreaterThan(0);
-    expect(_filters[0]).will.beKindOf([DSAPIFilter class]);
-    expect(_filters[0]).will.beKindOf([DSAPIFilter class]);
+    expect(_filters[0]).will.beKindOf([DSAPICaseFilter class]);
+    expect(_filters[0]).will.beKindOf([DSAPICaseFilter class]);
 }
 
 
 - (void)testListFiltersCanSetPerPage
 {
     __block NSArray *_filters = nil;
-    [DSAPIFilter listFiltersWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICaseFilter listFiltersWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _filters = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -82,9 +82,9 @@
 
 - (void)testShowFilter
 {
-    __block DSAPIFilter *_filter = nil;
-    [DSAPIFilter listFiltersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
-        [(DSAPIFilter *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIFilter *filter) {
+    __block DSAPICaseFilter *_filter = nil;
+    [DSAPICaseFilter listFiltersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPICaseFilter *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPICaseFilter *filter) {
             _filter = filter;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -98,15 +98,15 @@
     
     expect([self isDone]).will.beTruthy();
     expect(_filter).willNot.beNil();
-    expect(_filter).will.beKindOf([DSAPIFilter class]);
+    expect(_filter).will.beKindOf([DSAPICaseFilter class]);
     expect(_filter[@"position"]).willNot.beNil();
 }
 
 - (void)testListCases
 {
     __block NSArray *_cases = nil;
-    [DSAPIFilter listFiltersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
-        [(DSAPIFilter *)page.entries[0] listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *casesPage) {
+    [DSAPICaseFilter listFiltersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [(DSAPICaseFilter *)page.entries[0] listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *casesPage) {
             _cases = casesPage.entries;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -130,9 +130,9 @@
     NSTimeInterval pollTime = (NSInteger)[[NSDate date] timeIntervalSince1970];
     
     [[DSAPIETagCache sharedManager] clearCache];
-    [DSAPIFilter listFiltersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICaseFilter listFiltersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [DSAPICase createCase:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] client:self.client queue:self.APICallbackQueue success:^(DSAPICase *newCase) {
-            DSAPIFilter *filter = (DSAPIFilter *)page.entries[0];
+            DSAPICaseFilter *filter = (DSAPICaseFilter *)page.entries[0];
             [filter listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *casesPage) {
                 NSArray *cases = casesPage.entries;
                 NSMutableArray *caseIds = [NSMutableArray new];
@@ -175,14 +175,14 @@
 
 - (void)testNilSuccessBlockInList
 {
-    [DSAPIFilter listFiltersWithParameters:nil client:self.client queue:self.APICallbackQueue success:nil failure:nil];
+    [DSAPICaseFilter listFiltersWithParameters:nil client:self.client queue:self.APICallbackQueue success:nil failure:nil];
     expect(YES).to.beTruthy();
 }
 
 - (void)testNilSuccessBlockInShow
 {
-    [DSAPIFilter listFiltersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
-        [((DSAPIFilter *)page.entries.firstObject) showWithParameters:nil queue:self.APICallbackQueue success:nil failure:nil];
+    [DSAPICaseFilter listFiltersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [((DSAPICaseFilter *)page.entries.firstObject) showWithParameters:nil queue:self.APICallbackQueue success:nil failure:nil];
         [self done];
     } failure:nil];
     expect([self isDone]).will.beTruthy();
@@ -190,8 +190,8 @@
 
 - (void)testNilSuccessBlockInUpdate
 {
-    [DSAPIFilter listFiltersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
-        [((DSAPIFilter *)page.entries.firstObject) updateWithDictionary:nil queue:self.APICallbackQueue success:nil failure:nil];
+    [DSAPICaseFilter listFiltersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [((DSAPICaseFilter *)page.entries.firstObject) updateWithDictionary:nil queue:self.APICallbackQueue success:nil failure:nil];
         [self done];
     } failure:nil];
     expect([self isDone]).will.beTruthy();

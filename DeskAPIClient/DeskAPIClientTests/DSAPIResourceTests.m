@@ -264,7 +264,7 @@
                                                        client:self.client
                                                     className:@"filter"];
     
-    expect(resource).to.beKindOf([DSAPIFilter class]);
+    expect(resource).to.beKindOf([DSAPICaseFilter class]);
     expect(resource.linkToSelf.href).to.equal(@"/api/v2/filters/185");
     expect(resource.linkToSelf.className).to.equal(@"filter");
 }
@@ -275,7 +275,7 @@
                                                      client:self.client
                                                   className:@"filter"];
     
-    expect(resource).to.beKindOf([DSAPIFilter class]);
+    expect(resource).to.beKindOf([DSAPICaseFilter class]);
     expect(resource.linkToSelf.href).to.equal(@"/api/v2/filters/185");
     expect(resource.linkToSelf.className).to.equal(@"filter");
 }

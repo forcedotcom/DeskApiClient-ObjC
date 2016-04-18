@@ -29,7 +29,7 @@
 //
 
 #import "DSAPIGroup.h"
-#import "DSAPIFilter.h"
+#import "DSAPICaseFilter.h"
 #import "DSAPIUser.h"
 #import "DSAPIClient.h"
 
@@ -93,25 +93,25 @@
                              failure:failure];
 }
 
-- (NSURLSessionDataTask *)listFiltersWithParameters:(NSDictionary *)parameters
-                                              queue:(NSOperationQueue *)queue
-                                            success:(DSAPIPageSuccessBlock)success
-                                            failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)listCaseFiltersWithParameters:(NSDictionary *)parameters
+                                                  queue:(NSOperationQueue *)queue
+                                                success:(DSAPIPageSuccessBlock)success
+                                                failure:(DSAPIFailureBlock)failure
 {
-    return [self listFiltersWithParameters:parameters
+    return [self listCaseFiltersWithParameters:parameters
                                      queue:queue
                                    success:success
                                notModified:nil
                                    failure:failure];
 }
 
-- (NSURLSessionDataTask *)listFiltersWithParameters:(NSDictionary *)parameters
-                                              queue:(NSOperationQueue *)queue
-                                            success:(DSAPIPageSuccessBlock)success
-                                        notModified:(DSAPIPageSuccessBlock)notModified
-                                            failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)listCaseFiltersWithParameters:(NSDictionary *)parameters
+                                                  queue:(NSOperationQueue *)queue
+                                                success:(DSAPIPageSuccessBlock)success
+                                            notModified:(DSAPIPageSuccessBlock)notModified
+                                                failure:(DSAPIFailureBlock)failure
 {
-    return [self listResourcesForRelation:[DSAPIFilter classNamePlural]
+    return [self listResourcesForRelation:[DSAPICaseFilter classNamePlural]
                                parameters:parameters
                                     queue:queue
                                   success:success

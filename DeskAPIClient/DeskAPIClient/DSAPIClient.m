@@ -88,7 +88,7 @@ static NSDictionary *ClassNames;
                    [DSAPICustomer className]: [DSAPICustomer class],
                    [DSAPINote className]: [DSAPINote class],
                    [DSAPIAttachment className]: [DSAPIAttachment class],
-                   [DSAPIFilter className]: [DSAPIFilter class],
+                   [DSAPICaseFilter className]: [DSAPICaseFilter class],
                    [DSAPIUser className]: [DSAPIUser class],
                    [DSAPIUserPreference className]: [DSAPIUserPreference class],
                    [DSAPILabel className]: [DSAPILabel class],

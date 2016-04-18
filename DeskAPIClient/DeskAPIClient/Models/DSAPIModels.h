@@ -42,7 +42,7 @@
 #import "DSAPIFacebookComment.h"
 #import "DSAPIPhoneCall.h"
 #import "DSAPIAttachment.h"
-#import "DSAPIFilter.h"
+#import "DSAPICaseFilter.h"
 #import "DSAPIUser.h"
 #import "DSAPIUserPreference.h"
 #import "DSAPILabel.h"

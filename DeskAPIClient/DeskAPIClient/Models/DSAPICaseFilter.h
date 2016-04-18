@@ -1,5 +1,5 @@
 //
-//  DSAPIFilter.h
+//  DSAPICaseFilter.h
 //  DeskAPIClient
 //
 //  Created by Desk.com on 9/25/13.
@@ -30,7 +30,7 @@
 
 #import "DSAPIResource.h"
 
-@interface DSAPIFilter : DSAPIResource
+@interface DSAPICaseFilter : DSAPIResource
 
 /**
  Lists filters by calling a GET to the /api/v2/filters endpoint of the Desk.com API.
@@ -72,13 +72,13 @@
  
  @param parameters The querystring parameters to be sent with the GET request (including 'embed' to embed a resource in the response)
  @param queue The queue on which to execute the success and failure blocks.
- @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the filter (`DSAPIFilter`) returned by the GET request.
+ @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the filter (`DSAPICaseFilter`) returned by the GET request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
  @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
 - (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
                                        queue:(NSOperationQueue *)queue
-                                     success:(void (^)(DSAPIFilter *filter))success
+                                     success:(void (^)(DSAPICaseFilter *filter))success
                                      failure:(DSAPIFailureBlock)failure;
 
 

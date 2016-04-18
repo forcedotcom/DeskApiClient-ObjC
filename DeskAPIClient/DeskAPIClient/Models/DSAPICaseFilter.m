@@ -1,5 +1,5 @@
 //
-//  DSAPIFilter.m
+//  DSAPICaseFilter.m
 //  DeskAPIClient
 //
 //  Created by Desk.com on 9/25/13.
@@ -28,7 +28,7 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "DSAPIFilter.h"
+#import "DSAPICaseFilter.h"
 #import "DSAPICase.h"
 #import "DSAPIPage.h"
 #import "DSAPIClient.h"
@@ -40,7 +40,7 @@
 #define kLastPolledTimeParam @"cflpt"
 #define kChangesPath @"changes"
 
-@implementation DSAPIFilter
+@implementation DSAPICaseFilter
 
 + (NSString *)className
 {
@@ -70,7 +70,7 @@
                                         notModified:(DSAPIPageSuccessBlock)notModified
                                             failure:(DSAPIFailureBlock)failure
 {
-    return [super listResourcesAt:[DSAPIFilter classLinkWithBaseURL:client.baseURL]
+    return [super listResourcesAt:[DSAPICaseFilter classLinkWithBaseURL:client.baseURL]
                        parameters:parameters
                            client:client
                             queue:queue
@@ -82,14 +82,14 @@
 
 - (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
                                        queue:(NSOperationQueue *)queue
-                                     success:(void (^)(DSAPIFilter *filter))success
+                                     success:(void (^)(DSAPICaseFilter *filter))success
                                      failure:(DSAPIFailureBlock)failure
 {
     return [super showWithParameters:parameters
                                queue:queue
                              success:^(DSAPIResource *resource) {
                                  if (success) {
-                                     success((DSAPIFilter *)resource);
+                                     success((DSAPICaseFilter *)resource);
                                  }
                              }
                              failure:failure];

@@ -96,10 +96,10 @@
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
  @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
-- (NSURLSessionDataTask *)listFiltersWithParameters:(NSDictionary *)parameters
-                                              queue:(NSOperationQueue *)queue
-                                            success:(DSAPIPageSuccessBlock)success
-                                            failure:(DSAPIFailureBlock)failure;
+- (NSURLSessionDataTask *)listCaseFiltersWithParameters:(NSDictionary *)parameters
+                                                  queue:(NSOperationQueue *)queue
+                                                success:(DSAPIPageSuccessBlock)success
+                                                failure:(DSAPIFailureBlock)failure;
 
 
 /**
@@ -112,11 +112,11 @@
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
  @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
-- (NSURLSessionDataTask *)listFiltersWithParameters:(NSDictionary *)parameters
-                                              queue:(NSOperationQueue *)queue
-                                            success:(DSAPIPageSuccessBlock)success
-                                        notModified:(DSAPIPageSuccessBlock)notModified
-                                            failure:(DSAPIFailureBlock)failure;
+- (NSURLSessionDataTask *)listCaseFiltersWithParameters:(NSDictionary *)parameters
+                                                  queue:(NSOperationQueue *)queue
+                                                success:(DSAPIPageSuccessBlock)success
+                                            notModified:(DSAPIPageSuccessBlock)notModified
+                                                failure:(DSAPIFailureBlock)failure;
 
 
 /**

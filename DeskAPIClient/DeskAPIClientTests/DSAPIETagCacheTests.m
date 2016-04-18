@@ -233,8 +233,8 @@
     [[DSAPIETagCache sharedManager] clearCache];
     XCTestExpectation *expectation = [self expectationWithDescription:@"should receive 304 response"];
     
-    [DSAPIFilter listFiltersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
-        [DSAPIFilter listFiltersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICaseFilter listFiltersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [DSAPICaseFilter listFiltersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
             EXPFail(self, __LINE__, __FILE__, @"did not receive 304 response");
             [expectation fulfill];
         } notModified:^(DSAPIPage *page){
@@ -256,8 +256,8 @@
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"should receive 304 response"];
     
-    [DSAPIFilter listFiltersWithParameters:@{@"per_page":@1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
-        DSAPIFilter *filter = (DSAPIFilter *)page.entries[0];
+    [DSAPICaseFilter listFiltersWithParameters:@{@"per_page":@1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        DSAPICaseFilter *filter = (DSAPICaseFilter *)page.entries[0];
         [filter listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
             [filter listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
                 EXPFail(self, __LINE__, __FILE__, @"did not receive 304 response");
