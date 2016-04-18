@@ -278,4 +278,19 @@
                                   failure:failure];
 }
 
+- (NSURLSessionDataTask *)listCustomerFiltersWithParameters:(NSDictionary *)parameters
+                                                      queue:(NSOperationQueue *)queue
+                                                    success:(DSAPIPageSuccessBlock)success
+                                                    failure:(DSAPIFailureBlock)failure
+{
+    return [DSAPIResource listResourcesAt:[self.linkToSelf linkFromRelationWithClass:[DSAPICustomerFilter class]]
+                               parameters:parameters
+                                   client:self.client
+                                    queue:queue
+                                  success:success
+                              notModified:nil
+                                  failure:failure];
+
+}
+
 @end
