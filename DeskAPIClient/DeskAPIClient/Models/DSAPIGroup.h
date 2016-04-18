@@ -88,7 +88,7 @@
 
 
 /**
- Lists the filters for a group by calling a GET to the group's "filters" link.
+ Lists the case filters for a group by calling a GET to the group's "filters" link.
  
  @param parameters The querystring parameters to be sent with the GET request
  @param queue The queue on which to execute the success and failure blocks.
@@ -103,7 +103,7 @@
 
 
 /**
- Lists the filters for a group by calling a GET to the group's "filters" link. Supports ETag caching.
+ Lists the case filters for a group by calling a GET to the group's "filters" link. Supports ETag caching.
  
  @param parameters The querystring parameters to be sent with the GET request
  @param queue The queue on which to execute the success, failure and notModified blocks.

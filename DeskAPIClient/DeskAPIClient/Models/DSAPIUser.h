@@ -157,7 +157,7 @@
 #pragma mark - Case Filters
 
 /**
- Lists the filters for an individual user by calling a GET to the user's "self" link appended with the string "filters".
+ Lists the case filters for an individual user by calling a GET to the user's "self" link appended with the string "filters".
  
  @param parameters The querystring parameters to be sent with the GET request
  @param queue The queue on which to execute the success and failure blocks.
@@ -172,7 +172,7 @@
 
 
 /**
- Lists the filters for an individual user by calling a GET to the user's "self" link appended with the string "filters". Supports ETag caching.
+ Lists the case filters for an individual user by calling a GET to the user's "self" link appended with the string "filters". Supports ETag caching.
  
  @param parameters The querystring parameters to be sent with the GET request
  @param queue The queue on which to execute the success, failure and notModified blocks.
