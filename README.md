@@ -5,7 +5,7 @@ The Desk API Client is a lightweight static library that wraps the [Desk.com API
 The easiest way to install the library is as a cocoapod:
 
 ```
-pod 'DeskAPIClient', '~> 2.0.0'
+pod 'DeskAPIClient', '~> 3.0.0'
 ```
 
 ## Usage
