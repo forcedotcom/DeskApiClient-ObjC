@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DeskAPIClient"
-  s.version      = "2.2.0"
+  s.version      = "3.0.0"
   s.summary      = "A lightweight wrapper around the Desk.com API, v2."
   s.license      = { :type => 'BSD 3-Clause', :file => 'LICENSE.txt' }
   s.homepage     = "https://github.com/forcedotcom/DeskApiClient-ObjC"
