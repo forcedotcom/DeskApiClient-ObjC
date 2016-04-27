@@ -183,6 +183,9 @@
 		520D8DD81CB2CBA400545313 /* DSAPICompanyFilterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 520D8DD71CB2CBA400545313 /* DSAPICompanyFilterTests.m */; };
 		524F4D5C1C89FF7000237829 /* DSAPICompanyFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 524F4D5A1C89FF7000237829 /* DSAPICompanyFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		524F4D5D1C89FF7000237829 /* DSAPICompanyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 524F4D5B1C89FF7000237829 /* DSAPICompanyFilter.m */; };
+		52976D291CBEC88200B2D074 /* DSAPICustomerFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 52976D271CBEC88200B2D074 /* DSAPICustomerFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		52976D2A1CBEC88200B2D074 /* DSAPICustomerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 52976D281CBEC88200B2D074 /* DSAPICustomerFilter.m */; };
+		52976D2C1CBED43900B2D074 /* DSAPICustomerFilterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52976D2B1CBED43900B2D074 /* DSAPICustomerFilterTests.m */; };
 		C748B8B31B7A4D3600AF400A /* DSAPINetworkIndicatorController.h in Headers */ = {isa = PBXBuildFile; fileRef = C748B8B11B7A4D3600AF400A /* DSAPINetworkIndicatorController.h */; };
 		C748B8B41B7A4D3600AF400A /* DSAPINetworkIndicatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C748B8B21B7A4D3600AF400A /* DSAPINetworkIndicatorController.m */; };
 		C7A6B1A61C51624B00D8B83F /* DSAPIResource+Testing.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A6B1A51C51624B00D8B83F /* DSAPIResource+Testing.m */; };
@@ -372,6 +375,9 @@
 		520D8DD71CB2CBA400545313 /* DSAPICompanyFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICompanyFilterTests.m; sourceTree = "<group>"; };
 		524F4D5A1C89FF7000237829 /* DSAPICompanyFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPICompanyFilter.h; sourceTree = "<group>"; };
 		524F4D5B1C89FF7000237829 /* DSAPICompanyFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICompanyFilter.m; sourceTree = "<group>"; };
+		52976D271CBEC88200B2D074 /* DSAPICustomerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPICustomerFilter.h; sourceTree = "<group>"; };
+		52976D281CBEC88200B2D074 /* DSAPICustomerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICustomerFilter.m; sourceTree = "<group>"; };
+		52976D2B1CBED43900B2D074 /* DSAPICustomerFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICustomerFilterTests.m; sourceTree = "<group>"; };
 		53502A1E49457E269F1AB62A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8C379B08E1724939AF847EA7 /* libPods-DeskAPIClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeskAPIClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2B9E55B55FA489EA70BB35A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -583,6 +589,7 @@
 				1C0482A81A3209B700DBF660 /* DSAPIBrandTests.m */,
 				1CE2A2181ADEA7C90067F682 /* DSAPIPermissionTests.m */,
 				520D8DD71CB2CBA400545313 /* DSAPICompanyFilterTests.m */,
+				52976D2B1CBED43900B2D074 /* DSAPICustomerFilterTests.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -705,6 +712,8 @@
 				1C66A32B1A31FE2C00E694D2 /* DSAPIBrand.m */,
 				524F4D5A1C89FF7000237829 /* DSAPICompanyFilter.h */,
 				524F4D5B1C89FF7000237829 /* DSAPICompanyFilter.m */,
+				52976D271CBEC88200B2D074 /* DSAPICustomerFilter.h */,
+				52976D281CBEC88200B2D074 /* DSAPICustomerFilter.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -761,6 +770,7 @@
 				1C7B8DA51A642277005ED4A8 /* DSAPICustomField.h in Headers */,
 				1C7B8DA61A642277005ED4A8 /* DSAPIMobileDevice.h in Headers */,
 				C748B8B31B7A4D3600AF400A /* DSAPINetworkIndicatorController.h in Headers */,
+				52976D291CBEC88200B2D074 /* DSAPICustomerFilter.h in Headers */,
 				1C7B8DA71A642277005ED4A8 /* DSAPIMobileDeviceSetting.h in Headers */,
 				1C7B8DA81A642277005ED4A8 /* DSAPITwitterAccount.h in Headers */,
 				1C7B8DA91A642277005ED4A8 /* DSAPIPermission.h in Headers */,
@@ -1026,6 +1036,7 @@
 				1C399F8B1A6472A0004366DF /* DSAPIURLRequestSerialization.m in Sources */,
 				1C6E128518ABFF0600666DE4 /* DSAPICustomField.m in Sources */,
 				1CF4484617FDFCA4009FED5A /* DSAPIUser.m in Sources */,
+				52976D2A1CBEC88200B2D074 /* DSAPICustomerFilter.m in Sources */,
 				1C4575731922B2C300C08B7A /* DSAPITwitterAccount.m in Sources */,
 				1C316D7B17E9533900ACA543 /* DSAPIClient.m in Sources */,
 				1CF0ECC217F3308400901969 /* DSAPIFacebookComment.m in Sources */,
@@ -1082,6 +1093,7 @@
 				1C399F9E1A648C20004366DF /* DSAPIETagCacheTests.m in Sources */,
 				1C399F9F1A648C20004366DF /* DSAPICustomerTests.m in Sources */,
 				1C399FA01A648C20004366DF /* DSAPIFacebookUserTests.m in Sources */,
+				52976D2C1CBED43900B2D074 /* DSAPICustomerFilterTests.m in Sources */,
 				1C399FA11A648C20004366DF /* DSAPITwitterUserTests.m in Sources */,
 				1C399FA21A648C20004366DF /* DSAPICustomFieldTests.m in Sources */,
 				1C399FA31A648C20004366DF /* DSAPIMobileDeviceTests.m in Sources */,

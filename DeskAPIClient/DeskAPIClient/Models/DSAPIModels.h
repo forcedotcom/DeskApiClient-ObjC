@@ -68,3 +68,4 @@
 #import "DSAPIBilling.h"
 #import "DSAPIBrand.h"
 #import "DSAPICompanyFilter.h"
+#import "DSAPICustomerFilter.h"

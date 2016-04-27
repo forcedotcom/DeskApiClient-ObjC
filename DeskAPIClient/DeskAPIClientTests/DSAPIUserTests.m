@@ -270,4 +270,27 @@
     expect(_filters[0]).will.beKindOf([DSAPICompanyFilter class]);
 }
 
+- (void)testListCustomerFilters
+{
+    __block NSArray *_filters = nil;
+    [DSAPIUser listUsersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        DSAPIUser *user = page.entries[0];
+        [user listCustomerFiltersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *filtersPage) {
+            _filters = filtersPage.entries;
+            [self done];
+        } failure:^(NSHTTPURLResponse *response, NSError *error) {
+            EXPFail(self, __LINE__, __FILE__, [error description]);
+            [self done];
+        }];
+    } failure:^(NSHTTPURLResponse *response, NSError *error) {
+        EXPFail(self, __LINE__, __FILE__, [error description]);
+        [self done];
+    }];
+    
+    expect([self isDone]).will.beTruthy();
+    expect(_filters.count).will.beGreaterThan(0);
+    expect(_filters[0][@"position"]).willNot.beNil();
+    expect(_filters[0]).will.beKindOf([DSAPICustomerFilter class]);
+}
+
 @end
