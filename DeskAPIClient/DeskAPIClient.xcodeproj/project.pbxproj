@@ -139,6 +139,9 @@
 		5266886C1D2183A700AD60FD /* DSAPICustomer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0EC9B17F3102400901969 /* DSAPICustomer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		524F4D5C1C89FF7000237829 /* DSAPICompanyFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 524F4D5A1C89FF7000237829 /* DSAPICompanyFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		524F4D5D1C89FF7000237829 /* DSAPICompanyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 524F4D5B1C89FF7000237829 /* DSAPICompanyFilter.m */; };
+		527869A91CE97FCC00E9EF7D /* DSAPIOpportunityFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 527869A71CE97FCC00E9EF7D /* DSAPIOpportunityFilter.h */; };
+		527869AA1CE97FCC00E9EF7D /* DSAPIOpportunityFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 527869A81CE97FCC00E9EF7D /* DSAPIOpportunityFilter.m */; };
+		527869AC1CE9860C00E9EF7D /* DSAPIOpportunityFilterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 527869AB1CE9860C00E9EF7D /* DSAPIOpportunityFilterTests.m */; };
 		527869B91CEAE3FC00E9EF7D /* DSAPIOpportunityStage.h in Headers */ = {isa = PBXBuildFile; fileRef = 527869B71CEAE3FC00E9EF7D /* DSAPIOpportunityStage.h */; };
 		527869BA1CEAE3FC00E9EF7D /* DSAPIOpportunityStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 527869B81CEAE3FC00E9EF7D /* DSAPIOpportunityStage.m */; };
 		527869BC1CEB1FF000E9EF7D /* DSAPIOpportunityStageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 527869BB1CEB1FF000E9EF7D /* DSAPIOpportunityStageTests.m */; };
@@ -371,6 +374,9 @@
 		520D8DD71CB2CBA400545313 /* DSAPICompanyFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICompanyFilterTests.m; sourceTree = "<group>"; };
 		524F4D5A1C89FF7000237829 /* DSAPICompanyFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPICompanyFilter.h; sourceTree = "<group>"; };
 		524F4D5B1C89FF7000237829 /* DSAPICompanyFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICompanyFilter.m; sourceTree = "<group>"; };
+		527869A71CE97FCC00E9EF7D /* DSAPIOpportunityFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIOpportunityFilter.h; sourceTree = "<group>"; };
+		527869A81CE97FCC00E9EF7D /* DSAPIOpportunityFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIOpportunityFilter.m; sourceTree = "<group>"; };
+		527869AB1CE9860C00E9EF7D /* DSAPIOpportunityFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIOpportunityFilterTests.m; sourceTree = "<group>"; };
 		527869B71CEAE3FC00E9EF7D /* DSAPIOpportunityStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIOpportunityStage.h; sourceTree = "<group>"; };
 		526688311D21836900AD60FD /* DeskAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DeskAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		526688351D21836900AD60FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -585,6 +591,7 @@
 				1CE2A2181ADEA7C90067F682 /* DSAPIPermissionTests.m */,
 				520D8DD71CB2CBA400545313 /* DSAPICompanyFilterTests.m */,
 				52976D2B1CBED43900B2D074 /* DSAPICustomerFilterTests.m */,
+				527869AB1CE9860C00E9EF7D /* DSAPIOpportunityFilterTests.m */,
 				527869BB1CEB1FF000E9EF7D /* DSAPIOpportunityStageTests.m */,
 			);
 			name = Models;
@@ -710,6 +717,8 @@
 				524F4D5B1C89FF7000237829 /* DSAPICompanyFilter.m */,
 				52976D271CBEC88200B2D074 /* DSAPICustomerFilter.h */,
 				52976D281CBEC88200B2D074 /* DSAPICustomerFilter.m */,
+				527869A71CE97FCC00E9EF7D /* DSAPIOpportunityFilter.h */,
+				527869A81CE97FCC00E9EF7D /* DSAPIOpportunityFilter.m */,
 				527869B71CEAE3FC00E9EF7D /* DSAPIOpportunityStage.h */,
 				527869B81CEAE3FC00E9EF7D /* DSAPIOpportunityStage.m */,
 			);
@@ -1023,6 +1032,7 @@
 			files = (
 				1C399F941A648C20004366DF /* DSAPICaseTests.m in Sources */,
 				1C399F951A648C20004366DF /* DSAPIInteractionTests.m in Sources */,
+				527869AC1CE9860C00E9EF7D /* DSAPIOpportunityFilterTests.m in Sources */,
 				1C399F961A648C20004366DF /* DSAPINoteTests.m in Sources */,
 				1CE2A2191ADEA7C90067F682 /* DSAPIPermissionTests.m in Sources */,
 				1C399F971A648C20004366DF /* DSAPIAttachmentTests.m in Sources */,

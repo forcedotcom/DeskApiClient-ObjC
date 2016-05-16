@@ -69,4 +69,5 @@
 #import "DSAPIBrand.h"
 #import "DSAPICompanyFilter.h"
 #import "DSAPICustomerFilter.h"
+#import "DSAPIOpportunityFilter.h"
 #import "DSAPIOpportunityStage.h"
