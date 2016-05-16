@@ -115,6 +115,7 @@ static NSDictionary *ClassNames;
                    [DSAPIBrand className]: [DSAPIBrand class],
                    [DSAPICompanyFilter className]: [DSAPICompanyFilter class],
                    [DSAPICustomerFilter className]: [DSAPICustomerFilter class],
+                   [DSAPIOpportunityFilter className]: [DSAPIOpportunityFilter class],
                    [DSAPIOpportunityStage className]: [DSAPIOpportunityStage class]};
     _downloadProgressBlocks = [NSMutableDictionary new];
     _downloadCompletionBlocks = [NSMutableDictionary new];
