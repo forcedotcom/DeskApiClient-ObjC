@@ -98,7 +98,7 @@
     expect([self isDone]).will.beTruthy();
     expect(_opportunities.count).will.beGreaterThan(0);
     expect(_opportunities[0][@"id"]).willNot.beNil();
-    expect(_opportunities[0]).will.beKindOf([DSAPIOpportunityFilter class]);
+    expect(_opportunities[0]).will.beKindOf([DSAPIOpportunity class]);
 }
 
 @end
