@@ -75,7 +75,7 @@
                                               success:(DSAPIPageSuccessBlock)success
                                               failure:(DSAPIFailureBlock)failure
 {
-    return [self listResourcesForRelation:@"opportunities" // TODO: replace with [DSAPIOpportunity classNamePlural]
+    return [self listResourcesForRelation:[DSAPIOpportunity classNamePlural]
                                parameters:parameters
                                     queue:queue
                                   success:success
