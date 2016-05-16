@@ -116,7 +116,8 @@ static NSDictionary *ClassNames;
                    [DSAPICompanyFilter className]: [DSAPICompanyFilter class],
                    [DSAPICustomerFilter className]: [DSAPICustomerFilter class],
                    [DSAPIOpportunityFilter className]: [DSAPIOpportunityFilter class],
-                   [DSAPIOpportunityStage className]: [DSAPIOpportunityStage class]};
+                   [DSAPIOpportunityStage className]: [DSAPIOpportunityStage class],
+                   [DSAPIOpportunity className]: [DSAPIOpportunity class]};
     _downloadProgressBlocks = [NSMutableDictionary new];
     _downloadCompletionBlocks = [NSMutableDictionary new];
     _lock = [NSLock new];
