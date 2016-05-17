@@ -29,6 +29,7 @@
 //
 
 #import "DSAPIOpportunity.h"
+#import "DSAPIClient.h"
 
 #define kClassName @"opportunity"
 #define kClassNamePlural @"opportunities"
