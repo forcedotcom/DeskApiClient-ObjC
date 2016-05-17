@@ -29,6 +29,7 @@
 //
 
 #import "DSAPIOpportunityStage.h"
+#import "DSAPIClient.h"
 
 #define kClassName @"opportunity_stage"
 
