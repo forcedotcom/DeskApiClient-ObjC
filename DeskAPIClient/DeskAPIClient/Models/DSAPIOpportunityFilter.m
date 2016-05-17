@@ -29,6 +29,7 @@
 //
 
 #import "DSAPIOpportunityFilter.h"
+#import "DSAPIClient.h"
 
 #define kClassName @"opportunity_filter"
 
