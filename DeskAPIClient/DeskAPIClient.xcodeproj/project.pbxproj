@@ -137,6 +137,11 @@
 		5266886A1D2183A700AD60FD /* DSAPIModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0EC9E17F3105D00901969 /* DSAPIModels.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5266886B1D2183A700AD60FD /* DSAPICase.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0EC8D17F23B7200901969 /* DSAPICase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5266886C1D2183A700AD60FD /* DSAPICustomer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0EC9B17F3102400901969 /* DSAPICustomer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		524F4D5C1C89FF7000237829 /* DSAPICompanyFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 524F4D5A1C89FF7000237829 /* DSAPICompanyFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		524F4D5D1C89FF7000237829 /* DSAPICompanyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 524F4D5B1C89FF7000237829 /* DSAPICompanyFilter.m */; };
+		527869B91CEAE3FC00E9EF7D /* DSAPIOpportunityStage.h in Headers */ = {isa = PBXBuildFile; fileRef = 527869B71CEAE3FC00E9EF7D /* DSAPIOpportunityStage.h */; };
+		527869BA1CEAE3FC00E9EF7D /* DSAPIOpportunityStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 527869B81CEAE3FC00E9EF7D /* DSAPIOpportunityStage.m */; };
+		527869BC1CEB1FF000E9EF7D /* DSAPIOpportunityStageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 527869BB1CEB1FF000E9EF7D /* DSAPIOpportunityStageTests.m */; };
 		5266886D1D2183A700AD60FD /* DSAPIFacebookUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C6E124518ABB66500666DE4 /* DSAPIFacebookUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5266886E1D2183A700AD60FD /* DSAPITwitterUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C6E124718ABB66500666DE4 /* DSAPITwitterUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5266886F1D2183A700AD60FD /* DSAPINote.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECA117F3293000901969 /* DSAPINote.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -366,8 +371,11 @@
 		520D8DD71CB2CBA400545313 /* DSAPICompanyFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICompanyFilterTests.m; sourceTree = "<group>"; };
 		524F4D5A1C89FF7000237829 /* DSAPICompanyFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPICompanyFilter.h; sourceTree = "<group>"; };
 		524F4D5B1C89FF7000237829 /* DSAPICompanyFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICompanyFilter.m; sourceTree = "<group>"; };
+		527869B71CEAE3FC00E9EF7D /* DSAPIOpportunityStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIOpportunityStage.h; sourceTree = "<group>"; };
 		526688311D21836900AD60FD /* DeskAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DeskAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		526688351D21836900AD60FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		527869B81CEAE3FC00E9EF7D /* DSAPIOpportunityStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIOpportunityStage.m; sourceTree = "<group>"; };
+		527869BB1CEB1FF000E9EF7D /* DSAPIOpportunityStageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIOpportunityStageTests.m; sourceTree = "<group>"; };
 		52976D271CBEC88200B2D074 /* DSAPICustomerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPICustomerFilter.h; sourceTree = "<group>"; };
 		52976D281CBEC88200B2D074 /* DSAPICustomerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICustomerFilter.m; sourceTree = "<group>"; };
 		52976D2B1CBED43900B2D074 /* DSAPICustomerFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICustomerFilterTests.m; sourceTree = "<group>"; };
@@ -577,6 +585,7 @@
 				1CE2A2181ADEA7C90067F682 /* DSAPIPermissionTests.m */,
 				520D8DD71CB2CBA400545313 /* DSAPICompanyFilterTests.m */,
 				52976D2B1CBED43900B2D074 /* DSAPICustomerFilterTests.m */,
+				527869BB1CEB1FF000E9EF7D /* DSAPIOpportunityStageTests.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -701,6 +710,8 @@
 				524F4D5B1C89FF7000237829 /* DSAPICompanyFilter.m */,
 				52976D271CBEC88200B2D074 /* DSAPICustomerFilter.h */,
 				52976D281CBEC88200B2D074 /* DSAPICustomerFilter.m */,
+				527869B71CEAE3FC00E9EF7D /* DSAPIOpportunityStage.h */,
+				527869B81CEAE3FC00E9EF7D /* DSAPIOpportunityStage.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1033,6 +1044,7 @@
 				1C399FA51A648C20004366DF /* DSAPISiteSettingTests.m in Sources */,
 				1C399FA61A648C20004366DF /* DSAPIMailboxTests.m in Sources */,
 				1C399FA71A648C20004366DF /* DSAPIJobsTests.m in Sources */,
+				527869BC1CEB1FF000E9EF7D /* DSAPIOpportunityStageTests.m in Sources */,
 				1C399FA81A648C20004366DF /* DSAPICompanyTests.m in Sources */,
 				1C399FA91A648C20004366DF /* DSAPITopicsTests.m in Sources */,
 				C7A6B1A61C51624B00D8B83F /* DSAPIResource+Testing.m in Sources */,
