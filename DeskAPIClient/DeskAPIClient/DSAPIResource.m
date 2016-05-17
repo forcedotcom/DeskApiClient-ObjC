@@ -385,7 +385,7 @@
         if (notModified) {
             // This is the cache policy to ignore etag cache headers, instead we set etag header manually below to get notModified callback working.
             // Eventually we should get rid of this approach and remove notModified argument from the method definition. Instead we should use caching mechanism provided by Apple
-            request.cachePolicy = NSURLRequestReloadIgnoringLocalAndRemoteCacheData;
+            request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
             
             NSString *etag = [[DSAPIETagCache sharedManager] eTagForURL:request.URL];
             if (etag) {
