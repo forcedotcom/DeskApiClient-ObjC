@@ -28,7 +28,7 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <DeskAPIClient/DeskAPIClient.h>
+#import "DSAPIResource.h"
 
 @interface DSAPIOpportunityStage : DSAPIResource
 
