@@ -129,7 +129,6 @@
 }
 
 - (NSURLSessionDataTask *)createActivity:(NSDictionary *)activityDictionary
-                                  client:(DSAPIClient *)client
                                    queue:(NSOperationQueue *)queue
                                  success:(void (^)(DSAPIOpportunityActivity *newActivity))success
                                  failure:(DSAPIFailureBlock)failure
