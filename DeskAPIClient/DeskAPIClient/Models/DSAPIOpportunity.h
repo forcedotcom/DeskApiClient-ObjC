@@ -128,7 +128,6 @@
  @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
 - (NSURLSessionDataTask *)createActivity:(NSDictionary *)activityDictionary
-                                  client:(DSAPIClient *)client
                                    queue:(NSOperationQueue *)queue
                                  success:(void (^)(DSAPIOpportunityActivity *newOpportunityActivity))success
                                  failure:(DSAPIFailureBlock)failure;

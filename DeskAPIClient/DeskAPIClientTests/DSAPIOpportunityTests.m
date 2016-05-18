@@ -208,7 +208,7 @@
     [DSAPIOpportunity listOpportunitiesWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         
         NSDictionary *activityDictionary = @{@"type": @"note", @"message": @"This is an important note"};
-        [(DSAPIOpportunity *)page.entries[0] createActivity:activityDictionary client:self.client queue:self.APICallbackQueue success:^(DSAPIOpportunityActivity *activity) {
+        [(DSAPIOpportunity *)page.entries[0] createActivity:activityDictionary queue:self.APICallbackQueue success:^(DSAPIOpportunityActivity *activity) {
             _activity = activity;
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
