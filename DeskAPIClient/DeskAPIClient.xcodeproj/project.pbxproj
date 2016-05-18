@@ -151,6 +151,9 @@
 		5266886D1D2183A700AD60FD /* DSAPIFacebookUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C6E124518ABB66500666DE4 /* DSAPIFacebookUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5266886E1D2183A700AD60FD /* DSAPITwitterUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C6E124718ABB66500666DE4 /* DSAPITwitterUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5266886F1D2183A700AD60FD /* DSAPINote.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECA117F3293000901969 /* DSAPINote.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		527869C31CEB39D800E9EF7D /* DSAPIOpportunityActivity.h in Headers */ = {isa = PBXBuildFile; fileRef = 527869C11CEB39D800E9EF7D /* DSAPIOpportunityActivity.h */; };
+		527869C41CEB39D800E9EF7D /* DSAPIOpportunityActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 527869C21CEB39D800E9EF7D /* DSAPIOpportunityActivity.m */; };
+		527869C61CEC3F3D00E9EF7D /* DSAPIOpportunityActivityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 527869C51CEC3F3D00E9EF7D /* DSAPIOpportunityActivityTests.m */; };
 		526688701D2183A700AD60FD /* DSAPIInteraction.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECAB17F32FA500901969 /* DSAPIInteraction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		526688711D2183A700AD60FD /* DSAPIChatMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECB117F32FF200901969 /* DSAPIChatMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		526688721D2183A700AD60FD /* DSAPITweet.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECB417F3302A00901969 /* DSAPITweet.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -388,6 +391,9 @@
 		526688351D21836900AD60FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		527869B81CEAE3FC00E9EF7D /* DSAPIOpportunityStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIOpportunityStage.m; sourceTree = "<group>"; };
 		527869BB1CEB1FF000E9EF7D /* DSAPIOpportunityStageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIOpportunityStageTests.m; sourceTree = "<group>"; };
+		527869C11CEB39D800E9EF7D /* DSAPIOpportunityActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIOpportunityActivity.h; sourceTree = "<group>"; };
+		527869C21CEB39D800E9EF7D /* DSAPIOpportunityActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIOpportunityActivity.m; sourceTree = "<group>"; };
+		527869C51CEC3F3D00E9EF7D /* DSAPIOpportunityActivityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIOpportunityActivityTests.m; sourceTree = "<group>"; };
 		52976D271CBEC88200B2D074 /* DSAPICustomerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPICustomerFilter.h; sourceTree = "<group>"; };
 		52976D281CBEC88200B2D074 /* DSAPICustomerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICustomerFilter.m; sourceTree = "<group>"; };
 		52976D2B1CBED43900B2D074 /* DSAPICustomerFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICustomerFilterTests.m; sourceTree = "<group>"; };
@@ -600,6 +606,7 @@
 				527869AB1CE9860C00E9EF7D /* DSAPIOpportunityFilterTests.m */,
 				527869B51CE9980E00E9EF7D /* DSAPIOpportunityTests.m */,
 				527869BB1CEB1FF000E9EF7D /* DSAPIOpportunityStageTests.m */,
+				527869C51CEC3F3D00E9EF7D /* DSAPIOpportunityActivityTests.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -730,6 +737,8 @@
 				527869B21CE98EA400E9EF7D /* DSAPIOpportunity.m */,
 				527869B71CEAE3FC00E9EF7D /* DSAPIOpportunityStage.h */,
 				527869B81CEAE3FC00E9EF7D /* DSAPIOpportunityStage.m */,
+				527869C11CEB39D800E9EF7D /* DSAPIOpportunityActivity.h */,
+				527869C21CEB39D800E9EF7D /* DSAPIOpportunityActivity.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -780,6 +789,7 @@
 				526688791D2183A700AD60FD /* DSAPIUser.h in Headers */,
 				5266887A1D2183A700AD60FD /* DSAPIUserPreference.h in Headers */,
 				5266887B1D2183A700AD60FD /* DSAPILabel.h in Headers */,
+				527869C31CEB39D800E9EF7D /* DSAPIOpportunityActivity.h in Headers */,
 				5266887C1D2183A700AD60FD /* DSAPIGroup.h in Headers */,
 				5266887D1D2183A700AD60FD /* DSAPIMacro.h in Headers */,
 				5266887E1D2183A700AD60FD /* DSAPIMacroAction.h in Headers */,
@@ -1058,6 +1068,7 @@
 				1C399F9F1A648C20004366DF /* DSAPICustomerTests.m in Sources */,
 				1C399FA01A648C20004366DF /* DSAPIFacebookUserTests.m in Sources */,
 				52976D2C1CBED43900B2D074 /* DSAPICustomerFilterTests.m in Sources */,
+				527869C61CEC3F3D00E9EF7D /* DSAPIOpportunityActivityTests.m in Sources */,
 				1C399FA11A648C20004366DF /* DSAPITwitterUserTests.m in Sources */,
 				1C399FA21A648C20004366DF /* DSAPICustomFieldTests.m in Sources */,
 				1C399FA31A648C20004366DF /* DSAPIMobileDeviceTests.m in Sources */,
