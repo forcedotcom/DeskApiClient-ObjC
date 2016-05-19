@@ -135,7 +135,7 @@
 {
     DSAPILink *linkToActivities = [self linkForRelation:kActivitiesKey];
     if (!linkToActivities) {
-        NSDictionary *linkDictionary = @{kHrefKey:[NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, [DSAPIOpportunityActivity classNamePlural]], kClassKey:kActivitiesKey};
+        NSDictionary *linkDictionary = @{kHrefKey:[NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, kActivitiesKey], kClassKey:[DSAPIOpportunityActivity classNamePlural]};
         linkToActivities = [[DSAPILink alloc] initWithDictionary:linkDictionary
                                                          baseURL:self.client.baseURL];
     }
@@ -157,6 +157,18 @@
                                                failure:(DSAPIFailureBlock)failure
 {
     return [self listResourcesForRelation:kActivitiesKey
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
+                                  failure:failure];
+}
+
+- (NSURLSessionDataTask *)listAttachmentsWithParameters:(NSDictionary *)parameters
+                                                  queue:(NSOperationQueue *)queue
+                                                success:(DSAPIPageSuccessBlock)success
+                                                failure:(DSAPIFailureBlock)failure
+{
+    return [self listResourcesForRelation:[DSAPIAttachment classNamePlural]
                                parameters:parameters
                                     queue:queue
                                   success:success
