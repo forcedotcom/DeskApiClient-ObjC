@@ -35,6 +35,7 @@
 
 @property (strong, nonatomic) DSAPIClient *client;
 @property (strong, nonatomic) DSAPIOpportunity *opportunity;
+@property (strong, nonatomic) DSAPIOpportunityActivity *activity;
 @property (strong, nonatomic) DSAPITestsOpportunityHelpers *helpers;
 
 @end
@@ -54,17 +55,17 @@
     
     // -- Create Opportunity --
     self.opportunity = [self.helpers createOpportunity];
+    
+    // -- Create Activity --
+    self.activity = [self.helpers createActivityWithOpportunity:self.opportunity];
 }
 
 
 - (void)testShowActivity
 {
-    DSAPIOpportunity *opportunity = [self.helpers createOpportunity];
-    DSAPIOpportunityActivity *activity = [self.helpers createActivityWithOpportunity:opportunity];
-    
     __block DSAPIOpportunityActivity *returnedActivity = nil;
     
-    [activity showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIOpportunityActivity *activity) {
+    [self.activity showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIOpportunityActivity *activity) {
         returnedActivity = activity;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -75,15 +76,13 @@
     expect([self isDone]).will.beTruthy();
     expect(returnedActivity).willNot.beNil();
     expect(returnedActivity).will.beKindOf([DSAPIOpportunityActivity class]);
-    expect([returnedActivity[@"_links"][@"self"] isEqualToString:activity[@"_links"][@"self"]]);
+    expect([returnedActivity[@"_links"][@"self"] isEqualToString:self.activity[@"_links"][@"self"]]);
 }
 
 
 - (void)testShowAttachment
 {
-    DSAPIOpportunity *opportunity = [self.helpers createOpportunity];
-    DSAPIOpportunityActivity *activity = [self.helpers createActivityWithOpportunity:opportunity];
-    DSAPIAttachment *attachment = [self.helpers createAttachmentWithActivity:activity];
+    DSAPIAttachment *attachment = [self.helpers createAttachmentWithActivity:self.activity];
     
     __block DSAPIAttachment *retunedAttachment = nil;
     
@@ -105,14 +104,12 @@
 
 - (void)testListAttachments
 {
-    DSAPIOpportunity *opportunity = [self.helpers createOpportunity];
-    DSAPIOpportunityActivity *activity = [self.helpers createActivityWithOpportunity:opportunity];
-    [self.helpers createAttachmentWithActivity:activity];
-    [self.helpers createAttachmentWithActivity:activity];
+    [self.helpers createAttachmentWithActivity:self.activity];
+    [self.helpers createAttachmentWithActivity:self.activity];
     
     __block NSArray *attachments = nil;
     
-    [activity showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIOpportunityActivity *opportunityActivity) {
+    [self.activity showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIOpportunityActivity *opportunityActivity) {
         [opportunityActivity listAttachmentsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
             attachments = page.entries;
             [self done];
@@ -135,13 +132,10 @@
 
 - (void)testCreateAttachment
 {
-    DSAPIOpportunity *opportunity = [self.helpers createOpportunity];
-    DSAPIOpportunityActivity *activity = [self.helpers createActivityWithOpportunity:opportunity];
-    
     // -- Create Attachment --
     NSDictionary *attachmentDictionary = @{@"file_name": @"1x1.png", @"content_type": @"image/png", @"content": @"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEX/TQBcNTh/AAAACklEQVR4nGNiAAAABgADNjd8qAAAAABJRU5ErkJggg=="};
     
-    DSAPIAttachment *attachment = [self.helpers createAttachmentWithActivity:activity dictionary:attachmentDictionary];
+    DSAPIAttachment *attachment = [self.helpers createAttachmentWithActivity:self.activity dictionary:attachmentDictionary];
     
     // -- Assertion --
     expect(attachment).willNot.beNil();
@@ -153,9 +147,7 @@
 
 - (void)testDeleteAttachment
 {
-    DSAPIOpportunity *opportunity = [self.helpers createOpportunity];
-    DSAPIOpportunityActivity *activity = [self.helpers createActivityWithOpportunity:opportunity];
-    DSAPIAttachment *attachment = [self.helpers createAttachmentWithActivity:activity];
+    DSAPIAttachment *attachment = [self.helpers createAttachmentWithActivity:self.activity];
 
     [attachment deleteWithParameters:nil queue:self.APICallbackQueue success:^{
         [self done];
