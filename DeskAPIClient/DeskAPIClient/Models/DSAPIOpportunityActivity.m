@@ -63,5 +63,41 @@
                              failure:failure];
 }
 
+- (NSURLSessionDataTask *)createAttachment:(NSDictionary *)attachmentDictionary
+                                     queue:(NSOperationQueue *)queue
+                                   success:(void (^)(DSAPIAttachment *newAttachment))success
+                                   failure:(DSAPIFailureBlock)failure
+{
+    DSAPILink *linkToActivities = [self linkForRelation:[DSAPIAttachment classNamePlural]];
+    if (!linkToActivities) {
+        NSDictionary *linkDictionary = @{kHrefKey:[NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, [DSAPIAttachment classNamePlural]], kClassKey:[DSAPIAttachment className]};
+        linkToActivities = [[DSAPILink alloc] initWithDictionary:linkDictionary
+                                                         baseURL:self.client.baseURL];
+    }
+    return [DSAPIResource createResource:attachmentDictionary
+                                    link:linkToActivities
+                                  client:self.client
+                                   queue:queue
+                                 success:^(DSAPIResource *newAttachment) {
+                                     if (success) {
+                                         success((DSAPIAttachment *)newAttachment);
+                                     }
+                                 }
+                                 failure:failure];
+
+}
+
+- (NSURLSessionDataTask *)listAttachmentsWithParameters:(NSDictionary *)parameters
+                                                  queue:(NSOperationQueue *)queue
+                                                success:(DSAPIPageSuccessBlock)success
+                                                failure:(DSAPIFailureBlock)failure
+{
+    return [self listResourcesForRelation:[DSAPIAttachment classNamePlural]
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
+                                  failure:failure];
+}
+
 @end
 

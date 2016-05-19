@@ -29,6 +29,7 @@
 //
 
 #import "DSAPIResource.h"
+@class DSAPIAttachment;
 
 @interface DSAPIOpportunityActivity : DSAPIResource
 
@@ -45,5 +46,35 @@
                                        queue:(NSOperationQueue *)queue
                                      success:(void (^)(DSAPIOpportunityActivity *opportunityActivity))success
                                      failure:(DSAPIFailureBlock)failure;
+
+
+/**
+ Creates an attachment for an activity by calling a POST to the activity's "attachments" link.
+ 
+ @param attachmentDictionary A dictionary defining the new attachment.
+ @param queue The queue on which to execute the success and failure blocks.
+ @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the new attachment (`DSAPIAttachment`) created and returned by the POST request.
+ @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
+ @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
+ */
+- (NSURLSessionDataTask *)createAttachment:(NSDictionary *)attachmentDictionary
+                                     queue:(NSOperationQueue *)queue
+                                   success:(void (^)(DSAPIAttachment *newAttachment))success
+                                   failure:(DSAPIFailureBlock)failure;
+
+
+/**
+ Lists the attachments for an individual activity by calling a GET to the activity's "attachments" link.
+ 
+ @param parameters The querystring parameters to be sent with the GET request
+ @param queue The queue on which to execute the success and failure blocks.
+ @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the page (`DSAPIPage`) of resources returned by the GET request.
+ @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
+ @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
+ */
+- (NSURLSessionDataTask *)listAttachmentsWithParameters:(NSDictionary *)parameters
+                                                  queue:(NSOperationQueue *)queue
+                                                success:(DSAPIPageSuccessBlock)success
+                                                failure:(DSAPIFailureBlock)failure;
 
 @end

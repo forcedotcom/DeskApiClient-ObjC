@@ -29,11 +29,13 @@
 //
 
 #import "DSAPITestCase.h"
-#import "NSDate+DSC.h"
+#import "DSAPITestsOpportunityHelpers.h"
 
 @interface DSAPIOpportunityTests : DSAPITestCase
 
 @property (strong, nonatomic) DSAPIClient *client;
+@property (strong, nonatomic) DSAPIOpportunity *opportunity;
+@property (strong, nonatomic) DSAPITestsOpportunityHelpers *helpers;
 
 @end
 
@@ -44,6 +46,22 @@
     [super setUp];
     [Expecta setAsynchronousTestTimeout:10.f];
     _client = [DSAPITestUtils APIClientBasicAuth];
+    
+    _helpers = [DSAPITestsOpportunityHelpers new];
+    _helpers.apiClient = _client;
+    _helpers.testCase = self;
+    _helpers.timeout = 10.0f;
+    
+    // -- Create Opportunity --
+    self.opportunity = [self.helpers createOpportunity];
+}
+
+- (void)tearDown
+{
+    [super tearDown];
+    
+    // -- Delete Opportunity --
+    // [self.helpers deleteOpportunity:self.opportunity]; // TODO: uncomment when user has permission to delete opportunity
 }
 
 
@@ -59,6 +77,7 @@
         [self done];
     }];
     
+    // -- Assertion --
     expect([self isDone]).will.beTruthy();
     expect(_opportunities.count).will.beGreaterThan(0);
     expect(_opportunities[0]).will.beKindOf([DSAPIOpportunity class]);
@@ -85,20 +104,35 @@
 - (void)testListOpportunitiesCanRetrieveNextPage
 {
     __block DSAPILink *previousLink = nil;
+    __block DSAPILink *nextLink = nil;
+    
+    // -- Create Opportunity --
+    [self.helpers createOpportunity];
+    // -- End of Create Opportunity --
+    
+    // -- List Opportunities --
+    XCTestExpectation *listOpportunitiesExpectation = [self expectationWithDescription:@"List Opportunities"];
     
     [DSAPIOpportunity listOpportunitiesWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
-        DSAPILink *nextLink = page.links[@"next"][0];
-        [DSAPIOpportunity listOpportunitiesWithParameters:nextLink.parameters client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *nextPage) {
-            previousLink = nextPage.links[@"previous"][0];
-            [self done];
-        } failure:^(NSHTTPURLResponse *response, NSError *error) {
-            EXPFail(self, __LINE__, __FILE__, [error description]);
-            [self done];
-        }];
+        nextLink = page.links[@"next"][0];
+        [listOpportunitiesExpectation fulfill];
+    } failure:^(NSHTTPURLResponse *response, NSError *error) {
+        EXPFail(self, __LINE__, __FILE__, [error description]);
+        [listOpportunitiesExpectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0f handler:nil];
+    // -- End of List Opportunities --
+    
+    // -- List Opportunities --
+    [DSAPIOpportunity listOpportunitiesWithParameters:nextLink.parameters client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *nextPage) {
+        previousLink = nextPage.links[@"previous"][0];
+        [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
         EXPFail(self, __LINE__, __FILE__, [error description]);
         [self done];
     }];
+    // -- End of List Opportunities --
     
     expect([self isDone]).will.beTruthy();
     expect([previousLink.parameters[@"page"] integerValue]).will.equal(1);
@@ -108,42 +142,25 @@
 
 - (void)testShowOpportunity
 {
-    __block DSAPIOpportunity *_opportunity = nil;
+    __block DSAPIOpportunity *returnedOpportunity = nil;
     
-    [DSAPIOpportunity listOpportunitiesWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
-        [(DSAPIOpportunity *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIOpportunity *opportunity) {
-            _opportunity = opportunity;
-            [self done];
-        } failure:^(NSHTTPURLResponse *response, NSError *error) {
-            EXPFail(self, __LINE__, __FILE__, [error description]);
-            [self done];
-        }];
+    [self.opportunity showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIOpportunity *newOpportunity) {
+        returnedOpportunity = newOpportunity;
+        [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
         EXPFail(self, __LINE__, __FILE__, [error description]);
         [self done];
     }];
     
     expect([self isDone]).will.beTruthy();
-    expect(_opportunity).willNot.beNil();
-    expect(_opportunity).will.beKindOf([DSAPIOpportunity class]);
+    expect(returnedOpportunity).willNot.beNil();
+    expect(returnedOpportunity).will.beKindOf([DSAPIOpportunity class]);
 }
 
 
 - (void)testCreateOpportunity
 {
-    __block DSAPIOpportunity *responseResource = nil;
-    
-    NSDictionary *params = [self sampleOpportunityDictionary];
-    [DSAPIOpportunity createOpportunity:params client:self.client queue:self.APICallbackQueue success:^(DSAPIOpportunity *opportunity) {
-        responseResource = opportunity;
-        [self done];
-    } failure:^(NSHTTPURLResponse *response, NSError *error) {
-        EXPFail(self, __LINE__, __FILE__, [error description]);
-        [self done];
-    }];
-    
-    expect([self isDone]).will.beTruthy();
-    expect(responseResource[@"name"]).will.equal(params[@"name"]);
+    expect(self.opportunity).will.beKindOf([DSAPIOpportunity class]);
 }
 
 
@@ -152,14 +169,9 @@
     __block DSAPIOpportunity *_updatedOpportunity = nil;
     
     NSString *opportunityName = [[NSDate date] description];
-    [DSAPIOpportunity createOpportunity:[self sampleOpportunityDictionary] client:self.client queue:self.APICallbackQueue success:^(DSAPIOpportunity *opportunity) {
-        [opportunity updateWithDictionary:@{@"name":opportunityName} queue:self.APICallbackQueue success:^(DSAPIOpportunity *updatedOpportunity) {
-            _updatedOpportunity = updatedOpportunity;
-            [self done];
-        } failure:^(NSHTTPURLResponse *response, NSError *error) {
-            EXPFail(self, __LINE__, __FILE__, [error description]);
-            [self done];
-        }];
+    [self.opportunity updateWithDictionary:@{@"name":opportunityName} queue:self.APICallbackQueue success:^(DSAPIOpportunity *updatedOpportunity) {
+        _updatedOpportunity = updatedOpportunity;
+        [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
         EXPFail(self, __LINE__, __FILE__, [error description]);
         [self done];
@@ -173,56 +185,29 @@
 
 - (void)testSearchOpportunitiesByName
 {
-    __block DSAPIOpportunity *opportunity = nil;
-    __block NSString *opportunityName = nil;
+    __block DSAPIOpportunity *returnedOpportunity = nil;
+    __block NSString *opportunityName = self.opportunity[@"name"];
     
-    [DSAPIOpportunity listOpportunitiesWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
-        NSUInteger randomIndex = arc4random() % page.entries.count;
-        DSAPIOpportunity *randomOpportunity = (DSAPIOpportunity *)page.entries[randomIndex];
-        opportunityName = randomOpportunity[@"name"];
-        [DSAPIOpportunity searchOpportunitiesWithParameters:@{@"q": opportunityName}
-                                             client:self.client
-                                              queue:self.APICallbackQueue
-                                            success:^(DSAPIPage *page) {
-                                                opportunity = [page.entries firstObject];
-                                                [self done];
-                                            } failure:^(NSHTTPURLResponse *response, NSError *error) {
-                                                EXPFail(self, __LINE__, __FILE__, [error description]);
-                                            }];
+    [DSAPIOpportunity searchOpportunitiesWithParameters:@{@"q": opportunityName} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        returnedOpportunity = [page.entries firstObject];
+        [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
         EXPFail(self, __LINE__, __FILE__, [error description]);
-        [self done];
     }];
     
     expect([self isDone]).will.beTruthy();
-    expect(opportunity).willNot.beNil();
-    expect(opportunity).will.beKindOf([DSAPIOpportunity class]);
-    expect(opportunity[@"name"]).will.contain(opportunityName);
+    expect(returnedOpportunity).willNot.beNil();
+    expect(returnedOpportunity).will.beKindOf([DSAPIOpportunity class]);
+    expect(returnedOpportunity[@"name"]).will.contain(opportunityName);
 }
 
 
 - (void)testCreateActivity
 {
-    __block DSAPIOpportunityActivity *_activity = nil;
+    DSAPIOpportunityActivity *activity = [self.helpers createActivityWithOpportunity:self.opportunity];
     
-    [DSAPIOpportunity listOpportunitiesWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
-        
-        NSDictionary *activityDictionary = @{@"type": @"note", @"message": @"This is an important note"};
-        [(DSAPIOpportunity *)page.entries[0] createActivity:activityDictionary queue:self.APICallbackQueue success:^(DSAPIOpportunityActivity *activity) {
-            _activity = activity;
-            [self done];
-        } failure:^(NSHTTPURLResponse *response, NSError *error) {
-            EXPFail(self, __LINE__, __FILE__, [error description]);
-            [self done];
-        }];
-    } failure:^(NSHTTPURLResponse *response, NSError *error) {
-        EXPFail(self, __LINE__, __FILE__, [error description]);
-        [self done];
-    }];
-    
-    expect([self isDone]).will.beTruthy();
-    expect(_activity).willNot.beNil();
-    expect(_activity).will.beKindOf([DSAPIOpportunityActivity class]);
+    expect(activity).willNot.beNil();
+    expect(activity).will.beKindOf([DSAPIOpportunityActivity class]);
 }
 
 
@@ -230,28 +215,60 @@
 {
     __block NSArray *_activities = nil;
     
-    [DSAPIOpportunity listOpportunitiesWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
-        [(DSAPIOpportunity *)page.entries[0] listActivitiesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
-            _activities = page.entries;
-            [self done];
-        } failure:^(NSHTTPURLResponse *response, NSError *error) {
-            EXPFail(self, __LINE__, __FILE__, [error description]);
-            [self done];
-        }];
+    [self.helpers createActivityWithOpportunity:self.opportunity];
+    [self.helpers createActivityWithOpportunity:self.opportunity];
+    
+    // -- Show Opportunity --
+    XCTestExpectation *showOpportunityExpectation = [self expectationWithDescription:@"Show Opportunity"];
+    
+    [self.opportunity showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIOpportunity *opportunity) {
+        self.opportunity = opportunity;
+        [showOpportunityExpectation fulfill];
+    } failure:^(NSHTTPURLResponse *response, NSError *error) {
+        EXPFail(self, __LINE__, __FILE__, [error description]);
+        [showOpportunityExpectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0f handler:nil];
+    // -- End of Show Opportunity --
+    
+    // -- List Actitivies --
+    [self.opportunity listActivitiesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        _activities = page.entries;
+        [self done];
+    } failure:^(NSHTTPURLResponse *response, NSError *error) {
+        EXPFail(self, __LINE__, __FILE__, [error description]);
+        [self done];
+    }];
+    // -- End of List Activities --
+    
+    // -- Assertion --
+    expect([self isDone]).will.beTruthy();
+    expect(_activities).willNot.beNil();
+    expect(_activities.count == 2);
+    expect(_activities[0]).will.beKindOf([DSAPIOpportunityActivity class]);
+}
+
+
+- (void)testListAttachments
+{
+    DSAPIOpportunityActivity *activity = [self.helpers createActivityWithOpportunity:self.opportunity];
+    DSAPIAttachment *attachment = [self.helpers createAttachmentWithActivity:activity];
+    
+    __block NSArray *_attachments = nil;
+    
+    [[self.helpers refreshOpportunity:self.opportunity] listAttachmentsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        _attachments = page.entries;
+        [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
         EXPFail(self, __LINE__, __FILE__, [error description]);
         [self done];
     }];
     
     expect([self isDone]).will.beTruthy();
-    expect(_activities).willNot.beNil();
-    expect(_activities[0]).will.beKindOf([DSAPIOpportunityActivity class]);
-}
-
-#pragma mark - Private Methods
-- (NSDictionary *)sampleOpportunityDictionary {
-    NSString *opportunityName = [[NSDate date] description];
-    return @{@"name": opportunityName, @"description": @"Sample description", @"amount": @"3,002.00", @"close_date": [[NSDate distantFuture] stringWithISO8601Format]};
+    expect(_attachments).willNot.beNil();
+    expect(_attachments[0]).will.beKindOf([DSAPIAttachment class]);
+    expect([_attachments[0][@"file_name"] isEqualToString:attachment[@"file_name"]]);
 }
 
 @end

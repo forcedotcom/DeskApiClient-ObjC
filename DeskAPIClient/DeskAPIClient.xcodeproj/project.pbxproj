@@ -155,6 +155,7 @@
 		527869C41CEB39D800E9EF7D /* DSAPIOpportunityActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 527869C21CEB39D800E9EF7D /* DSAPIOpportunityActivity.m */; };
 		527869C61CEC3F3D00E9EF7D /* DSAPIOpportunityActivityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 527869C51CEC3F3D00E9EF7D /* DSAPIOpportunityActivityTests.m */; };
 		526688701D2183A700AD60FD /* DSAPIInteraction.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECAB17F32FA500901969 /* DSAPIInteraction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		527869CF1CEDA1DE00E9EF7D /* DSAPITestsOpportunityHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 527869CE1CEDA1DE00E9EF7D /* DSAPITestsOpportunityHelpers.m */; };
 		526688711D2183A700AD60FD /* DSAPIChatMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECB117F32FF200901969 /* DSAPIChatMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		526688721D2183A700AD60FD /* DSAPITweet.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECB417F3302A00901969 /* DSAPITweet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		526688731D2183A700AD60FD /* DSAPIEmail.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECB717F3305300901969 /* DSAPIEmail.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -394,6 +395,8 @@
 		527869C11CEB39D800E9EF7D /* DSAPIOpportunityActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIOpportunityActivity.h; sourceTree = "<group>"; };
 		527869C21CEB39D800E9EF7D /* DSAPIOpportunityActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIOpportunityActivity.m; sourceTree = "<group>"; };
 		527869C51CEC3F3D00E9EF7D /* DSAPIOpportunityActivityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIOpportunityActivityTests.m; sourceTree = "<group>"; };
+		527869CD1CEDA1DE00E9EF7D /* DSAPITestsOpportunityHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPITestsOpportunityHelpers.h; sourceTree = "<group>"; };
+		527869CE1CEDA1DE00E9EF7D /* DSAPITestsOpportunityHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPITestsOpportunityHelpers.m; sourceTree = "<group>"; };
 		52976D271CBEC88200B2D074 /* DSAPICustomerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPICustomerFilter.h; sourceTree = "<group>"; };
 		52976D281CBEC88200B2D074 /* DSAPICustomerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICustomerFilter.m; sourceTree = "<group>"; };
 		52976D2B1CBED43900B2D074 /* DSAPICustomerFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICustomerFilterTests.m; sourceTree = "<group>"; };
@@ -529,6 +532,7 @@
 		1C316D8917E9533900ACA543 /* DeskAPIClientTests */ = {
 			isa = PBXGroup;
 			children = (
+				527869CC1CEDA1C300E9EF7D /* Helpers */,
 				1C4575761922B5F500C08B7A /* Models */,
 				1C28762417F0CE04004B4CBF /* DSAPITestUtils.h */,
 				1C28762517F0CE04004B4CBF /* DSAPITestUtils.m */,
@@ -752,6 +756,15 @@
 				3656615C2F96858BB75E4946 /* Pods-DeskAPIClient.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		527869CC1CEDA1C300E9EF7D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				527869CD1CEDA1DE00E9EF7D /* DSAPITestsOpportunityHelpers.h */,
+				527869CE1CEDA1DE00E9EF7D /* DSAPITestsOpportunityHelpers.m */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		F891B62464EDEA55E7984230 /* Frameworks */ = {
@@ -1086,6 +1099,7 @@
 				1C399FAD1A648C20004366DF /* DSAPILinkTests.m in Sources */,
 				1C399FAE1A648C20004366DF /* DSAPIPageTests.m in Sources */,
 				520D8DD81CB2CBA400545313 /* DSAPICompanyFilterTests.m in Sources */,
+				527869CF1CEDA1DE00E9EF7D /* DSAPITestsOpportunityHelpers.m in Sources */,
 				1C399F931A647FE3004366DF /* DSAPIResourceTests.m in Sources */,
 				1C399F911A6474CE004366DF /* DSAPIOAuthClientTests.m in Sources */,
 				1C399F901A6474B2004366DF /* DSAPIRequestSerializerTests.m in Sources */,
