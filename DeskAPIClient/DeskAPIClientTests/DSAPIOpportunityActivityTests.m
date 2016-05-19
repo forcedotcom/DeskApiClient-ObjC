@@ -29,10 +29,13 @@
 //
 
 #import "DSAPITestCase.h"
+#import "DSAPITestsOpportunityHelpers.h"
 
 @interface DSAPIOpportunityActivityTests : DSAPITestCase
 
 @property (strong, nonatomic) DSAPIClient *client;
+@property (strong, nonatomic) DSAPIOpportunity *opportunity;
+@property (strong, nonatomic) DSAPITestsOpportunityHelpers *helpers;
 
 @end
 
@@ -43,22 +46,76 @@
     [super setUp];
     [Expecta setAsynchronousTestTimeout:10.f];
     _client = [DSAPITestUtils APIClientBasicAuth];
+    
+    _helpers = [DSAPITestsOpportunityHelpers new];
+    _helpers.apiClient = _client;
+    _helpers.testCase = self;
+    _helpers.timeout = 10.0f;
+    
+    // -- Create Opportunity --
+    self.opportunity = [self.helpers createOpportunity];
 }
 
 
-- (void)testListActivities
+- (void)testShowActivity
 {
-    __block DSAPIOpportunityActivity *_activity = nil;
+    DSAPIOpportunity *opportunity = [self.helpers createOpportunity];
+    DSAPIOpportunityActivity *activity = [self.helpers createActivityWithOpportunity:opportunity];
     
-    [DSAPIOpportunity listOpportunitiesWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
-        [(DSAPIOpportunity *)page.entries[0] listActivitiesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
-            [(DSAPIOpportunityActivity *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIOpportunityActivity *activity) {
-                _activity = activity;
-                [self done];
-            } failure:^(NSHTTPURLResponse *response, NSError *error) {
-                EXPFail(self, __LINE__, __FILE__, [error description]);
-                [self done];
-            }];
+    __block DSAPIOpportunityActivity *returnedActivity = nil;
+    
+    [activity showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIOpportunityActivity *activity) {
+        returnedActivity = activity;
+        [self done];
+    } failure:^(NSHTTPURLResponse *response, NSError *error) {
+        EXPFail(self, __LINE__, __FILE__, [error description]);
+        [self done];
+    }];
+    
+    expect([self isDone]).will.beTruthy();
+    expect(returnedActivity).willNot.beNil();
+    expect(returnedActivity).will.beKindOf([DSAPIOpportunityActivity class]);
+    expect([returnedActivity[@"_links"][@"self"] isEqualToString:activity[@"_links"][@"self"]]);
+}
+
+
+- (void)testShowAttachment
+{
+    DSAPIOpportunity *opportunity = [self.helpers createOpportunity];
+    DSAPIOpportunityActivity *activity = [self.helpers createActivityWithOpportunity:opportunity];
+    DSAPIAttachment *attachment = [self.helpers createAttachmentWithActivity:activity];
+    
+    __block DSAPIAttachment *retunedAttachment = nil;
+    
+    [attachment showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIAttachment *attachment) {
+        retunedAttachment = attachment;
+        [self done];
+    } failure:^(NSHTTPURLResponse *response, NSError *error) {
+        EXPFail(self, __LINE__, __FILE__, [error description]);
+        [self done];
+    }];
+    
+    expect([self isDone]).will.beTruthy();
+    expect(retunedAttachment).willNot.beNil();
+    expect([attachment[@"file_name"] isEqualToString:retunedAttachment[@"file_name"]]);
+    expect([attachment[@"content_type"] isEqualToString:retunedAttachment[@"content_type"]]);
+    expect(retunedAttachment).will.beKindOf([DSAPIAttachment class]);
+}
+
+
+- (void)testListAttachments
+{
+    DSAPIOpportunity *opportunity = [self.helpers createOpportunity];
+    DSAPIOpportunityActivity *activity = [self.helpers createActivityWithOpportunity:opportunity];
+    [self.helpers createAttachmentWithActivity:activity];
+    [self.helpers createAttachmentWithActivity:activity];
+    
+    __block NSArray *attachments = nil;
+    
+    [activity showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIOpportunityActivity *opportunityActivity) {
+        [opportunityActivity listAttachmentsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+            attachments = page.entries;
+            [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
             EXPFail(self, __LINE__, __FILE__, [error description]);
             [self done];
@@ -69,8 +126,45 @@
     }];
     
     expect([self isDone]).will.beTruthy();
-    expect(_activity).willNot.beNil();
-    expect(_activity).will.beKindOf([DSAPIOpportunityActivity class]);
+    expect(attachments).willNot.beNil();
+    expect(attachments.count == 2);
+    expect(attachments[0]).will.beKindOf([DSAPIAttachment class]);
+    expect(attachments[1]).will.beKindOf([DSAPIAttachment class]);
+}
+
+
+- (void)testCreateAttachment
+{
+    DSAPIOpportunity *opportunity = [self.helpers createOpportunity];
+    DSAPIOpportunityActivity *activity = [self.helpers createActivityWithOpportunity:opportunity];
+    
+    // -- Create Attachment --
+    NSDictionary *attachmentDictionary = @{@"file_name": @"1x1.png", @"content_type": @"image/png", @"content": @"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEX/TQBcNTh/AAAACklEQVR4nGNiAAAABgADNjd8qAAAAABJRU5ErkJggg=="};
+    
+    DSAPIAttachment *attachment = [self.helpers createAttachmentWithActivity:activity dictionary:attachmentDictionary];
+    
+    // -- Assertion --
+    expect(attachment).willNot.beNil();
+    expect([attachment[@"file_name"] isEqualToString:attachmentDictionary[@"file_name"]]);
+    expect([attachment[@"content_type"] isEqualToString:attachmentDictionary[@"content_type"]]);
+    expect(attachment).will.beKindOf([DSAPIAttachment class]);
+}
+
+
+- (void)testDeleteAttachment
+{
+    DSAPIOpportunity *opportunity = [self.helpers createOpportunity];
+    DSAPIOpportunityActivity *activity = [self.helpers createActivityWithOpportunity:opportunity];
+    DSAPIAttachment *attachment = [self.helpers createAttachmentWithActivity:activity];
+
+    [attachment deleteWithParameters:nil queue:self.APICallbackQueue success:^{
+        [self done];
+    } failure:^(NSHTTPURLResponse *response, NSError *error) {
+        EXPFail(self, __LINE__, __FILE__, [error description]);
+        [self done];
+    }];
+    
+    expect([self isDone]).will.beTruthy();
 }
 
 @end
