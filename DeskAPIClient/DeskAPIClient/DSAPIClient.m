@@ -115,7 +115,10 @@ static NSDictionary *ClassNames;
                    [DSAPIBrand className]: [DSAPIBrand class],
                    [DSAPICompanyFilter className]: [DSAPICompanyFilter class],
                    [DSAPICustomerFilter className]: [DSAPICustomerFilter class],
-                   [DSAPIOpportunityStage className]: [DSAPIOpportunityStage class]};
+                   [DSAPIOpportunityFilter className]: [DSAPIOpportunityFilter class],
+                   [DSAPIOpportunity className]: [DSAPIOpportunity class],
+                   [DSAPIOpportunityStage className]: [DSAPIOpportunityStage class],
+                   [DSAPIOpportunityActivity className]: [DSAPIOpportunityActivity class]};
     _downloadProgressBlocks = [NSMutableDictionary new];
     _downloadCompletionBlocks = [NSMutableDictionary new];
     _lock = [NSLock new];

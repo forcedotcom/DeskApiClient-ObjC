@@ -572,7 +572,7 @@
                                        notModified:(DSAPIPageSuccessBlock)notModified
                                            failure:(DSAPIFailureBlock)failure
 {
-    DSAPILink *linkToRelation = [self linkForRelation:relation];
+    DSAPILink *linkToRelation = [self linkForRelation:relation]; //TODO: add nil check and return internal error if link is nil
     return [DSAPIResource listResourcesAt:linkToRelation
                                parameters:parameters
                                    client:self.client
