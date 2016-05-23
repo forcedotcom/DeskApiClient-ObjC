@@ -30,9 +30,11 @@
 
 #import "DSAPIOpportunity.h"
 #import "DSAPIClient.h"
+#import "DSAPIOpportunityActivity.h"
 
 #define kClassName @"opportunity"
 #define kClassNamePlural @"opportunities"
+#define kActivitiesKey @"activities"
 
 @implementation DSAPIOpportunity
 
@@ -124,6 +126,53 @@
                                    }
                                }
                                failure:failure];
+}
+
+- (NSURLSessionDataTask *)createActivity:(NSDictionary *)activityDictionary
+                                   queue:(NSOperationQueue *)queue
+                                 success:(void (^)(DSAPIOpportunityActivity *newActivity))success
+                                 failure:(DSAPIFailureBlock)failure
+{
+    DSAPILink *linkToActivities = [self linkForRelation:kActivitiesKey];
+    if (!linkToActivities) {
+        NSDictionary *linkDictionary = @{kHrefKey:[NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, kActivitiesKey], kClassKey:[DSAPIOpportunityActivity classNamePlural]};
+        linkToActivities = [[DSAPILink alloc] initWithDictionary:linkDictionary
+                                                         baseURL:self.client.baseURL];
+    }
+    return [DSAPIResource createResource:activityDictionary
+                                    link:linkToActivities
+                                  client:self.client
+                                   queue:queue
+                                 success:^(DSAPIResource *newActivity) {
+                                     if (success) {
+                                         success((DSAPIOpportunityActivity *)newActivity);
+                                     }
+                                 }
+                                 failure:failure];
+}
+
+- (NSURLSessionDataTask *)listActivitiesWithParameters:(NSDictionary *)parameters
+                                                 queue:(NSOperationQueue *)queue
+                                               success:(DSAPIPageSuccessBlock)success
+                                               failure:(DSAPIFailureBlock)failure
+{
+    return [self listResourcesForRelation:kActivitiesKey
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
+                                  failure:failure];
+}
+
+- (NSURLSessionDataTask *)listAttachmentsWithParameters:(NSDictionary *)parameters
+                                                  queue:(NSOperationQueue *)queue
+                                                success:(DSAPIPageSuccessBlock)success
+                                                failure:(DSAPIFailureBlock)failure
+{
+    return [self listResourcesForRelation:[DSAPIAttachment classNamePlural]
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
+                                  failure:failure];
 }
 
 @end
