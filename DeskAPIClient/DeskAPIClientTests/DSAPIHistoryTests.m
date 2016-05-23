@@ -1,5 +1,5 @@
 //
-//  DSAPIOpportunityTimelineTests.m
+//  DSAPIHistoryTests.m
 //  DeskAPIClient
 //
 //  Created by Desk.com on 5/19/16.
@@ -31,7 +31,7 @@
 #import "DSAPITestCase.h"
 #import "DSAPITestsOpportunityHelpers.h"
 
-@interface DSAPIOpportunityTimelineTests : DSAPITestCase
+@interface DSAPIHistoryTests : DSAPITestCase
 
 @property (strong, nonatomic) DSAPIClient *client;
 @property (strong, nonatomic) DSAPIOpportunity *opportunity;
@@ -39,7 +39,7 @@
 
 @end
 
-@implementation DSAPIOpportunityTimelineTests
+@implementation DSAPIHistoryTests
 
 - (void)setUp
 {
@@ -66,12 +66,12 @@
 }
 
 
-- (void)testShowTimeline
+- (void)testShowOpportunityHistory
 {
-    // -- List Timeline --
-    XCTestExpectation *listTimelineExpectation = [self expectationWithDescription:@"List Timeline"];
+    // -- List Opportunity Timeline --
+    XCTestExpectation *listTimelineExpectation = [self expectationWithDescription:@"List Opportunity Timeline"];
     __block NSArray *_timelineArray = nil;
-    __block DSAPIOpportunityTimeline *_timeline = nil;
+    __block DSAPIHistory *_timeline = nil;
     
     [self.opportunity listTimelineWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _timelineArray = page.entries;
@@ -85,7 +85,7 @@
     // -- End of List Timeline --
     
     // -- Show Timeline --
-    [(DSAPIOpportunityTimeline *)_timelineArray.firstObject showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIOpportunityTimeline *timeline) {
+    [(DSAPIHistory *)_timelineArray.firstObject showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIHistory *timeline) {
         _timeline = timeline;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -97,7 +97,7 @@
     // -- Assertion
     expect([self isDone]).will.beTruthy();
     expect(_timeline).willNot.beNil();
-    expect(_timeline).will.beKindOf([DSAPIOpportunityTimeline class]);
+    expect(_timeline).will.beKindOf([DSAPIHistory class]);
 }
 
 @end

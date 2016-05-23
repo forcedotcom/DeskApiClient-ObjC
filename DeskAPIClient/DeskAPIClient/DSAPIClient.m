@@ -118,7 +118,7 @@ static NSDictionary *ClassNames;
                    [DSAPIOpportunityFilter className]: [DSAPIOpportunityFilter class],
                    [DSAPIOpportunity className]: [DSAPIOpportunity class],
                    [DSAPIOpportunityActivity className]: [DSAPIOpportunityActivity class],
-                   [DSAPIOpportunityTimeline className]: [DSAPIOpportunityTimeline class]};
+                   [DSAPIHistory className]: [DSAPIHistory class]};
     _downloadProgressBlocks = [NSMutableDictionary new];
     _downloadCompletionBlocks = [NSMutableDictionary new];
     _lock = [NSLock new];

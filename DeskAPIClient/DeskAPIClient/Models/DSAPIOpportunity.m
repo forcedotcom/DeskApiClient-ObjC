@@ -182,7 +182,7 @@
                                              failure:(DSAPIFailureBlock)failure
 {
     
-    DSAPILink *linkToHistory = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:[NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, kHistoryKey], kClassKey:[DSAPIOpportunityTimeline className]} baseURL:self.client.baseURL];
+    DSAPILink *linkToHistory = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:[NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, kHistoryKey], kClassKey:[DSAPIHistory className]} baseURL:self.client.baseURL];
     return [DSAPIResource listResourcesAt:linkToHistory
                                parameters:nil
                                    client:self.client

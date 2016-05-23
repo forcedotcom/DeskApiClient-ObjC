@@ -1,5 +1,5 @@
 //
-//  DSAPIOpportunityTimeline.m
+//  DSAPIHistory.m
 //  DeskAPIClient
 //
 //  Created by Desk.com on 5/19/16.
@@ -28,12 +28,12 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "DSAPIOpportunityTimeline.h"
+#import "DSAPIHistory.h"
 
 #define kClassName @"history"
 #define kClassNamePlural @"histories"
 
-@implementation DSAPIOpportunityTimeline
+@implementation DSAPIHistory
 
 + (NSString *)className
 {
@@ -49,14 +49,14 @@
 
 - (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
                                        queue:(NSOperationQueue *)queue
-                                     success:(void (^)(DSAPIOpportunityTimeline *))success
+                                     success:(void (^)(DSAPIHistory *))success
                                      failure:(DSAPIFailureBlock)failure
 {
     return [super showWithParameters:parameters
                                queue:queue
                              success:^(DSAPIResource *resource) {
                                  if (success) {
-                                     success((DSAPIOpportunityTimeline *)resource);
+                                     success((DSAPIHistory *)resource);
                                  }
                              }
                              failure:failure];

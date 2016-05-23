@@ -287,7 +287,7 @@
     
     expect([self isDone]).will.beTruthy();
     expect(_timeline).willNot.beNil();
-    expect(_timeline[0]).will.beKindOf([DSAPIOpportunityTimeline class]);
+    expect(_timeline[0]).will.beKindOf([DSAPIHistory class]);
 }
 
 @end
