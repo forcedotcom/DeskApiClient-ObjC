@@ -35,6 +35,7 @@
 #define kClassName @"opportunity"
 #define kClassNamePlural @"opportunities"
 #define kActivitiesKey @"activities"
+#define kHistoryKey @"history"
 
 @implementation DSAPIOpportunity
 
@@ -170,6 +171,21 @@
 {
     return [self listResourcesForRelation:[DSAPIAttachment classNamePlural]
                                parameters:parameters
+                                    queue:queue
+                                  success:success
+                                  failure:failure];
+}
+
+- (NSURLSessionDataTask *)listTimelineWithParameters:(NSDictionary *)parameters
+                                               queue:(NSOperationQueue *)queue
+                                             success:(DSAPIPageSuccessBlock)success
+                                             failure:(DSAPIFailureBlock)failure
+{
+    
+    DSAPILink *linkToHistory = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:[NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, kHistoryKey], kClassKey:[DSAPIHistory className]} baseURL:self.client.baseURL];
+    return [DSAPIResource listResourcesAt:linkToHistory
+                               parameters:nil
+                                   client:self.client
                                     queue:queue
                                   success:success
                                   failure:failure];

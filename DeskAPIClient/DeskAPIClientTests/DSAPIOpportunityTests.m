@@ -56,6 +56,7 @@
     self.opportunity = [self.helpers createOpportunity];
 }
 
+
 - (void)tearDown
 {
     [super tearDown];
@@ -269,6 +270,24 @@
     expect(_attachments).willNot.beNil();
     expect(_attachments[0]).will.beKindOf([DSAPIAttachment class]);
     expect([_attachments[0][@"file_name"] isEqualToString:attachment[@"file_name"]]);
+}
+
+
+- (void)testListTimeline
+{
+    __block NSArray *_timeline = nil;
+    
+    [self.opportunity listTimelineWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        _timeline = page.entries;
+        [self done];
+    } failure:^(NSHTTPURLResponse *response, NSError *error) {
+        EXPFail(self, __LINE__, __FILE__, [error description]);
+        [self done];
+    }];
+    
+    expect([self isDone]).will.beTruthy();
+    expect(_timeline).willNot.beNil();
+    expect(_timeline[0]).will.beKindOf([DSAPIHistory class]);
 }
 
 @end
