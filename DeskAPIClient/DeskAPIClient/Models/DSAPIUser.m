@@ -293,4 +293,18 @@
 
 }
 
+- (NSURLSessionDataTask *)listOpportunityFiltersWithParameters:(NSDictionary *)parameters
+                                                         queue:(NSOperationQueue *)queue
+                                                       success:(DSAPIPageSuccessBlock)success
+                                                       failure:(DSAPIFailureBlock)failure
+{
+    return [DSAPIResource listResourcesAt:[self.linkToSelf linkFromRelationWithClass:[DSAPIOpportunityFilter class]]
+                               parameters:parameters
+                                   client:self.client
+                                    queue:queue
+                                  success:success
+                              notModified:nil
+                                  failure:failure];
+}
+
 @end
