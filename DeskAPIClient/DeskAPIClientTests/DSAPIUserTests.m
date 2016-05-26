@@ -42,7 +42,7 @@
 - (void)setUp
 {
     [super setUp];
-    [Expecta setAsynchronousTestTimeout:5.0];
+    [Expecta setAsynchronousTestTimeout:10.0];
     _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
