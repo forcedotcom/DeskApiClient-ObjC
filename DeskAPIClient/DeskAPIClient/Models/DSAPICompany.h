@@ -35,7 +35,7 @@
 #pragma mark - Class Methods
 
 /**
- Checks whether companies enhancements are enabled by calling a GET to /api/v2/companies endpoint of the Desk.com API.
+ Checks whether companies enhancements are enabled by calling a GET to /api/v2/companies/enhancements_enabled endpoint of the Desk.com API.
  
  @param parameters The querystring parameters to be sent with the GET request.
  @param client The client to use for making the network request.
