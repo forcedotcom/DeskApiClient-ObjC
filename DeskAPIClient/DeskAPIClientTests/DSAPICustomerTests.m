@@ -45,6 +45,17 @@
     _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
+- (void)testEnhancementsEnabled
+{
+    [DSAPICustomer enhancementsEnabledWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(BOOL enabled) {
+        [self done];
+    } failure:^(NSHTTPURLResponse *response, NSError *error) {
+        EXPFail(self, __LINE__, __FILE__, [error description]);
+        [self done];
+    }];
+    
+    expect([self isDone]).will.beTruthy();
+}
 
 - (void)testListCustomersReturnsAtLeastOneCustomer
 {

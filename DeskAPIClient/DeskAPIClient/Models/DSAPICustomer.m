@@ -29,6 +29,10 @@
 //
 
 #define kClassName @"customer"
+#define kClassNamePlural @"customers"
+
+#define kCustomersEnhancementsEnabled @"enhancements_enabled"
+#define kCustomersEnabled @"enabled"
 
 #import "DSAPICustomer.h"
 #import "DSAPICase.h"
@@ -43,6 +47,32 @@
 
 
 #pragma mark - Class Methods
+
++ (NSURLSessionDataTask *)enhancementsEnabledWithParameters:(NSDictionary *)parameters
+                                                     client:(DSAPIClient *)client
+                                                      queue:(NSOperationQueue *)queue
+                                                    success:(void (^)(BOOL enabled))success
+                                                    failure:(DSAPIFailureBlock)failure
+{
+    NSString *href = [NSString stringWithFormat:@"%@/%@", [DSAPICustomer classLinkWithBaseURL:client.baseURL], kCustomersEnhancementsEnabled];
+    
+    return [client GET:href
+            parameters:parameters
+                 queue:queue
+               success:^(NSHTTPURLResponse *response, NSDictionary *responseObject) {
+                   if (success) {
+                       BOOL enabled = [responseObject.allKeys containsObject:@"enabled"] && [responseObject[kCustomersEnabled] boolValue];
+                       
+                       enabled ? success(YES) : success(NO);
+                   }
+               }
+               failure:^(NSHTTPURLResponse *response, NSError *error) {
+                   [client postRateLimitingNotificationIfNecessary:response];
+                   if (failure) {
+                       failure(response, error);
+                   }
+               }];
+}
 
 + (NSURLSessionDataTask *)listCustomersWithParameters:(NSDictionary *)parameters
                                                client:(DSAPIClient *)client

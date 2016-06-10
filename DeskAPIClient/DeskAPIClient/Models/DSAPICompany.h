@@ -35,6 +35,22 @@
 #pragma mark - Class Methods
 
 /**
+ Checks whether companies enhancements are enabled by calling a GET to /api/v2/companies/enhancements_enabled endpoint of the Desk.com API.
+ 
+ @param parameters The querystring parameters to be sent with the GET request.
+ @param client The client to use for making the network request.
+ @param queue The queue on which to execute the success and failure blocks.
+ @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: enabled (`BOOL`).
+ @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
+ @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
+ */
++ (NSURLSessionDataTask *)enhancementsEnabledWithParameters:(NSDictionary *)parameters
+                                                     client:(DSAPIClient *)client
+                                                      queue:(NSOperationQueue *)queue
+                                                    success:(void (^)(BOOL enabled))success
+                                                    failure:(DSAPIFailureBlock)failure;
+
+/**
  Lists companies by calling a GET to the /api/v2/companies endpoint of the Desk.com API.
  
  @param parameters The querystring parameters to be sent with the GET request (including 'embed' to embed a resource in the response, and 'page' and 'per_page' for pagination).

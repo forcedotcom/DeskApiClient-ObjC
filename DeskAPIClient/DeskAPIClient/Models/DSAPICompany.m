@@ -32,6 +32,9 @@
 #define kClassName @"company"
 #define kClassNamePlural @"companies"
 
+#define kCompaniesEnhancementsEnabled @"enhancements_enabled"
+#define kCompaniesEnabled @"enabled"
+
 #import "DSAPICompany.h"
 #import "DSAPICase.h"
 #import "DSAPIClient.h"
@@ -49,6 +52,32 @@
 }
 
 #pragma mark - Class Methods
+
++ (NSURLSessionDataTask *)enhancementsEnabledWithParameters:(NSDictionary *)parameters
+                                                     client:(DSAPIClient *)client
+                                                      queue:(NSOperationQueue *)queue
+                                                    success:(void (^)(BOOL enabled))success
+                                                    failure:(DSAPIFailureBlock)failure
+{
+    NSString *href = [NSString stringWithFormat:@"%@/%@", [DSAPICompany classLinkWithBaseURL:client.baseURL], kCompaniesEnhancementsEnabled];
+    
+    return [client GET:href
+            parameters:parameters
+                 queue:queue
+               success:^(NSHTTPURLResponse *response, NSDictionary *responseObject) {
+                   if (success) {
+                       BOOL enabled = [responseObject.allKeys containsObject:@"enabled"] && [responseObject[kCompaniesEnabled] boolValue];
+                       
+                       enabled ? success(YES) : success(NO);
+                   }
+               }
+               failure:^(NSHTTPURLResponse *response, NSError *error) {
+                   [client postRateLimitingNotificationIfNecessary:response];
+                   if (failure) {
+                       failure(response, error);
+                   }
+               }];
+}
 
 + (NSURLSessionDataTask *)listCompaniesWithParameters:(NSDictionary *)parameters
                                                client:(DSAPIClient *)client
