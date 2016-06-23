@@ -209,7 +209,7 @@ static NSDictionary *ClassNames;
     
     [self acquireOAuthRequestTokenWithQueue:queue
                                     success:^(DSAPIOAuth1Token *requestToken) {
-                                        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+                                        NSDictionary *parameters = @{DSAPIOAuthCallbackKey : [self.callbackURL absoluteString]};
                                         NSString *urlString = [NSString stringWithFormat:@"%@%@?oauth_token=%@", self.baseURL, @"/oauth/authorize", requestToken.key];
                                         NSError *error = nil;
                                         NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"GET"
