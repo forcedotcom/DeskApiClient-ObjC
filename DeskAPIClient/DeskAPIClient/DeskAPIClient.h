@@ -1,6 +1,6 @@
 //
-//  DeskCommon.h
-//  DeskCommon
+//  DeskAPIClient.h
+//  DeskAPIClient
 //
 //  Created by Desk.com on 1/12/15.
 //  Copyright (c) 2015, Salesforce.com, Inc.

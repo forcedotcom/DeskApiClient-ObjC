@@ -472,7 +472,6 @@
 				1CDBDF791A78191A00582BE2 /* DSAPIListProvider.m */,
 				C748B8B11B7A4D3600AF400A /* DSAPINetworkIndicatorController.h */,
 				C748B8B21B7A4D3600AF400A /* DSAPINetworkIndicatorController.m */,
-				526688351D21836900AD60FD /* Info.plist */,
 				1C316D7617E9533900ACA543 /* Supporting Files */,
 			);
 			path = DeskAPIClient;
@@ -481,6 +480,7 @@
 		1C316D7617E9533900ACA543 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				526688351D21836900AD60FD /* Info.plist */,
 				1C316D7717E9533900ACA543 /* DeskAPIClient-Prefix.pch */,
 			);
 			name = "Supporting Files";
