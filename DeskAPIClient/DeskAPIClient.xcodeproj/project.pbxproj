@@ -6,45 +6,19 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		1C7B8DBE1A6425EC005ED4A8 /* Framework */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 1C7B8DBF1A6425EC005ED4A8 /* Build configuration list for PBXAggregateTarget "Framework" */;
-			buildPhases = (
-				1C7B8DC41A642622005ED4A8 /* Build Framework */,
-			);
-			dependencies = (
-				1CA360C01A6558F6001F61C0 /* PBXTargetDependency */,
-			);
-			name = Framework;
-			productName = Framework;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
-		0151060FA7FE4EE4839EFBAB /* libPods-DeskAPIClientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C379B08E1724939AF847EA7 /* libPods-DeskAPIClientTests.a */; };
+		04125EEB05319E10C7B3941C /* libPods-DeskAPIClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9E65F4469ABC42F6010A469 /* libPods-DeskAPIClient.a */; };
 		1C07A54E1864C4DE008056B5 /* case41repliespageone.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C07A54D1864C4DE008056B5 /* case41repliespageone.json */; };
-		1C07A5571864DA5B008056B5 /* DSAPIETagCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C07A5561864DA5B008056B5 /* DSAPIETagCache.m */; };
 		1C1FF03917F12ABD00484D80 /* newCase.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C1FF03817F12ABD00484D80 /* newCase.json */; };
 		1C1FF03B17F1314C00484D80 /* updateCase.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C1FF03A17F1314C00484D80 /* updateCase.json */; };
 		1C1FF03D17F1E86D00484D80 /* newReply.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C1FF03C17F1E86D00484D80 /* newReply.json */; };
-		1C28760F17EBF27D004B4CBF /* DSAPILink.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28760E17EBF27D004B4CBF /* DSAPILink.m */; };
 		1C28761217EBF72B004B4CBF /* case6.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C28761117EBF72B004B4CBF /* case6.json */; };
-		1C28761517ED2F0C004B4CBF /* DSAPIResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28761417ED2F0C004B4CBF /* DSAPIResource.m */; };
 		1C28761A17F0748F004B4CBF /* case41replies.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C28761917F07388004B4CBF /* case41replies.json */; };
-		1C28762317F09AFF004B4CBF /* NSDictionary+DSAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28762217F09AFF004B4CBF /* NSDictionary+DSAPI.m */; };
-		1C2D68B3192F99720076A434 /* DSAPISiteSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C2D68B2192F99720076A434 /* DSAPISiteSetting.m */; };
-		1C316D7417E9533900ACA543 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C316D7317E9533900ACA543 /* Foundation.framework */; };
-		1C316D7B17E9533900ACA543 /* DSAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C316D7A17E9533900ACA543 /* DSAPIClient.m */; };
 		1C316D8217E9533900ACA543 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C316D8117E9533900ACA543 /* XCTest.framework */; };
 		1C316D8317E9533900ACA543 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C316D7317E9533900ACA543 /* Foundation.framework */; };
 		1C316D8517E9533900ACA543 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C316D8417E9533900ACA543 /* UIKit.framework */; };
 		1C316D8E17E9533900ACA543 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C316D8C17E9533900ACA543 /* InfoPlist.strings */; };
 		1C316D9017E9533900ACA543 /* DSAPIClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C316D8F17E9533900ACA543 /* DSAPIClientTests.m */; };
-		1C399F8A1A6472A0004366DF /* DSAPIURLRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C399F881A6472A0004366DF /* DSAPIURLRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C399F8B1A6472A0004366DF /* DSAPIURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C399F891A6472A0004366DF /* DSAPIURLRequestSerialization.m */; };
-		1C399F8E1A64735D004366DF /* DSAPIURLResponseSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C399F8C1A64735D004366DF /* DSAPIURLResponseSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C399F8F1A64735D004366DF /* DSAPIURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C399F8D1A64735D004366DF /* DSAPIURLResponseSerialization.m */; };
 		1C399F901A6474B2004366DF /* DSAPIRequestSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4DA76A180A338A00E3B7B2 /* DSAPIRequestSerializerTests.m */; };
 		1C399F911A6474CE004366DF /* DSAPIOAuthClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE54205180C475200550D35 /* DSAPIOAuthClientTests.m */; };
 		1C399F931A647FE3004366DF /* DSAPIResourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28761717ED2F27004B4CBF /* DSAPIResourceTests.m */; };
@@ -76,140 +50,141 @@
 		1C399FAD1A648C20004366DF /* DSAPILinkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28760B17EBF25B004B4CBF /* DSAPILinkTests.m */; };
 		1C399FAE1A648C20004366DF /* DSAPIPageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C443E5118217880003F4B73 /* DSAPIPageTests.m */; };
 		1C399FB01A648CF0004366DF /* DSAPITestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C399FAF1A648CF0004366DF /* DSAPITestCase.m */; };
-		1C3D462418EF290400389AEB /* DSAPIMobileDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3D462318EF290400389AEB /* DSAPIMobileDevice.m */; };
-		1C3D462918F0FD8A00389AEB /* DSAPIMobileDeviceSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3D462818F0FD8A00389AEB /* DSAPIMobileDeviceSetting.m */; };
-		1C443E50182177E1003F4B73 /* DSAPIPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C443E4F182177E1003F4B73 /* DSAPIPage.m */; };
-		1C4575731922B2C300C08B7A /* DSAPITwitterAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4575721922B2C300C08B7A /* DSAPITwitterAccount.m */; };
-		1C46BBAE19254D6A00D812AE /* DSAPIPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C46BBAD19254D6A00D812AE /* DSAPIPermission.m */; };
 		1C4DA76D180A507100E3B7B2 /* DeskAPIAuth-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C4DA76C180A507100E3B7B2 /* DeskAPIAuth-Info.plist */; };
 		1C64C2341A44BB4E006C5755 /* twitter_accounts-31986-follows-desk.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C64C2331A44BB4E006C5755 /* twitter_accounts-31986-follows-desk.json */; };
 		1C64C2361A44BD8F006C5755 /* twitter_accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C64C2351A44BD8F006C5755 /* twitter_accounts.json */; };
 		1C64C2381A44BFD2006C5755 /* POST-twitter_accounts-31986-follows.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C64C2371A44BFD2006C5755 /* POST-twitter_accounts-31986-follows.json */; };
-		1C66A32C1A31FE2C00E694D2 /* DSAPIBrand.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C66A32B1A31FE2C00E694D2 /* DSAPIBrand.m */; };
-		1C6E124918ABB66500666DE4 /* DSAPIFacebookUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6E124618ABB66500666DE4 /* DSAPIFacebookUser.m */; };
-		1C6E124A18ABB66500666DE4 /* DSAPITwitterUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6E124818ABB66500666DE4 /* DSAPITwitterUser.m */; };
-		1C6E128518ABFF0600666DE4 /* DSAPICustomField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6E128418ABFF0600666DE4 /* DSAPICustomField.m */; };
-		1C714CE0199E6377000BAB60 /* DSAPICompany.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C714CDF199E6377000BAB60 /* DSAPICompany.m */; };
-		1C7B8D901A642277005ED4A8 /* DSAPIModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0EC9E17F3105D00901969 /* DSAPIModels.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8D911A642277005ED4A8 /* DSAPICase.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0EC8D17F23B7200901969 /* DSAPICase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8D921A642277005ED4A8 /* DSAPICustomer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0EC9B17F3102400901969 /* DSAPICustomer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8D931A642277005ED4A8 /* DSAPIFacebookUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C6E124518ABB66500666DE4 /* DSAPIFacebookUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8D941A642277005ED4A8 /* DSAPITwitterUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C6E124718ABB66500666DE4 /* DSAPITwitterUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8D951A642277005ED4A8 /* DSAPINote.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECA117F3293000901969 /* DSAPINote.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8D961A642277005ED4A8 /* DSAPIInteraction.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECAB17F32FA500901969 /* DSAPIInteraction.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8D971A642277005ED4A8 /* DSAPIChatMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECB117F32FF200901969 /* DSAPIChatMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8D981A642277005ED4A8 /* DSAPITweet.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECB417F3302A00901969 /* DSAPITweet.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8D991A642277005ED4A8 /* DSAPIEmail.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECB717F3305300901969 /* DSAPIEmail.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8D9A1A642277005ED4A8 /* DSAPICommunityAnswer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECBA17F3306300901969 /* DSAPICommunityAnswer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8D9B1A642277005ED4A8 /* DSAPIFacebookComment.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECC017F3308400901969 /* DSAPIFacebookComment.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8D9C1A642277005ED4A8 /* DSAPIPhoneCall.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECC317F3309100901969 /* DSAPIPhoneCall.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8D9D1A642277005ED4A8 /* DSAPIAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECC817F3384900901969 /* DSAPIAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8D9E1A642277005ED4A8 /* DSAPICaseFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECD117F379B200901969 /* DSAPICaseFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8D9F1A642277005ED4A8 /* DSAPIUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF4484417FDFCA4009FED5A /* DSAPIUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DA01A642277005ED4A8 /* DSAPIUserPreference.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF4484917FE017E009FED5A /* DSAPIUserPreference.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DA11A642277005ED4A8 /* DSAPILabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CC438DA182AE36400FB046C /* DSAPILabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DA21A642277005ED4A8 /* DSAPIGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C880A6118313885001075B8 /* DSAPIGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DA31A642277005ED4A8 /* DSAPIMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CA824361896FD9E00C7DF54 /* DSAPIMacro.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DA41A642277005ED4A8 /* DSAPIMacroAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CA8243D18971FB900C7DF54 /* DSAPIMacroAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DA51A642277005ED4A8 /* DSAPICustomField.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C6E128318ABFF0600666DE4 /* DSAPICustomField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DA61A642277005ED4A8 /* DSAPIMobileDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C3D462218EF290400389AEB /* DSAPIMobileDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DA71A642277005ED4A8 /* DSAPIMobileDeviceSetting.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C3D462718F0FD8A00389AEB /* DSAPIMobileDeviceSetting.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DA81A642277005ED4A8 /* DSAPITwitterAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C4575711922B2C300C08B7A /* DSAPITwitterAccount.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DA91A642277005ED4A8 /* DSAPIPermission.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C46BBAC19254D6A00D812AE /* DSAPIPermission.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DAA1A642278005ED4A8 /* DSAPISiteSetting.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C2D68B1192F99720076A434 /* DSAPISiteSetting.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DAB1A642278005ED4A8 /* DSAPIMailbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CE601241958827C00DD8DF9 /* DSAPIMailbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DAC1A642278005ED4A8 /* DSAPITwitterFollow.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CEA9A0D1961EA1E00D7473A /* DSAPITwitterFollow.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DAD1A642278005ED4A8 /* DSAPIJob.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CBC6FAE196B4A8E00E763E1 /* DSAPIJob.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DAE1A642278005ED4A8 /* DSAPICompany.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C714CDE199E6377000BAB60 /* DSAPICompany.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DAF1A642278005ED4A8 /* DSAPITopic.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DFFB06519B60D1A00683B6C /* DSAPITopic.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DB01A642278005ED4A8 /* DSAPIArticle.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D2C4CC219B8D77200565E65 /* DSAPIArticle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DB11A642278005ED4A8 /* DSAPISite.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D4947421A114F9A00D81AF7 /* DSAPISite.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DB21A642278005ED4A8 /* DSAPIBilling.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CFCA36D1A23E0D3000D9F61 /* DSAPIBilling.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DB31A642278005ED4A8 /* DSAPIBrand.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C66A32A1A31FE2C00E694D2 /* DSAPIBrand.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DB41A642278005ED4A8 /* DSAPITypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CB814CE1889DFB300B4ECBF /* DSAPITypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DB51A642278005ED4A8 /* DSAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C316D7817E9533900ACA543 /* DSAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DB61A642278005ED4A8 /* DSAPIETagCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C07A5551864DA5B008056B5 /* DSAPIETagCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DB71A642278005ED4A8 /* DSAPILink.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C28760D17EBF27D004B4CBF /* DSAPILink.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DB81A642278005ED4A8 /* DSAPIPage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C443E4E182177E1003F4B73 /* DSAPIPage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DB91A642278005ED4A8 /* DSAPIResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C28761317ED2F0C004B4CBF /* DSAPIResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DBA1A64229A005ED4A8 /* NSDictionary+DSAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C28762117F09AFF004B4CBF /* NSDictionary+DSAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C7B8DBC1A6423A5005ED4A8 /* DeskAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C7B8DBB1A642351005ED4A8 /* DeskAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C7B8E0C1A64710A005ED4A8 /* DSAPITestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28762517F0CE04004B4CBF /* DSAPITestUtils.m */; };
-		1C880A6318313885001075B8 /* DSAPIGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C880A6218313885001075B8 /* DSAPIGroup.m */; };
-		1C94BC5D17EA2003003BA153 /* libDeskAPIClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C316D7017E9533900ACA543 /* libDeskAPIClient.a */; };
 		1CA360BA1A64B19F001F61C0 /* twitter_accounts-1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CA360B91A64B19F001F61C0 /* twitter_accounts-1.json */; };
 		1CA360C91A6562DB001F61C0 /* POST-twitter_accounts-1-tweets-67.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CA360C81A6562DB001F61C0 /* POST-twitter_accounts-1-tweets-67.json */; };
 		1CA360CB1A6563AF001F61C0 /* twitter_accounts-1-tweets.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CA360CA1A6563AF001F61C0 /* twitter_accounts-1-tweets.json */; };
 		1CA360CD1A6564B2001F61C0 /* twitter_accounts-1-tweets-45.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CA360CC1A6564B2001F61C0 /* twitter_accounts-1-tweets-45.json */; };
-		1CA824381896FD9E00C7DF54 /* DSAPIMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA824371896FD9E00C7DF54 /* DSAPIMacro.m */; };
 		1CA8243C189719E200C7DF54 /* newMacro.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CA8243B189719E200C7DF54 /* newMacro.json */; };
-		1CA8243F18971FB900C7DF54 /* DSAPIMacroAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA8243E18971FB900C7DF54 /* DSAPIMacroAction.m */; };
-		1CBC6FB0196B4A8E00E763E1 /* DSAPIJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBC6FAF196B4A8E00E763E1 /* DSAPIJob.m */; };
-		1CC438DC182AE36400FB046C /* DSAPILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC438DB182AE36400FB046C /* DSAPILabel.m */; };
 		1CC438DE182AE8F000FB046C /* newLabel.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CC438DD182AE8F000FB046C /* newLabel.json */; };
 		1CC438E0182AE92E00FB046C /* updateLabel.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CC438DF182AE92E00FB046C /* updateLabel.json */; };
 		1CCA5A0918A189D600B01729 /* newCustomer.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CCA5A0818A189D600B01729 /* newCustomer.json */; };
 		1CCA5A0B18A18B7100B01729 /* updateCustomer.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CCA5A0A18A18B7100B01729 /* updateCustomer.json */; };
-		1CDBDF7A1A78191A00582BE2 /* DSAPIListProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBDF781A78191A00582BE2 /* DSAPIListProvider.h */; };
-		1CDBDF7B1A78191A00582BE2 /* DSAPIListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBDF791A78191A00582BE2 /* DSAPIListProvider.m */; };
 		1CDBDF7D1A781F7500582BE2 /* DSAPIListProviderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBDF7C1A781F7500582BE2 /* DSAPIListProviderTests.m */; };
 		1CDBDF801A78222B00582BE2 /* topics.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CDBDF7F1A78222B00582BE2 /* topics.json */; };
 		1CE2A2191ADEA7C90067F682 /* DSAPIPermissionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2A2181ADEA7C90067F682 /* DSAPIPermissionTests.m */; };
-		1CE601261958827C00DD8DF9 /* DSAPIMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE601251958827C00DD8DF9 /* DSAPIMailbox.m */; };
 		1CE9D56E1811CAA300DFAFCD /* casesWithMessages.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CE9D56D1811CAA300DFAFCD /* casesWithMessages.json */; };
-		1CEA9A0F1961EA1E00D7473A /* DSAPITwitterFollow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEA9A0E1961EA1E00D7473A /* DSAPITwitterFollow.m */; };
 		1CEDA0C91A65652D0065C885 /* POST-twitter_accounts-1-tweets-45-retweet.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CEDA0C81A65652D0065C885 /* POST-twitter_accounts-1-tweets-45-retweet.json */; };
-		1CF0EC8F17F23B7200901969 /* DSAPICase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0EC8E17F23B7200901969 /* DSAPICase.m */; };
-		1CF0EC9D17F3102400901969 /* DSAPICustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0EC9C17F3102400901969 /* DSAPICustomer.m */; };
-		1CF0ECA317F3293000901969 /* DSAPINote.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECA217F3293000901969 /* DSAPINote.m */; };
 		1CF0ECA717F32D0C00901969 /* newNote.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CF0ECA617F32D0C00901969 /* newNote.json */; };
-		1CF0ECAD17F32FA500901969 /* DSAPIInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECAC17F32FA500901969 /* DSAPIInteraction.m */; };
-		1CF0ECB317F32FF200901969 /* DSAPIChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECB217F32FF200901969 /* DSAPIChatMessage.m */; };
-		1CF0ECB617F3302A00901969 /* DSAPITweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECB517F3302A00901969 /* DSAPITweet.m */; };
-		1CF0ECB917F3305300901969 /* DSAPIEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECB817F3305300901969 /* DSAPIEmail.m */; };
-		1CF0ECBC17F3306300901969 /* DSAPICommunityAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECBB17F3306300901969 /* DSAPICommunityAnswer.m */; };
-		1CF0ECC217F3308400901969 /* DSAPIFacebookComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECC117F3308400901969 /* DSAPIFacebookComment.m */; };
-		1CF0ECC517F3309100901969 /* DSAPIPhoneCall.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECC417F3309100901969 /* DSAPIPhoneCall.m */; };
-		1CF0ECCA17F3384900901969 /* DSAPIAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECC917F3384900901969 /* DSAPIAttachment.m */; };
 		1CF0ECCE17F33F4B00901969 /* newAttachment.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CF0ECCD17F33F4B00901969 /* newAttachment.json */; };
-		1CF0ECD317F379B200901969 /* DSAPICaseFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECD217F379B200901969 /* DSAPICaseFilter.m */; };
-		1CF4484617FDFCA4009FED5A /* DSAPIUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF4484517FDFCA4009FED5A /* DSAPIUser.m */; };
-		1CF4484B17FE017E009FED5A /* DSAPIUserPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF4484A17FE017E009FED5A /* DSAPIUserPreference.m */; };
-		1CFCA36F1A23E0D3000D9F61 /* DSAPIBilling.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFCA36E1A23E0D3000D9F61 /* DSAPIBilling.m */; };
-		2D2C4CC419B8D77200565E65 /* DSAPIArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2C4CC319B8D77200565E65 /* DSAPIArticle.m */; };
-		2D4947411A114F5E00D81AF7 /* DSAPISite.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4947401A114F5E00D81AF7 /* DSAPISite.m */; };
-		2DFFB06719B60D1A00683B6C /* DSAPITopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFFB06619B60D1A00683B6C /* DSAPITopic.m */; };
-		3E223CA44C6A4C4380497DB7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B9E55B55FA489EA70BB35A /* libPods.a */; };
 		520D8DD81CB2CBA400545313 /* DSAPICompanyFilterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 520D8DD71CB2CBA400545313 /* DSAPICompanyFilterTests.m */; };
-		524F4D5C1C89FF7000237829 /* DSAPICompanyFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 524F4D5A1C89FF7000237829 /* DSAPICompanyFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		524F4D5D1C89FF7000237829 /* DSAPICompanyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 524F4D5B1C89FF7000237829 /* DSAPICompanyFilter.m */; };
-		52976D291CBEC88200B2D074 /* DSAPICustomerFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 52976D271CBEC88200B2D074 /* DSAPICustomerFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		52976D2A1CBEC88200B2D074 /* DSAPICustomerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 52976D281CBEC88200B2D074 /* DSAPICustomerFilter.m */; };
+		526688391D21838C00AD60FD /* DSAPIURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C399F891A6472A0004366DF /* DSAPIURLRequestSerialization.m */; };
+		5266883A1D21838C00AD60FD /* DSAPIURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C399F8D1A64735D004366DF /* DSAPIURLResponseSerialization.m */; };
+		5266883B1D21838C00AD60FD /* DSAPICase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0EC8E17F23B7200901969 /* DSAPICase.m */; };
+		5266883C1D21838C00AD60FD /* DSAPICustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0EC9C17F3102400901969 /* DSAPICustomer.m */; };
+		5266883D1D21838C00AD60FD /* DSAPIFacebookUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6E124618ABB66500666DE4 /* DSAPIFacebookUser.m */; };
+		5266883E1D21838C00AD60FD /* DSAPITwitterUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6E124818ABB66500666DE4 /* DSAPITwitterUser.m */; };
+		5266883F1D21838C00AD60FD /* DSAPINote.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECA217F3293000901969 /* DSAPINote.m */; };
+		526688401D21838C00AD60FD /* DSAPIInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECAC17F32FA500901969 /* DSAPIInteraction.m */; };
+		526688411D21838C00AD60FD /* DSAPIChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECB217F32FF200901969 /* DSAPIChatMessage.m */; };
+		526688421D21838C00AD60FD /* DSAPITweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECB517F3302A00901969 /* DSAPITweet.m */; };
+		526688431D21838C00AD60FD /* DSAPIEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECB817F3305300901969 /* DSAPIEmail.m */; };
+		526688441D21838C00AD60FD /* DSAPICommunityAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECBB17F3306300901969 /* DSAPICommunityAnswer.m */; };
+		526688451D21838C00AD60FD /* DSAPIFacebookComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECC117F3308400901969 /* DSAPIFacebookComment.m */; };
+		526688461D21838C00AD60FD /* DSAPIPhoneCall.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECC417F3309100901969 /* DSAPIPhoneCall.m */; };
+		526688471D21838C00AD60FD /* DSAPIAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECC917F3384900901969 /* DSAPIAttachment.m */; };
+		526688481D21838C00AD60FD /* DSAPICaseFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECD217F379B200901969 /* DSAPICaseFilter.m */; };
+		526688491D21838C00AD60FD /* DSAPIUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF4484517FDFCA4009FED5A /* DSAPIUser.m */; };
+		5266884A1D21838C00AD60FD /* DSAPIUserPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF4484A17FE017E009FED5A /* DSAPIUserPreference.m */; };
+		5266884B1D21838C00AD60FD /* DSAPILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC438DB182AE36400FB046C /* DSAPILabel.m */; };
+		5266884C1D21838C00AD60FD /* DSAPIGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C880A6218313885001075B8 /* DSAPIGroup.m */; };
+		5266884D1D21838C00AD60FD /* DSAPIMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA824371896FD9E00C7DF54 /* DSAPIMacro.m */; };
+		5266884E1D21838C00AD60FD /* DSAPIMacroAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA8243E18971FB900C7DF54 /* DSAPIMacroAction.m */; };
+		5266884F1D21838C00AD60FD /* DSAPICustomField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6E128418ABFF0600666DE4 /* DSAPICustomField.m */; };
+		526688501D21838C00AD60FD /* DSAPIMobileDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3D462318EF290400389AEB /* DSAPIMobileDevice.m */; };
+		526688511D21838C00AD60FD /* DSAPIMobileDeviceSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3D462818F0FD8A00389AEB /* DSAPIMobileDeviceSetting.m */; };
+		526688521D21838C00AD60FD /* DSAPITwitterAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4575721922B2C300C08B7A /* DSAPITwitterAccount.m */; };
+		526688531D21838C00AD60FD /* DSAPIPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C46BBAD19254D6A00D812AE /* DSAPIPermission.m */; };
+		526688541D21838C00AD60FD /* DSAPISiteSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C2D68B2192F99720076A434 /* DSAPISiteSetting.m */; };
+		526688551D21838C00AD60FD /* DSAPIMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE601251958827C00DD8DF9 /* DSAPIMailbox.m */; };
+		526688561D21838C00AD60FD /* DSAPITwitterFollow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEA9A0E1961EA1E00D7473A /* DSAPITwitterFollow.m */; };
+		526688571D21838C00AD60FD /* DSAPIJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBC6FAF196B4A8E00E763E1 /* DSAPIJob.m */; };
+		526688581D21838C00AD60FD /* DSAPICompany.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C714CDF199E6377000BAB60 /* DSAPICompany.m */; };
+		526688591D21838C00AD60FD /* DSAPITopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFFB06619B60D1A00683B6C /* DSAPITopic.m */; };
+		5266885A1D21838C00AD60FD /* DSAPIArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2C4CC319B8D77200565E65 /* DSAPIArticle.m */; };
+		5266885B1D21838C00AD60FD /* DSAPISite.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4947401A114F5E00D81AF7 /* DSAPISite.m */; };
+		5266885C1D21838C00AD60FD /* DSAPIBilling.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFCA36E1A23E0D3000D9F61 /* DSAPIBilling.m */; };
+		5266885D1D21838C00AD60FD /* DSAPIBrand.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C66A32B1A31FE2C00E694D2 /* DSAPIBrand.m */; };
+		5266885E1D21838C00AD60FD /* DSAPICompanyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 524F4D5B1C89FF7000237829 /* DSAPICompanyFilter.m */; };
+		5266885F1D21838C00AD60FD /* DSAPICustomerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 52976D281CBEC88200B2D074 /* DSAPICustomerFilter.m */; };
+		526688601D21838C00AD60FD /* NSDictionary+DSAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28762217F09AFF004B4CBF /* NSDictionary+DSAPI.m */; };
+		526688611D21838C00AD60FD /* DSAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C316D7A17E9533900ACA543 /* DSAPIClient.m */; };
+		526688621D21838C00AD60FD /* DSAPIETagCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C07A5561864DA5B008056B5 /* DSAPIETagCache.m */; };
+		526688631D21838C00AD60FD /* DSAPILink.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28760E17EBF27D004B4CBF /* DSAPILink.m */; };
+		526688641D21838C00AD60FD /* DSAPIPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C443E4F182177E1003F4B73 /* DSAPIPage.m */; };
+		526688651D21838C00AD60FD /* DSAPIResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28761417ED2F0C004B4CBF /* DSAPIResource.m */; };
+		526688661D21838C00AD60FD /* DSAPIListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBDF791A78191A00582BE2 /* DSAPIListProvider.m */; };
+		526688671D21838C00AD60FD /* DSAPINetworkIndicatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C748B8B21B7A4D3600AF400A /* DSAPINetworkIndicatorController.m */; };
+		526688681D2183A700AD60FD /* DSAPIURLRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C399F881A6472A0004366DF /* DSAPIURLRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688691D2183A700AD60FD /* DSAPIURLResponseSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C399F8C1A64735D004366DF /* DSAPIURLResponseSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5266886A1D2183A700AD60FD /* DSAPIModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0EC9E17F3105D00901969 /* DSAPIModels.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5266886B1D2183A700AD60FD /* DSAPICase.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0EC8D17F23B7200901969 /* DSAPICase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5266886C1D2183A700AD60FD /* DSAPICustomer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0EC9B17F3102400901969 /* DSAPICustomer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5266886D1D2183A700AD60FD /* DSAPIFacebookUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C6E124518ABB66500666DE4 /* DSAPIFacebookUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5266886E1D2183A700AD60FD /* DSAPITwitterUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C6E124718ABB66500666DE4 /* DSAPITwitterUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5266886F1D2183A700AD60FD /* DSAPINote.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECA117F3293000901969 /* DSAPINote.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688701D2183A700AD60FD /* DSAPIInteraction.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECAB17F32FA500901969 /* DSAPIInteraction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688711D2183A700AD60FD /* DSAPIChatMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECB117F32FF200901969 /* DSAPIChatMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688721D2183A700AD60FD /* DSAPITweet.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECB417F3302A00901969 /* DSAPITweet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688731D2183A700AD60FD /* DSAPIEmail.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECB717F3305300901969 /* DSAPIEmail.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688741D2183A700AD60FD /* DSAPICommunityAnswer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECBA17F3306300901969 /* DSAPICommunityAnswer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688751D2183A700AD60FD /* DSAPIFacebookComment.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECC017F3308400901969 /* DSAPIFacebookComment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688761D2183A700AD60FD /* DSAPIPhoneCall.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECC317F3309100901969 /* DSAPIPhoneCall.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688771D2183A700AD60FD /* DSAPIAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECC817F3384900901969 /* DSAPIAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688781D2183A700AD60FD /* DSAPICaseFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECD117F379B200901969 /* DSAPICaseFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688791D2183A700AD60FD /* DSAPIUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF4484417FDFCA4009FED5A /* DSAPIUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5266887A1D2183A700AD60FD /* DSAPIUserPreference.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF4484917FE017E009FED5A /* DSAPIUserPreference.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5266887B1D2183A700AD60FD /* DSAPILabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CC438DA182AE36400FB046C /* DSAPILabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5266887C1D2183A700AD60FD /* DSAPIGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C880A6118313885001075B8 /* DSAPIGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5266887D1D2183A700AD60FD /* DSAPIMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CA824361896FD9E00C7DF54 /* DSAPIMacro.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5266887E1D2183A700AD60FD /* DSAPIMacroAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CA8243D18971FB900C7DF54 /* DSAPIMacroAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5266887F1D2183A700AD60FD /* DSAPICustomField.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C6E128318ABFF0600666DE4 /* DSAPICustomField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688801D2183A700AD60FD /* DSAPIMobileDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C3D462218EF290400389AEB /* DSAPIMobileDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688811D2183A700AD60FD /* DSAPIMobileDeviceSetting.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C3D462718F0FD8A00389AEB /* DSAPIMobileDeviceSetting.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688821D2183A700AD60FD /* DSAPITwitterAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C4575711922B2C300C08B7A /* DSAPITwitterAccount.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688831D2183A700AD60FD /* DSAPIPermission.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C46BBAC19254D6A00D812AE /* DSAPIPermission.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688841D2183A700AD60FD /* DSAPISiteSetting.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C2D68B1192F99720076A434 /* DSAPISiteSetting.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688851D2183A700AD60FD /* DSAPIMailbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CE601241958827C00DD8DF9 /* DSAPIMailbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688861D2183A700AD60FD /* DSAPITwitterFollow.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CEA9A0D1961EA1E00D7473A /* DSAPITwitterFollow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688871D2183A700AD60FD /* DSAPIJob.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CBC6FAE196B4A8E00E763E1 /* DSAPIJob.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688881D2183A700AD60FD /* DSAPICompany.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C714CDE199E6377000BAB60 /* DSAPICompany.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688891D2183A700AD60FD /* DSAPITopic.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DFFB06519B60D1A00683B6C /* DSAPITopic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5266888A1D2183A700AD60FD /* DSAPIArticle.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D2C4CC219B8D77200565E65 /* DSAPIArticle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5266888B1D2183A700AD60FD /* DSAPISite.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D4947421A114F9A00D81AF7 /* DSAPISite.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5266888C1D2183A700AD60FD /* DSAPIBilling.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CFCA36D1A23E0D3000D9F61 /* DSAPIBilling.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5266888D1D2183A700AD60FD /* DSAPIBrand.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C66A32A1A31FE2C00E694D2 /* DSAPIBrand.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5266888E1D2183A700AD60FD /* DSAPICompanyFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 524F4D5A1C89FF7000237829 /* DSAPICompanyFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5266888F1D2183A700AD60FD /* DSAPICustomerFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 52976D271CBEC88200B2D074 /* DSAPICustomerFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688901D2183A700AD60FD /* NSDictionary+DSAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C28762117F09AFF004B4CBF /* NSDictionary+DSAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688911D2183A700AD60FD /* DSAPITypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CB814CE1889DFB300B4ECBF /* DSAPITypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688921D2183A700AD60FD /* DSAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C316D7817E9533900ACA543 /* DSAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688931D2183A700AD60FD /* DSAPIETagCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C07A5551864DA5B008056B5 /* DSAPIETagCache.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		526688941D2183A700AD60FD /* DSAPILink.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C28760D17EBF27D004B4CBF /* DSAPILink.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688951D2183A700AD60FD /* DSAPIPage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C443E4E182177E1003F4B73 /* DSAPIPage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688961D2183A700AD60FD /* DSAPIResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C28761317ED2F0C004B4CBF /* DSAPIResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688971D2183A700AD60FD /* DSAPIListProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBDF781A78191A00582BE2 /* DSAPIListProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		526688981D2183A700AD60FD /* DSAPINetworkIndicatorController.h in Headers */ = {isa = PBXBuildFile; fileRef = C748B8B11B7A4D3600AF400A /* DSAPINetworkIndicatorController.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		526688991D21850F00AD60FD /* DeskAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C7B8DBB1A642351005ED4A8 /* DeskAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		52976D2C1CBED43900B2D074 /* DSAPICustomerFilterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52976D2B1CBED43900B2D074 /* DSAPICustomerFilterTests.m */; };
-		C748B8B31B7A4D3600AF400A /* DSAPINetworkIndicatorController.h in Headers */ = {isa = PBXBuildFile; fileRef = C748B8B11B7A4D3600AF400A /* DSAPINetworkIndicatorController.h */; };
-		C748B8B41B7A4D3600AF400A /* DSAPINetworkIndicatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C748B8B21B7A4D3600AF400A /* DSAPINetworkIndicatorController.m */; };
+		A94EAF086898921BE90239A0 /* libPods-DeskAPIClientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF52845FC25279F95B3F117C /* libPods-DeskAPIClientTests.a */; };
 		C7A6B1A61C51624B00D8B83F /* DSAPIResource+Testing.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A6B1A51C51624B00D8B83F /* DSAPIResource+Testing.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1C316D8617E9533900ACA543 /* PBXContainerItemProxy */ = {
+		5266889A1D21866B00AD60FD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1C316D6817E9533900ACA543 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1C316D6F17E9533900ACA543;
-			remoteInfo = DeskAPIClient;
-		};
-		1CA360BF1A6558F6001F61C0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1C316D6817E9533900ACA543 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1C316D6F17E9533900ACA543;
+			remoteGlobalIDString = 526688301D21836900AD60FD;
 			remoteInfo = DeskAPIClient;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		035EC54787927BFFC627F045 /* Pods-DeskAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeskAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DeskAPIClientTests/Pods-DeskAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1C0482A81A3209B700DBF660 /* DSAPIBrandTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIBrandTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1C07A54D1864C4DE008056B5 /* case41repliespageone.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = case41repliespageone.json; sourceTree = "<group>"; };
 		1C07A5551864DA5B008056B5 /* DSAPIETagCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIETagCache.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -233,7 +208,6 @@
 		1C2D68B1192F99720076A434 /* DSAPISiteSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPISiteSetting.h; sourceTree = "<group>"; };
 		1C2D68B2192F99720076A434 /* DSAPISiteSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPISiteSetting.m; sourceTree = "<group>"; };
 		1C2D68B4192F9C1E0076A434 /* DSAPISiteSettingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPISiteSettingTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		1C316D7017E9533900ACA543 /* libDeskAPIClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDeskAPIClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C316D7317E9533900ACA543 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1C316D7717E9533900ACA543 /* DeskAPIClient-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeskAPIClient-Prefix.pch"; sourceTree = "<group>"; };
 		1C316D7817E9533900ACA543 /* DSAPIClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIClient.h; sourceTree = "<group>"; };
@@ -362,7 +336,6 @@
 		1CF4484C17FE056E009FED5A /* DSAPIUserPreferenceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIUserPreferenceTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1CFCA36D1A23E0D3000D9F61 /* DSAPIBilling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIBilling.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		1CFCA36E1A23E0D3000D9F61 /* DSAPIBilling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIBilling.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		28BCE9A37E225799CA401109 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2D2C4CC219B8D77200565E65 /* DSAPIArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIArticle.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2D2C4CC319B8D77200565E65 /* DSAPIArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIArticle.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2D2C4CC519B8EB1E00565E65 /* DSAPIArticleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIArticleTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -372,42 +345,43 @@
 		2DFFB06519B60D1A00683B6C /* DSAPITopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPITopic.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2DFFB06619B60D1A00683B6C /* DSAPITopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPITopic.m; sourceTree = "<group>"; };
 		2DFFB06819B6126100683B6C /* DSAPITopicsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPITopicsTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		355C62BDD1D00B394DD78B4C /* Pods-DeskAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeskAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DeskAPIClientTests/Pods-DeskAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
+		3656615C2F96858BB75E4946 /* Pods-DeskAPIClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeskAPIClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-DeskAPIClient/Pods-DeskAPIClient.release.xcconfig"; sourceTree = "<group>"; };
+		3EA238DD527C486C89933DB0 /* Pods-DeskAPIClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeskAPIClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DeskAPIClient/Pods-DeskAPIClient.debug.xcconfig"; sourceTree = "<group>"; };
 		520D8DD71CB2CBA400545313 /* DSAPICompanyFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICompanyFilterTests.m; sourceTree = "<group>"; };
 		524F4D5A1C89FF7000237829 /* DSAPICompanyFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPICompanyFilter.h; sourceTree = "<group>"; };
 		524F4D5B1C89FF7000237829 /* DSAPICompanyFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICompanyFilter.m; sourceTree = "<group>"; };
+		526688311D21836900AD60FD /* DeskAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DeskAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		526688351D21836900AD60FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52976D271CBEC88200B2D074 /* DSAPICustomerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPICustomerFilter.h; sourceTree = "<group>"; };
 		52976D281CBEC88200B2D074 /* DSAPICustomerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICustomerFilter.m; sourceTree = "<group>"; };
 		52976D2B1CBED43900B2D074 /* DSAPICustomerFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICustomerFilterTests.m; sourceTree = "<group>"; };
-		53502A1E49457E269F1AB62A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		8C379B08E1724939AF847EA7 /* libPods-DeskAPIClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeskAPIClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B2B9E55B55FA489EA70BB35A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EA7F3331DEC90DD68AE311F /* Pods-DeskAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeskAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DeskAPIClientTests/Pods-DeskAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A9E65F4469ABC42F6010A469 /* libPods-DeskAPIClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeskAPIClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C748B8B11B7A4D3600AF400A /* DSAPINetworkIndicatorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPINetworkIndicatorController.h; sourceTree = "<group>"; };
 		C748B8B21B7A4D3600AF400A /* DSAPINetworkIndicatorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPINetworkIndicatorController.m; sourceTree = "<group>"; };
 		C7A6B1A41C51624B00D8B83F /* DSAPIResource+Testing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DSAPIResource+Testing.h"; sourceTree = "<group>"; };
 		C7A6B1A51C51624B00D8B83F /* DSAPIResource+Testing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DSAPIResource+Testing.m"; sourceTree = "<group>"; };
-		DF67CF8B90604791B3D698D4 /* libPods-DeskAPIClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeskAPIClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7111867EB10C4223E408AFD /* Pods-DeskAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeskAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DeskAPIClientTests/Pods-DeskAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
+		DF52845FC25279F95B3F117C /* libPods-DeskAPIClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeskAPIClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1C316D6D17E9533900ACA543 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1C316D7417E9533900ACA543 /* Foundation.framework in Frameworks */,
-				3E223CA44C6A4C4380497DB7 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1C316D7D17E9533900ACA543 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C94BC5D17EA2003003BA153 /* libDeskAPIClient.a in Frameworks */,
 				1C316D8217E9533900ACA543 /* XCTest.framework in Frameworks */,
 				1C316D8517E9533900ACA543 /* UIKit.framework in Frameworks */,
 				1C316D8317E9533900ACA543 /* Foundation.framework in Frameworks */,
-				0151060FA7FE4EE4839EFBAB /* libPods-DeskAPIClientTests.a in Frameworks */,
+				A94EAF086898921BE90239A0 /* libPods-DeskAPIClientTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5266882D1D21836900AD60FD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04125EEB05319E10C7B3941C /* libPods-DeskAPIClient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,16 +425,16 @@
 				1C316D7517E9533900ACA543 /* DeskAPIClient */,
 				1C316D8917E9533900ACA543 /* DeskAPIClientTests */,
 				1C316D7117E9533900ACA543 /* Products */,
-				8E21734AF4294AA89EF25DBC /* Frameworks */,
-				2D15D6CAB8DD42C33348C1C7 /* Pods */,
+				D6901A72E55884DB4F70DAD2 /* Pods */,
+				F891B62464EDEA55E7984230 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		1C316D7117E9533900ACA543 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1C316D7017E9533900ACA543 /* libDeskAPIClient.a */,
 				1C316D8017E9533900ACA543 /* DeskAPIClientTests.xctest */,
+				526688311D21836900AD60FD /* DeskAPIClient.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -470,9 +444,7 @@
 			children = (
 				1C316D7317E9533900ACA543 /* Foundation.framework */,
 				1C316D8417E9533900ACA543 /* UIKit.framework */,
-				B2B9E55B55FA489EA70BB35A /* libPods.a */,
 				1C316D8117E9533900ACA543 /* XCTest.framework */,
-				8C379B08E1724939AF847EA7 /* libPods-DeskAPIClientTests.a */,
 			);
 			name = Frameworks;
 			path = ..;
@@ -500,6 +472,7 @@
 				1CDBDF791A78191A00582BE2 /* DSAPIListProvider.m */,
 				C748B8B11B7A4D3600AF400A /* DSAPINetworkIndicatorController.h */,
 				C748B8B21B7A4D3600AF400A /* DSAPINetworkIndicatorController.m */,
+				526688351D21836900AD60FD /* Info.plist */,
 				1C316D7617E9533900ACA543 /* Supporting Files */,
 			);
 			path = DeskAPIClient;
@@ -718,21 +691,22 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		2D15D6CAB8DD42C33348C1C7 /* Pods */ = {
+		D6901A72E55884DB4F70DAD2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				28BCE9A37E225799CA401109 /* Pods.debug.xcconfig */,
-				53502A1E49457E269F1AB62A /* Pods.release.xcconfig */,
-				035EC54787927BFFC627F045 /* Pods-DeskAPIClientTests.debug.xcconfig */,
-				E7111867EB10C4223E408AFD /* Pods-DeskAPIClientTests.release.xcconfig */,
+				8EA7F3331DEC90DD68AE311F /* Pods-DeskAPIClientTests.debug.xcconfig */,
+				355C62BDD1D00B394DD78B4C /* Pods-DeskAPIClientTests.release.xcconfig */,
+				3EA238DD527C486C89933DB0 /* Pods-DeskAPIClient.debug.xcconfig */,
+				3656615C2F96858BB75E4946 /* Pods-DeskAPIClient.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		8E21734AF4294AA89EF25DBC /* Frameworks */ = {
+		F891B62464EDEA55E7984230 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DF67CF8B90604791B3D698D4 /* libPods-DeskAPIClient.a */,
+				DF52845FC25279F95B3F117C /* libPods-DeskAPIClientTests.a */,
+				A9E65F4469ABC42F6010A469 /* libPods-DeskAPIClient.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -740,76 +714,97 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		1C7B8D8E1A64217C005ED4A8 /* Headers */ = {
+		5266882E1D21836900AD60FD /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C7B8DBC1A6423A5005ED4A8 /* DeskAPIClient.h in Headers */,
-				1C399F8A1A6472A0004366DF /* DSAPIURLRequestSerialization.h in Headers */,
-				1C7B8D901A642277005ED4A8 /* DSAPIModels.h in Headers */,
-				1C7B8D911A642277005ED4A8 /* DSAPICase.h in Headers */,
-				1C7B8D921A642277005ED4A8 /* DSAPICustomer.h in Headers */,
-				1C7B8D931A642277005ED4A8 /* DSAPIFacebookUser.h in Headers */,
-				1C7B8D941A642277005ED4A8 /* DSAPITwitterUser.h in Headers */,
-				1C7B8D951A642277005ED4A8 /* DSAPINote.h in Headers */,
-				1C7B8D961A642277005ED4A8 /* DSAPIInteraction.h in Headers */,
-				1C7B8D971A642277005ED4A8 /* DSAPIChatMessage.h in Headers */,
-				1C7B8D981A642277005ED4A8 /* DSAPITweet.h in Headers */,
-				1C7B8D991A642277005ED4A8 /* DSAPIEmail.h in Headers */,
-				1C7B8D9A1A642277005ED4A8 /* DSAPICommunityAnswer.h in Headers */,
-				1C7B8D9B1A642277005ED4A8 /* DSAPIFacebookComment.h in Headers */,
-				1C7B8D9C1A642277005ED4A8 /* DSAPIPhoneCall.h in Headers */,
-				1C7B8D9D1A642277005ED4A8 /* DSAPIAttachment.h in Headers */,
-				1C7B8D9E1A642277005ED4A8 /* DSAPICaseFilter.h in Headers */,
-				1C7B8D9F1A642277005ED4A8 /* DSAPIUser.h in Headers */,
-				1C7B8DA01A642277005ED4A8 /* DSAPIUserPreference.h in Headers */,
-				1C7B8DA11A642277005ED4A8 /* DSAPILabel.h in Headers */,
-				1C7B8DA21A642277005ED4A8 /* DSAPIGroup.h in Headers */,
-				1C7B8DA31A642277005ED4A8 /* DSAPIMacro.h in Headers */,
-				1C7B8DA41A642277005ED4A8 /* DSAPIMacroAction.h in Headers */,
-				1C7B8DA51A642277005ED4A8 /* DSAPICustomField.h in Headers */,
-				1C7B8DA61A642277005ED4A8 /* DSAPIMobileDevice.h in Headers */,
-				C748B8B31B7A4D3600AF400A /* DSAPINetworkIndicatorController.h in Headers */,
-				52976D291CBEC88200B2D074 /* DSAPICustomerFilter.h in Headers */,
-				1C7B8DA71A642277005ED4A8 /* DSAPIMobileDeviceSetting.h in Headers */,
-				1C7B8DA81A642277005ED4A8 /* DSAPITwitterAccount.h in Headers */,
-				1C7B8DA91A642277005ED4A8 /* DSAPIPermission.h in Headers */,
-				1C7B8DAA1A642278005ED4A8 /* DSAPISiteSetting.h in Headers */,
-				524F4D5C1C89FF7000237829 /* DSAPICompanyFilter.h in Headers */,
-				1CDBDF7A1A78191A00582BE2 /* DSAPIListProvider.h in Headers */,
-				1C7B8DAB1A642278005ED4A8 /* DSAPIMailbox.h in Headers */,
-				1C399F8E1A64735D004366DF /* DSAPIURLResponseSerialization.h in Headers */,
-				1C7B8DAC1A642278005ED4A8 /* DSAPITwitterFollow.h in Headers */,
-				1C7B8DAD1A642278005ED4A8 /* DSAPIJob.h in Headers */,
-				1C7B8DAE1A642278005ED4A8 /* DSAPICompany.h in Headers */,
-				1C7B8DAF1A642278005ED4A8 /* DSAPITopic.h in Headers */,
-				1C7B8DB01A642278005ED4A8 /* DSAPIArticle.h in Headers */,
-				1C7B8DB11A642278005ED4A8 /* DSAPISite.h in Headers */,
-				1C7B8DB21A642278005ED4A8 /* DSAPIBilling.h in Headers */,
-				1C7B8DB31A642278005ED4A8 /* DSAPIBrand.h in Headers */,
-				1C7B8DB41A642278005ED4A8 /* DSAPITypes.h in Headers */,
-				1C7B8DB51A642278005ED4A8 /* DSAPIClient.h in Headers */,
-				1C7B8DB61A642278005ED4A8 /* DSAPIETagCache.h in Headers */,
-				1C7B8DB71A642278005ED4A8 /* DSAPILink.h in Headers */,
-				1C7B8DB81A642278005ED4A8 /* DSAPIPage.h in Headers */,
-				1C7B8DB91A642278005ED4A8 /* DSAPIResource.h in Headers */,
-				1C7B8DBA1A64229A005ED4A8 /* NSDictionary+DSAPI.h in Headers */,
+				5266886A1D2183A700AD60FD /* DSAPIModels.h in Headers */,
+				5266886B1D2183A700AD60FD /* DSAPICase.h in Headers */,
+				5266886C1D2183A700AD60FD /* DSAPICustomer.h in Headers */,
+				5266886D1D2183A700AD60FD /* DSAPIFacebookUser.h in Headers */,
+				5266886E1D2183A700AD60FD /* DSAPITwitterUser.h in Headers */,
+				5266886F1D2183A700AD60FD /* DSAPINote.h in Headers */,
+				526688701D2183A700AD60FD /* DSAPIInteraction.h in Headers */,
+				526688711D2183A700AD60FD /* DSAPIChatMessage.h in Headers */,
+				526688721D2183A700AD60FD /* DSAPITweet.h in Headers */,
+				526688731D2183A700AD60FD /* DSAPIEmail.h in Headers */,
+				526688741D2183A700AD60FD /* DSAPICommunityAnswer.h in Headers */,
+				526688751D2183A700AD60FD /* DSAPIFacebookComment.h in Headers */,
+				526688761D2183A700AD60FD /* DSAPIPhoneCall.h in Headers */,
+				526688771D2183A700AD60FD /* DSAPIAttachment.h in Headers */,
+				526688781D2183A700AD60FD /* DSAPICaseFilter.h in Headers */,
+				526688791D2183A700AD60FD /* DSAPIUser.h in Headers */,
+				5266887A1D2183A700AD60FD /* DSAPIUserPreference.h in Headers */,
+				5266887B1D2183A700AD60FD /* DSAPILabel.h in Headers */,
+				5266887C1D2183A700AD60FD /* DSAPIGroup.h in Headers */,
+				5266887D1D2183A700AD60FD /* DSAPIMacro.h in Headers */,
+				5266887E1D2183A700AD60FD /* DSAPIMacroAction.h in Headers */,
+				5266887F1D2183A700AD60FD /* DSAPICustomField.h in Headers */,
+				526688801D2183A700AD60FD /* DSAPIMobileDevice.h in Headers */,
+				526688811D2183A700AD60FD /* DSAPIMobileDeviceSetting.h in Headers */,
+				526688821D2183A700AD60FD /* DSAPITwitterAccount.h in Headers */,
+				526688831D2183A700AD60FD /* DSAPIPermission.h in Headers */,
+				526688841D2183A700AD60FD /* DSAPISiteSetting.h in Headers */,
+				526688851D2183A700AD60FD /* DSAPIMailbox.h in Headers */,
+				526688861D2183A700AD60FD /* DSAPITwitterFollow.h in Headers */,
+				526688871D2183A700AD60FD /* DSAPIJob.h in Headers */,
+				526688881D2183A700AD60FD /* DSAPICompany.h in Headers */,
+				526688891D2183A700AD60FD /* DSAPITopic.h in Headers */,
+				5266888A1D2183A700AD60FD /* DSAPIArticle.h in Headers */,
+				5266888B1D2183A700AD60FD /* DSAPISite.h in Headers */,
+				5266888C1D2183A700AD60FD /* DSAPIBilling.h in Headers */,
+				5266888D1D2183A700AD60FD /* DSAPIBrand.h in Headers */,
+				5266888E1D2183A700AD60FD /* DSAPICompanyFilter.h in Headers */,
+				5266888F1D2183A700AD60FD /* DSAPICustomerFilter.h in Headers */,
+				526688901D2183A700AD60FD /* NSDictionary+DSAPI.h in Headers */,
+				526688911D2183A700AD60FD /* DSAPITypes.h in Headers */,
+				526688921D2183A700AD60FD /* DSAPIClient.h in Headers */,
+				526688941D2183A700AD60FD /* DSAPILink.h in Headers */,
+				526688951D2183A700AD60FD /* DSAPIPage.h in Headers */,
+				526688961D2183A700AD60FD /* DSAPIResource.h in Headers */,
+				526688991D21850F00AD60FD /* DeskAPIClient.h in Headers */,
+				526688971D2183A700AD60FD /* DSAPIListProvider.h in Headers */,
+				526688681D2183A700AD60FD /* DSAPIURLRequestSerialization.h in Headers */,
+				526688691D2183A700AD60FD /* DSAPIURLResponseSerialization.h in Headers */,
+				526688931D2183A700AD60FD /* DSAPIETagCache.h in Headers */,
+				526688981D2183A700AD60FD /* DSAPINetworkIndicatorController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1C316D6F17E9533900ACA543 /* DeskAPIClient */ = {
+		1C316D7F17E9533900ACA543 /* DeskAPIClientTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1C316D9317E9533900ACA543 /* Build configuration list for PBXNativeTarget "DeskAPIClient" */;
+			buildConfigurationList = 1C316D9617E9533900ACA543 /* Build configuration list for PBXNativeTarget "DeskAPIClientTests" */;
 			buildPhases = (
-				A1D663EF215D4041A4DF9FC5 /* Check Pods Manifest.lock */,
-				1C316D6C17E9533900ACA543 /* Sources */,
-				1C316D6D17E9533900ACA543 /* Frameworks */,
-				2C045C710C014F07A3F273C2 /* Copy Pods Resources */,
-				1C7B8D8E1A64217C005ED4A8 /* Headers */,
-				1C7B8DBD1A64252A005ED4A8 /* Prepare Framework */,
+				A56FA6AA8367615FA0742814 /* [CP] Check Pods Manifest.lock */,
+				1C316D7C17E9533900ACA543 /* Sources */,
+				1C316D7D17E9533900ACA543 /* Frameworks */,
+				1C316D7E17E9533900ACA543 /* Resources */,
+				3685C62D4B0B5E9F81597C40 /* [CP] Embed Pods Frameworks */,
+				86169F27B0123FC064C25F9F /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5266889B1D21866B00AD60FD /* PBXTargetDependency */,
+			);
+			name = DeskAPIClientTests;
+			productName = DeskAPIClientTests;
+			productReference = 1C316D8017E9533900ACA543 /* DeskAPIClientTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		526688301D21836900AD60FD /* DeskAPIClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 526688361D21836900AD60FD /* Build configuration list for PBXNativeTarget "DeskAPIClient" */;
+			buildPhases = (
+				F4D6D1BEBB6F1F7772FE6D44 /* [CP] Check Pods Manifest.lock */,
+				5266882C1D21836900AD60FD /* Sources */,
+				5266882D1D21836900AD60FD /* Frameworks */,
+				5266882E1D21836900AD60FD /* Headers */,
+				5266882F1D21836900AD60FD /* Resources */,
+				69F7D67749E992230BC5F8E6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -817,29 +812,8 @@
 			);
 			name = DeskAPIClient;
 			productName = DeskAPIClient;
-			productReference = 1C316D7017E9533900ACA543 /* libDeskAPIClient.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		1C316D7F17E9533900ACA543 /* DeskAPIClientTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1C316D9617E9533900ACA543 /* Build configuration list for PBXNativeTarget "DeskAPIClientTests" */;
-			buildPhases = (
-				75C36E54CE3043FCB83D5EBC /* Check Pods Manifest.lock */,
-				1C316D7C17E9533900ACA543 /* Sources */,
-				1C316D7D17E9533900ACA543 /* Frameworks */,
-				1C316D7E17E9533900ACA543 /* Resources */,
-				8277CE3230644BD2A7222A89 /* Copy Pods Resources */,
-				2FA77809536DE4F9F22D421F /* Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1C316D8717E9533900ACA543 /* PBXTargetDependency */,
-			);
-			name = DeskAPIClientTests;
-			productName = DeskAPIClientTests;
-			productReference = 1C316D8017E9533900ACA543 /* DeskAPIClientTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+			productReference = 526688311D21836900AD60FD /* DeskAPIClient.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -854,8 +828,8 @@
 					1C316D7F17E9533900ACA543 = {
 						TestTargetID = 1C316D6F17E9533900ACA543;
 					};
-					1C7B8DBE1A6425EC005ED4A8 = {
-						CreatedOnToolsVersion = 6.1.1;
+					526688301D21836900AD60FD = {
+						CreatedOnToolsVersion = 7.3;
 					};
 				};
 			};
@@ -871,9 +845,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1C316D6F17E9533900ACA543 /* DeskAPIClient */,
+				526688301D21836900AD60FD /* DeskAPIClient */,
 				1C316D7F17E9533900ACA543 /* DeskAPIClientTests */,
-				1C7B8DBE1A6425EC005ED4A8 /* Framework */,
 			);
 		};
 /* End PBXProject section */
@@ -911,60 +884,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5266882F1D21836900AD60FD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1C7B8DBD1A64252A005ED4A8 /* Prepare Framework */ = {
+		3685C62D4B0B5E9F81597C40 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Prepare Framework";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -e\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"";
-		};
-		1C7B8DC41A642622005ED4A8 /* Build Framework */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Build Framework";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcrun xcodebuild ONLY_ACTIVE_ARCH=NO -workspace \"${PROJECT_DIR}/${PROJECT_NAME}.xcworkspace\" -scheme \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nxcrun lipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n\n# Copy the binary to the other architecture folder to have a complete framework in both.\ncp -a \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"";
-		};
-		2C045C710C014F07A3F273C2 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2FA77809536DE4F9F22D421F /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -972,29 +909,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DeskAPIClientTests/Pods-DeskAPIClientTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		75C36E54CE3043FCB83D5EBC /* Check Pods Manifest.lock */ = {
+		69F7D67749E992230BC5F8E6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DeskAPIClient/Pods-DeskAPIClient-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8277CE3230644BD2A7222A89 /* Copy Pods Resources */ = {
+		86169F27B0123FC064C25F9F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1002,14 +939,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DeskAPIClientTests/Pods-DeskAPIClientTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A1D663EF215D4041A4DF9FC5 /* Check Pods Manifest.lock */ = {
+		A56FA6AA8367615FA0742814 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F4D6D1BEBB6F1F7772FE6D44 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1020,60 +972,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1C316D6C17E9533900ACA543 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2D4947411A114F5E00D81AF7 /* DSAPISite.m in Sources */,
-				1CEA9A0F1961EA1E00D7473A /* DSAPITwitterFollow.m in Sources */,
-				1CF0EC8F17F23B7200901969 /* DSAPICase.m in Sources */,
-				1C6E124918ABB66500666DE4 /* DSAPIFacebookUser.m in Sources */,
-				1CFCA36F1A23E0D3000D9F61 /* DSAPIBilling.m in Sources */,
-				1CF0ECCA17F3384900901969 /* DSAPIAttachment.m in Sources */,
-				1C3D462918F0FD8A00389AEB /* DSAPIMobileDeviceSetting.m in Sources */,
-				2D2C4CC419B8D77200565E65 /* DSAPIArticle.m in Sources */,
-				1C07A5571864DA5B008056B5 /* DSAPIETagCache.m in Sources */,
-				1C399F8B1A6472A0004366DF /* DSAPIURLRequestSerialization.m in Sources */,
-				1C6E128518ABFF0600666DE4 /* DSAPICustomField.m in Sources */,
-				1CF4484617FDFCA4009FED5A /* DSAPIUser.m in Sources */,
-				52976D2A1CBEC88200B2D074 /* DSAPICustomerFilter.m in Sources */,
-				1C4575731922B2C300C08B7A /* DSAPITwitterAccount.m in Sources */,
-				1C316D7B17E9533900ACA543 /* DSAPIClient.m in Sources */,
-				1CF0ECC217F3308400901969 /* DSAPIFacebookComment.m in Sources */,
-				2DFFB06719B60D1A00683B6C /* DSAPITopic.m in Sources */,
-				1CF0ECC517F3309100901969 /* DSAPIPhoneCall.m in Sources */,
-				1CF4484B17FE017E009FED5A /* DSAPIUserPreference.m in Sources */,
-				1C399F8F1A64735D004366DF /* DSAPIURLResponseSerialization.m in Sources */,
-				C748B8B41B7A4D3600AF400A /* DSAPINetworkIndicatorController.m in Sources */,
-				1C28761517ED2F0C004B4CBF /* DSAPIResource.m in Sources */,
-				1CA824381896FD9E00C7DF54 /* DSAPIMacro.m in Sources */,
-				1CF0EC9D17F3102400901969 /* DSAPICustomer.m in Sources */,
-				1CF0ECA317F3293000901969 /* DSAPINote.m in Sources */,
-				1C443E50182177E1003F4B73 /* DSAPIPage.m in Sources */,
-				1C2D68B3192F99720076A434 /* DSAPISiteSetting.m in Sources */,
-				1C6E124A18ABB66500666DE4 /* DSAPITwitterUser.m in Sources */,
-				1CC438DC182AE36400FB046C /* DSAPILabel.m in Sources */,
-				1CA8243F18971FB900C7DF54 /* DSAPIMacroAction.m in Sources */,
-				1C46BBAE19254D6A00D812AE /* DSAPIPermission.m in Sources */,
-				1C28762317F09AFF004B4CBF /* NSDictionary+DSAPI.m in Sources */,
-				1CDBDF7B1A78191A00582BE2 /* DSAPIListProvider.m in Sources */,
-				1C714CE0199E6377000BAB60 /* DSAPICompany.m in Sources */,
-				1CF0ECB917F3305300901969 /* DSAPIEmail.m in Sources */,
-				1CF0ECAD17F32FA500901969 /* DSAPIInteraction.m in Sources */,
-				1C66A32C1A31FE2C00E694D2 /* DSAPIBrand.m in Sources */,
-				1CF0ECB617F3302A00901969 /* DSAPITweet.m in Sources */,
-				1C880A6318313885001075B8 /* DSAPIGroup.m in Sources */,
-				1C3D462418EF290400389AEB /* DSAPIMobileDevice.m in Sources */,
-				1CE601261958827C00DD8DF9 /* DSAPIMailbox.m in Sources */,
-				1CF0ECBC17F3306300901969 /* DSAPICommunityAnswer.m in Sources */,
-				1C28760F17EBF27D004B4CBF /* DSAPILink.m in Sources */,
-				1CBC6FB0196B4A8E00E763E1 /* DSAPIJob.m in Sources */,
-				1CF0ECB317F32FF200901969 /* DSAPIChatMessage.m in Sources */,
-				1CF0ECD317F379B200901969 /* DSAPICaseFilter.m in Sources */,
-				524F4D5D1C89FF7000237829 /* DSAPICompanyFilter.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1C316D7C17E9533900ACA543 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1119,18 +1017,67 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5266882C1D21836900AD60FD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				526688391D21838C00AD60FD /* DSAPIURLRequestSerialization.m in Sources */,
+				5266883A1D21838C00AD60FD /* DSAPIURLResponseSerialization.m in Sources */,
+				5266883B1D21838C00AD60FD /* DSAPICase.m in Sources */,
+				5266883C1D21838C00AD60FD /* DSAPICustomer.m in Sources */,
+				5266883D1D21838C00AD60FD /* DSAPIFacebookUser.m in Sources */,
+				5266883E1D21838C00AD60FD /* DSAPITwitterUser.m in Sources */,
+				5266883F1D21838C00AD60FD /* DSAPINote.m in Sources */,
+				526688401D21838C00AD60FD /* DSAPIInteraction.m in Sources */,
+				526688411D21838C00AD60FD /* DSAPIChatMessage.m in Sources */,
+				526688421D21838C00AD60FD /* DSAPITweet.m in Sources */,
+				526688431D21838C00AD60FD /* DSAPIEmail.m in Sources */,
+				526688441D21838C00AD60FD /* DSAPICommunityAnswer.m in Sources */,
+				526688451D21838C00AD60FD /* DSAPIFacebookComment.m in Sources */,
+				526688461D21838C00AD60FD /* DSAPIPhoneCall.m in Sources */,
+				526688471D21838C00AD60FD /* DSAPIAttachment.m in Sources */,
+				526688481D21838C00AD60FD /* DSAPICaseFilter.m in Sources */,
+				526688491D21838C00AD60FD /* DSAPIUser.m in Sources */,
+				5266884A1D21838C00AD60FD /* DSAPIUserPreference.m in Sources */,
+				5266884B1D21838C00AD60FD /* DSAPILabel.m in Sources */,
+				5266884C1D21838C00AD60FD /* DSAPIGroup.m in Sources */,
+				5266884D1D21838C00AD60FD /* DSAPIMacro.m in Sources */,
+				5266884E1D21838C00AD60FD /* DSAPIMacroAction.m in Sources */,
+				5266884F1D21838C00AD60FD /* DSAPICustomField.m in Sources */,
+				526688501D21838C00AD60FD /* DSAPIMobileDevice.m in Sources */,
+				526688511D21838C00AD60FD /* DSAPIMobileDeviceSetting.m in Sources */,
+				526688521D21838C00AD60FD /* DSAPITwitterAccount.m in Sources */,
+				526688531D21838C00AD60FD /* DSAPIPermission.m in Sources */,
+				526688541D21838C00AD60FD /* DSAPISiteSetting.m in Sources */,
+				526688551D21838C00AD60FD /* DSAPIMailbox.m in Sources */,
+				526688561D21838C00AD60FD /* DSAPITwitterFollow.m in Sources */,
+				526688571D21838C00AD60FD /* DSAPIJob.m in Sources */,
+				526688581D21838C00AD60FD /* DSAPICompany.m in Sources */,
+				526688591D21838C00AD60FD /* DSAPITopic.m in Sources */,
+				5266885A1D21838C00AD60FD /* DSAPIArticle.m in Sources */,
+				5266885B1D21838C00AD60FD /* DSAPISite.m in Sources */,
+				5266885C1D21838C00AD60FD /* DSAPIBilling.m in Sources */,
+				5266885D1D21838C00AD60FD /* DSAPIBrand.m in Sources */,
+				5266885E1D21838C00AD60FD /* DSAPICompanyFilter.m in Sources */,
+				5266885F1D21838C00AD60FD /* DSAPICustomerFilter.m in Sources */,
+				526688601D21838C00AD60FD /* NSDictionary+DSAPI.m in Sources */,
+				526688611D21838C00AD60FD /* DSAPIClient.m in Sources */,
+				526688621D21838C00AD60FD /* DSAPIETagCache.m in Sources */,
+				526688631D21838C00AD60FD /* DSAPILink.m in Sources */,
+				526688641D21838C00AD60FD /* DSAPIPage.m in Sources */,
+				526688651D21838C00AD60FD /* DSAPIResource.m in Sources */,
+				526688661D21838C00AD60FD /* DSAPIListProvider.m in Sources */,
+				526688671D21838C00AD60FD /* DSAPINetworkIndicatorController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1C316D8717E9533900ACA543 /* PBXTargetDependency */ = {
+		5266889B1D21866B00AD60FD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1C316D6F17E9533900ACA543 /* DeskAPIClient */;
-			targetProxy = 1C316D8617E9533900ACA543 /* PBXContainerItemProxy */;
-		};
-		1CA360C01A6558F6001F61C0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1C316D6F17E9533900ACA543 /* DeskAPIClient */;
-			targetProxy = 1CA360BF1A6558F6001F61C0 /* PBXContainerItemProxy */;
+			target = 526688301D21836900AD60FD /* DeskAPIClient */;
+			targetProxy = 5266889A1D21866B00AD60FD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1217,47 +1164,12 @@
 			};
 			name = Release;
 		};
-		1C316D9417E9533900ACA543 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28BCE9A37E225799CA401109 /* Pods.debug.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = NO;
-				DSTROOT = /tmp/DeskAPIClient.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DeskAPIClient/DeskAPIClient-Prefix.pch";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
-				SKIP_INSTALL = YES;
-				STRIP_STYLE = "non-global";
-			};
-			name = Debug;
-		};
-		1C316D9517E9533900ACA543 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 53502A1E49457E269F1AB62A /* Pods.release.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = NO;
-				DSTROOT = /tmp/DeskAPIClient.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DeskAPIClient/DeskAPIClient-Prefix.pch";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
-				SKIP_INSTALL = YES;
-				STRIP_STYLE = "non-global";
-			};
-			name = Release;
-		};
 		1C316D9717E9533900ACA543 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 035EC54787927BFFC627F045 /* Pods-DeskAPIClientTests.debug.xcconfig */;
+			baseConfigurationReference = 8EA7F3331DEC90DD68AE311F /* Pods-DeskAPIClientTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DeskAPIClientTests/DeskAPIClientTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1276,13 +1188,10 @@
 		};
 		1C316D9817E9533900ACA543 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E7111867EB10C4223E408AFD /* Pods-DeskAPIClientTests.release.xcconfig */;
+			baseConfigurationReference = 355C62BDD1D00B394DD78B4C /* Pods-DeskAPIClientTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DeskAPIClientTests/DeskAPIClientTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1299,19 +1208,64 @@
 			};
 			name = Release;
 		};
-		1C7B8DC01A6425EC005ED4A8 /* Debug */ = {
+		526688371D21836900AD60FD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3EA238DD527C486C89933DB0 /* Pods-DeskAPIClient.debug.xcconfig */;
 			buildSettings = {
-				ONLY_ACTIVE_ARCH = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = DeskAPIClient/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.desk.DeskAPIClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		1C7B8DC11A6425EC005ED4A8 /* Release */ = {
+		526688381D21836900AD60FD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3656615C2F96858BB75E4946 /* Pods-DeskAPIClient.release.xcconfig */;
 			buildSettings = {
-				ONLY_ACTIVE_ARCH = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = DeskAPIClient/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.desk.DeskAPIClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -1327,15 +1281,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1C316D9317E9533900ACA543 /* Build configuration list for PBXNativeTarget "DeskAPIClient" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1C316D9417E9533900ACA543 /* Debug */,
-				1C316D9517E9533900ACA543 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		1C316D9617E9533900ACA543 /* Build configuration list for PBXNativeTarget "DeskAPIClientTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1345,11 +1290,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1C7B8DBF1A6425EC005ED4A8 /* Build configuration list for PBXAggregateTarget "Framework" */ = {
+		526688361D21836900AD60FD /* Build configuration list for PBXNativeTarget "DeskAPIClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1C7B8DC01A6425EC005ED4A8 /* Debug */,
-				1C7B8DC11A6425EC005ED4A8 /* Release */,
+				526688371D21836900AD60FD /* Debug */,
+				526688381D21836900AD60FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

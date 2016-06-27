@@ -33,3 +33,10 @@
 #import "DSAPIModels.h"
 #import "DSAPIListProvider.h"
 #import "NSDictionary+DSAPI.h"
+
+//! Project version number for DeskAPIClient.
+FOUNDATION_EXPORT double DeskAPIClientVersionNumber;
+
+//! Project version string for DeskAPIClient.
+FOUNDATION_EXPORT const unsigned char DeskAPIClientVersionString[];
+
