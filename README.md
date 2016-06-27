@@ -1,12 +1,43 @@
 # Desk API Client
 
-The Desk API Client is a lightweight static library that wraps the [Desk.com API V2](http://dev.desk.com), written in Objective-C.
+The Desk API Client is a lightweight framework that wraps the [Desk.com API V2](http://dev.desk.com), written in Objective-C.
 
-The easiest way to install the library is as a cocoapod:
+## Installation
+DeskAPIClient supports multiple methods for installing the framework in a project.
 
+### Installation with CocoaPods
+[CocoaPods](http://cocoapods.org) is a dependency manager, which automates and simplifies the process of using 3rd-party libraries in your projects.
+
+You can install it with the following command:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+
+target 'TargetName' do
+pod 'DeskAPIClient', '~> 3.2.0'
+end
 ```
-pod 'DeskAPIClient', '~> 3.1.0'
+Then, run the following command:
+
+```bash
+$ pod install
 ```
+
+### Installation with Carthage
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+
+To integrate DeskAPIClient into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "forcedotcom/DeskApiClient-ObjC" ~> 3.2.0
+```
+Run `carthage` to build the framework and drag the built `DeskAPIClient.framework` into your Xcode project.
+
+**IMPORTANT: Currently we only support prebuilt frameworks. If you run carthage with `--no-use-binaries` option, you will get an error.**
+
+### Installation using prebuilt Framework
+Starting DeskAPIClient version `3.2.0`, prebuilt frameworks are attached in github releases. In order to use prebuilt framework, download the appropriate version from [Releases](https://github.com/forcedotcom/DeskApiClient-ObjC/releases), unarchive the zip file and drag `DeskAPIClient.framework` into your Xcode project.
 
 ## Usage
 
