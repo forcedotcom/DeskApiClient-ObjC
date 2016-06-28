@@ -1,7 +1,7 @@
 PODS:
-  - DeskCommon (1.0.4)
-  - DeskCommonTest (1.0.2):
-    - DeskCommon (~> 1.0.4)
+  - DeskCommon (1.1.0)
+  - DeskCommonTest (1.0.3):
+    - DeskCommon (~> 1.1)
     - OHHTTPStubs (~> 4.6.0)
   - Expecta (0.3.2)
   - OCMock (3.0.2)
@@ -20,18 +20,18 @@ PODS:
   - OHHTTPStubs/OHPathHelpers (4.6.0)
 
 DEPENDENCIES:
-  - DeskCommon (~> 1.0)
-  - DeskCommonTest (~> 1.0.2)
+  - DeskCommon (~> 1.1)
+  - DeskCommonTest (~> 1.0)
   - Expecta (~> 0.3.1)
   - OCMock (~> 3.0.2)
 
 SPEC CHECKSUMS:
-  DeskCommon: aa0e105a959a879555846107d2c678957ed4cb5d
-  DeskCommonTest: 8074b0aa86c2f9b5237e3671c35e90253ce2c66f
+  DeskCommon: 9a56dece9026e1b751707442586e30f7ac2325aa
+  DeskCommonTest: 4901509b8d39ead93386bab8d15a1cbf49d3b47d
   Expecta: 8c507baf13211207b1e9d0a741480600e6b4ed15
   OCMock: 1f0871af0f397183f33e7552cca088bd2b485c25
   OHHTTPStubs: cb1aefbbeb4de4e741644455d4b945538e5248a2
 
-PODFILE CHECKSUM: a78aa4e5d014033bcfd7b38c8b2b013adee15da1
+PODFILE CHECKSUM: 7709c757375e3193443514fa01a2bdc8bfda3ab6
 
 COCOAPODS: 1.0.1
