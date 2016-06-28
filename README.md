@@ -15,7 +15,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 target 'TargetName' do
-pod 'DeskAPIClient', '~> 3.2.0'
+pod 'DeskAPIClient', '~> 3.2.1'
 end
 ```
 Then, run the following command:
@@ -30,14 +30,19 @@ $ pod install
 To integrate DeskAPIClient into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "forcedotcom/DeskApiClient-ObjC" ~> 3.2.0
+github "forcedotcom/DeskApiClient-ObjC" ~> 3.2.1
 ```
 Run `carthage` to build the framework and drag the built `DeskAPIClient.framework` into your Xcode project.
 
 **IMPORTANT: Currently we only support prebuilt frameworks. If you run carthage with `--no-use-binaries` option, you will get an error.**
 
 ### Installation using prebuilt Framework
-Starting DeskAPIClient version `3.2.0`, prebuilt frameworks are attached in github releases. In order to use prebuilt framework, download the appropriate version from [Releases](https://github.com/forcedotcom/DeskApiClient-ObjC/releases), unarchive the zip file and drag `DeskAPIClient.framework` into your Xcode project.
+Starting DeskAPIClient version `3.2.0`, prebuilt frameworks are attached in github releases. In order to use prebuilt frameworks:
+
+1. Download the appropriate version `All.zip` file from [Releases](https://github.com/forcedotcom/DeskApiClient-ObjC/releases)
+2. Unarchive the zip file  
+3. With your project open in Xcode, select your Target. Under General tab, find Embedded Binaries and then click the + button.
+4. Click the Add Other... button, navigate to the framework files (`DeskAPIClient.framework`, `DeskCommon.framework`) and select them. Check the Destination: Copy items if needed checkbox when prompted.
 
 ## Usage
 
