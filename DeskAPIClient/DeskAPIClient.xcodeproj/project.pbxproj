@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		526688C11D21F2A700AD60FD /* DeskAPIClientUniversal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 526688C41D21F2A700AD60FD /* Build configuration list for PBXAggregateTarget "DeskAPIClientUniversal" */;
+			buildPhases = (
+				526688C51D21F30200AD60FD /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = DeskAPIClientUniversal;
+			productName = DeskAPIClientUniversal;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		04125EEB05319E10C7B3941C /* libPods-DeskAPIClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9E65F4469ABC42F6010A469 /* libPods-DeskAPIClient.a */; };
 		1C07A54E1864C4DE008056B5 /* case41repliespageone.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C07A54D1864C4DE008056B5 /* case41repliespageone.json */; };
@@ -822,6 +836,9 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = DSAPI;
+				KnownAssetTags = (
+					New,
+				);
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Desk.com;
 				TargetAttributes = {
@@ -829,6 +846,9 @@
 						TestTargetID = 1C316D6F17E9533900ACA543;
 					};
 					526688301D21836900AD60FD = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					526688C11D21F2A700AD60FD = {
 						CreatedOnToolsVersion = 7.3;
 					};
 				};
@@ -847,6 +867,7 @@
 			targets = (
 				526688301D21836900AD60FD /* DeskAPIClient */,
 				1C316D7F17E9533900ACA543 /* DeskAPIClientTests */,
+				526688C11D21F2A700AD60FD /* DeskAPIClientUniversal */,
 			);
 		};
 /* End PBXProject section */
@@ -908,6 +929,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DeskAPIClientTests/Pods-DeskAPIClientTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		526688C51D21F30200AD60FD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Merge Script\n\n# workaround for bitcode generation problem with Xcode 7.3 - http://stackoverflow.com/questions/36184930/xcodebuild-7-3-cant-enable-bitcode\nunset TOOLCHAINS\n\n# 1\n# Set bash script to exit immediately if any commands fail.\nset -e\n\n# 2\n# Setup some constants for use later on.\nFRAMEWORK_NAME=\"DeskAPIClient\"\nSCHEME_NAME=\"DeskAPIClient\"\nWORKSPACE_NAME=\"DeskAPIClient.xcworkspace\"\nOUTPUT_DIR=\"${HOME}/Desktop\"\n\n# 3\n# If remnants from a previous build exist, delete them.\nif [ -d \"${BUILD_DIR}\" ]; then\nrm -rf \"${BUILD_DIR}\"\nfi\n\n# 4\n# Build the framework for device and for simulator (using\n# all needed architectures).\nxcodebuild build -workspace \"${WORKSPACE_NAME}\" -scheme \"${SCHEME_NAME}\" -configuration Release -arch arm64 -arch armv7 -arch armv7s only_active_arch=no defines_module=yes -sdk \"iphoneos\"\nxcodebuild build -workspace \"${WORKSPACE_NAME}\" -scheme \"${SCHEME_NAME}\" -configuration Release -arch x86_64 -arch i386 only_active_arch=no defines_module=yes -sdk \"iphonesimulator\"\n\n# 5\n# Remove .framework file if exists on Desktop from previous run.\nif [ -d \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.framework\" ]; then\nrm -rf \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.framework\"\nfi\n\n# 6\n# Copy the device version of framework to Desktop.\ncp -r \"${BUILD_DIR}/Release-iphoneos/${FRAMEWORK_NAME}.framework\" \"${WORKSPACE_NAME}/${FRAMEWORK_NAME}.framework\"\n\n# 7\n# Replace the framework executable within the framework with\n# a new version created by merging the device and simulator\n# frameworks' executables with lipo.\nlipo -create -output \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" \"${BUILD_DIR}/Release-iphoneos/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" \"${BUILD_DIR}/Release-iphonesimulator/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\"\n\n# 8\n# Copy the Swift module mappings for the simulator into the\n# framework.  The device mappings already exist from step 6.\n# cp -r \"${BUILD_DIR}/Release-iphonesimulator/${FRAMEWORK_NAME}.framework/Modules/${FRAMEWORK_NAME}.swiftmodule/\" \"${HOME}/Desktop/${FRAMEWORK_NAME}.framework/Modules/${FRAMEWORK_NAME}.swiftmodule\"\n\n# 9\n# Delete the most recent build.\nif [ -d \"${BUILD_DIR}\" ]; then\nrm -rf \"${BUILD_DIR}\"\nfi";
 		};
 		69F7D67749E992230BC5F8E6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1212,6 +1246,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3EA238DD527C486C89933DB0 /* Pods-DeskAPIClient.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1228,11 +1263,30 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/DeskCommon\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/DeskCommonTest\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/Expecta\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/OCMock\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/OHHTTPStubs\"",
+				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.desk.DeskAPIClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1242,6 +1296,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3656615C2F96858BB75E4946 /* Pods-DeskAPIClient.release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1259,13 +1314,56 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/DeskCommon\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/DeskCommonTest\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/Expecta\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/OCMock\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/OHHTTPStubs\"",
+				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.desk.DeskAPIClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		526688C21D21F2A700AD60FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_BITCODE = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-fembed-bitcode",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		526688C31D21F2A700AD60FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_BITCODE = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-fembed-bitcode",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -1295,6 +1393,15 @@
 			buildConfigurations = (
 				526688371D21836900AD60FD /* Debug */,
 				526688381D21836900AD60FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		526688C41D21F2A700AD60FD /* Build configuration list for PBXAggregateTarget "DeskAPIClientUniversal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				526688C21D21F2A700AD60FD /* Debug */,
+				526688C31D21F2A700AD60FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
