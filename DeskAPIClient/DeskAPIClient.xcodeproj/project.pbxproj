@@ -21,7 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		04125EEB05319E10C7B3941C /* libPods-DeskAPIClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9E65F4469ABC42F6010A469 /* libPods-DeskAPIClient.a */; };
 		1C07A54E1864C4DE008056B5 /* case41repliespageone.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C07A54D1864C4DE008056B5 /* case41repliespageone.json */; };
 		1C1FF03917F12ABD00484D80 /* newCase.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C1FF03817F12ABD00484D80 /* newCase.json */; };
 		1C1FF03B17F1314C00484D80 /* updateCase.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C1FF03A17F1314C00484D80 /* updateCase.json */; };
@@ -184,7 +183,8 @@
 		526688981D2183A700AD60FD /* DSAPINetworkIndicatorController.h in Headers */ = {isa = PBXBuildFile; fileRef = C748B8B11B7A4D3600AF400A /* DSAPINetworkIndicatorController.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		526688991D21850F00AD60FD /* DeskAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C7B8DBB1A642351005ED4A8 /* DeskAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		52976D2C1CBED43900B2D074 /* DSAPICustomerFilterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52976D2B1CBED43900B2D074 /* DSAPICustomerFilterTests.m */; };
-		A94EAF086898921BE90239A0 /* libPods-DeskAPIClientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF52845FC25279F95B3F117C /* libPods-DeskAPIClientTests.a */; };
+		576EB94CE5F441E6625C286E /* Pods_DeskAPIClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E0DFA5E3795AA5473259EC /* Pods_DeskAPIClientTests.framework */; };
+		58D8B8B27FCE7E0E772923CA /* Pods_DeskAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2D7A1243FDC24A84596998 /* Pods_DeskAPIClient.framework */; };
 		C7A6B1A61C51624B00D8B83F /* DSAPIResource+Testing.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A6B1A51C51624B00D8B83F /* DSAPIResource+Testing.m */; };
 /* End PBXBuildFile section */
 
@@ -362,6 +362,7 @@
 		355C62BDD1D00B394DD78B4C /* Pods-DeskAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeskAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DeskAPIClientTests/Pods-DeskAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		3656615C2F96858BB75E4946 /* Pods-DeskAPIClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeskAPIClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-DeskAPIClient/Pods-DeskAPIClient.release.xcconfig"; sourceTree = "<group>"; };
 		3EA238DD527C486C89933DB0 /* Pods-DeskAPIClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeskAPIClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DeskAPIClient/Pods-DeskAPIClient.debug.xcconfig"; sourceTree = "<group>"; };
+		40E0DFA5E3795AA5473259EC /* Pods_DeskAPIClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DeskAPIClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		520D8DD71CB2CBA400545313 /* DSAPICompanyFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICompanyFilterTests.m; sourceTree = "<group>"; };
 		524F4D5A1C89FF7000237829 /* DSAPICompanyFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPICompanyFilter.h; sourceTree = "<group>"; };
 		524F4D5B1C89FF7000237829 /* DSAPICompanyFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICompanyFilter.m; sourceTree = "<group>"; };
@@ -371,12 +372,11 @@
 		52976D281CBEC88200B2D074 /* DSAPICustomerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICustomerFilter.m; sourceTree = "<group>"; };
 		52976D2B1CBED43900B2D074 /* DSAPICustomerFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICustomerFilterTests.m; sourceTree = "<group>"; };
 		8EA7F3331DEC90DD68AE311F /* Pods-DeskAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeskAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DeskAPIClientTests/Pods-DeskAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A9E65F4469ABC42F6010A469 /* libPods-DeskAPIClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeskAPIClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C748B8B11B7A4D3600AF400A /* DSAPINetworkIndicatorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPINetworkIndicatorController.h; sourceTree = "<group>"; };
 		C748B8B21B7A4D3600AF400A /* DSAPINetworkIndicatorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPINetworkIndicatorController.m; sourceTree = "<group>"; };
 		C7A6B1A41C51624B00D8B83F /* DSAPIResource+Testing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DSAPIResource+Testing.h"; sourceTree = "<group>"; };
 		C7A6B1A51C51624B00D8B83F /* DSAPIResource+Testing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DSAPIResource+Testing.m"; sourceTree = "<group>"; };
-		DF52845FC25279F95B3F117C /* libPods-DeskAPIClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeskAPIClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA2D7A1243FDC24A84596998 /* Pods_DeskAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DeskAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -387,7 +387,7 @@
 				1C316D8217E9533900ACA543 /* XCTest.framework in Frameworks */,
 				1C316D8517E9533900ACA543 /* UIKit.framework in Frameworks */,
 				1C316D8317E9533900ACA543 /* Foundation.framework in Frameworks */,
-				A94EAF086898921BE90239A0 /* libPods-DeskAPIClientTests.a in Frameworks */,
+				576EB94CE5F441E6625C286E /* Pods_DeskAPIClientTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,7 +395,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04125EEB05319E10C7B3941C /* libPods-DeskAPIClient.a in Frameworks */,
+				58D8B8B27FCE7E0E772923CA /* Pods_DeskAPIClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,8 +719,8 @@
 		F891B62464EDEA55E7984230 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DF52845FC25279F95B3F117C /* libPods-DeskAPIClientTests.a */,
-				A9E65F4469ABC42F6010A469 /* libPods-DeskAPIClient.a */,
+				DA2D7A1243FDC24A84596998 /* Pods_DeskAPIClient.framework */,
+				40E0DFA5E3795AA5473259EC /* Pods_DeskAPIClientTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

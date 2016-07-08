@@ -15,7 +15,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 target 'TargetName' do
-pod 'DeskAPIClient', '~> 3.2.1'
+  pod 'DeskAPIClient', '~> 3.2'
 end
 ```
 Then, run the following command:
@@ -30,19 +30,21 @@ $ pod install
 To integrate DeskAPIClient into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "forcedotcom/DeskApiClient-ObjC" ~> 3.2.1
+github "forcedotcom/DeskApiClient-ObjC" ~> 3.2
 ```
-Run `carthage` to build the framework and drag the built `DeskAPIClient.framework` into your Xcode project.
+Run `carthage update` to build the framework and drag the built `DeskAPIClient.framework` into your Xcode project.
 
 **IMPORTANT: Currently we only support prebuilt frameworks. If you run carthage with `--no-use-binaries` option, you will get an error.**
 
 ### Installation using prebuilt Framework
-Starting DeskAPIClient version `3.2.0`, prebuilt frameworks are attached in github releases. In order to use prebuilt frameworks:
+Starting with DeskAPIClient version `3.2.0`, prebuilt frameworks are attached in github releases. In order to use prebuilt frameworks:
 
-1. Download the appropriate version `All.zip` file from [Releases](https://github.com/forcedotcom/DeskApiClient-ObjC/releases)
+1. Download the appropriate version `Frameworks.zip` file from [Releases](https://github.com/forcedotcom/DeskApiClient-ObjC/releases)
 2. Unarchive the zip file  
 3. With your project open in Xcode, select your Target. Under General tab, find Embedded Binaries and then click the + button.
 4. Click the Add Other... button, navigate to the framework files (`DeskAPIClient.framework`, `DeskCommon.framework`) and select them. Check the Destination: Copy items if needed checkbox when prompted.
+
+**IMPORTANT: Attached prebuilt frameworks contain binaries which have been built for a number of architectures `(x86_64, i386, armv7, arm64)`. According to [this radar](http://www.openradar.me/radar?id=6409498411401216) before submission to AppStore you must strip off simulator slices `(x86_64, i386)`.**
 
 ## Usage
 
