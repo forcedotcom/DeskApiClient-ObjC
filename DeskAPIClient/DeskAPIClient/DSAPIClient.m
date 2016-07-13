@@ -75,6 +75,16 @@ static NSDictionary *ClassNames;
     return self;
 }
 
+- (instancetype)initWithSharedSession
+{
+    self = [super init];
+    if (self) {
+        _session = [NSURLSession sharedSession];
+        [self initialize];
+    }
+    return self;
+}
+
 - (void)initialize
 {
     ClassNames = @{[DSAPIPage className]: [DSAPIPage class],
