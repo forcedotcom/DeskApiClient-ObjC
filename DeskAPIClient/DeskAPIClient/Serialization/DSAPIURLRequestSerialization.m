@@ -606,8 +606,10 @@ NSDictionary *DSAPIParametersFromQueryString(NSString *queryString)
             [parameterScanner scanUpToString:@"&" intoString:&value];
             [parameterScanner scanString:@"&" intoString:NULL];
             
-            if (name && value) {
-                parameters[[name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] = [value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSString *cleanName = name.stringByRemovingPercentEncoding;
+            NSString *cleanValue = value.stringByRemovingPercentEncoding;
+            if (cleanName && cleanValue) {
+                parameters[cleanName] = cleanValue;
             }
         }
     }
