@@ -28,7 +28,7 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "DSAPITestCase.h"
 
 @interface DSAPISiteTests : DSAPITestCase

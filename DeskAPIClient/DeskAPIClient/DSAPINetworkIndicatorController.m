@@ -64,24 +64,28 @@
 
 - (void)networkActivityDidStart
 {
+#if TARGET_OS_IPHONE
     NSAssert([NSThread isMainThread], @"Altering network activity indicator state can only be done on the main thread.");
     self.activityCount++;
     [self updateIndicatorVisibility];
+#endif
 }
 
 - (void)networkActivityDidEnd
 {
+#if TARGET_OS_IPHONE
     NSAssert([NSThread isMainThread], @"Altering network activity indicator state can only be done on the main thread.");
     NSAssert(self.activityCount > 0, @"networkActivityDidEnd before matching networkActivityDidStart");
     self.activityCount--;
     [self updateIndicatorVisibility];
-    
+ #endif
 }
 
 #pragma mark - Private
 
 - (void)updateIndicatorVisibility
 {
+#if TARGET_OS_IPHONE
     if (self.activityCount > 0) {
         [self showIndicator];
     } else {
@@ -92,31 +96,40 @@
          */
         [self createTimerToHideIndicator];
     }
+#endif
 }
 
 - (void)createTimerToHideIndicator
 {
+#if TARGET_OS_IPHONE
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.75 target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:NO];
     self.timer.tolerance = 0.5;
+#endif
 }
 
 - (void)timerFireMethod:(NSTimer *)timer
 {
+#if TARGET_OS_IPHONE
     [self hideIndicator];
+#endif
 }
 
 - (void)showIndicator
 {
+#if TARGET_OS_IPHONE
     [self.timer invalidate];
     self.timer = nil;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+#endif
 }
 
 - (void)hideIndicator
 {
+#if TARGET_OS_IPHONE
     [self.timer invalidate];
     self.timer = nil;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+#endif
 }
 
 

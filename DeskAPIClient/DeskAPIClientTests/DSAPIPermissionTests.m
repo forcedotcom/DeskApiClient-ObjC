@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Desk.com. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "DSAPITestCase.h"
 #import "DSAPIETagCache.h"
 
