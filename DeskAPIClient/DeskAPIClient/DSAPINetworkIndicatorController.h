@@ -28,7 +28,10 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import <Foundation/Foundation.h>
+#if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
+#endif
 
 @interface DSAPINetworkIndicatorController : NSObject
 
