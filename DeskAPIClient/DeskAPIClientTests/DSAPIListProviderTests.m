@@ -28,7 +28,6 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "DSAPIResource+Testing.h"
 #import "DSAPIListProvider.h"

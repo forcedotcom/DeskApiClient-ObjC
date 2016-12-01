@@ -30,9 +30,9 @@
 
 #import "DSAPIURLResponseSerialization.h"
 
-#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+#if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
-#elif defined(__MAC_OS_X_VERSION_MIN_REQUIRED)
+#elif TARGET_OS_MAC
 #import <Cocoa/Cocoa.h>
 #endif
 
@@ -510,7 +510,7 @@ static id DSAPIJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadi
 
 #pragma mark -
 
-#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+#if TARGET_OS_IPHONE
 #import <CoreGraphics/CoreGraphics.h>
 
 static UIImage * DSAPIImageWithDataAtScale(NSData *data, CGFloat scale) {
@@ -616,7 +616,7 @@ static UIImage * DSAPIInflatedImageFromResponseWithDataAtScale(NSHTTPURLResponse
     if (self) {
         self.acceptableContentTypes = [[NSSet alloc] initWithObjects:@"image/tiff", @"image/jpeg", @"image/gif", @"image/png", @"image/ico", @"image/x-icon", @"image/bmp", @"image/x-bmp", @"image/x-xbitmap", @"image/x-win-bitmap", nil];
         
-#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+#if TARGET_OS_IPHONE
         _imageScale = [[UIScreen mainScreen] scale];
         _automaticallyInflatesResponseImage = YES;
 #endif
@@ -636,13 +636,13 @@ static UIImage * DSAPIInflatedImageFromResponseWithDataAtScale(NSHTTPURLResponse
         }
     }
     
-#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+#if TARGET_OS_IPHONE
     if (self.automaticallyInflatesResponseImage) {
         return DSAPIInflatedImageFromResponseWithDataAtScale((NSHTTPURLResponse *)response, data, self.imageScale);
     } else {
         return DSAPIImageWithDataAtScale(data, self.imageScale);
     }
-#elif defined(__MAC_OS_X_VERSION_MIN_REQUIRED)
+#elif TARGET_OS_MAC
     // Ensure that the image is set to it's correct pixel width and height
     NSBitmapImageRep *bitimage = [[NSBitmapImageRep alloc] initWithData:data];
     NSImage *image = [[NSImage alloc] initWithSize:NSMakeSize([bitimage pixelsWide], [bitimage pixelsHigh])];
@@ -660,7 +660,7 @@ static UIImage * DSAPIInflatedImageFromResponseWithDataAtScale(NSHTTPURLResponse
 {
     self = [super initWithCoder:coder];
     if (self) {
-#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+#if TARGET_OS_IPHONE
         NSNumber *imageScale = [coder decodeObjectOfClass:[NSNumber class] forKey:NSStringFromSelector(@selector(imageScale))];
 #if CGFLOAT_IS_DOUBLE
         _imageScale = [imageScale doubleValue];
@@ -677,7 +677,7 @@ static UIImage * DSAPIInflatedImageFromResponseWithDataAtScale(NSHTTPURLResponse
 - (void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
-#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+#if TARGET_OS_IPHONE
     [coder encodeObject:@(self.imageScale) forKey:NSStringFromSelector(@selector(imageScale))];
     [coder encodeBool:self.automaticallyInflatesResponseImage forKey:NSStringFromSelector(@selector(automaticallyInflatesResponseImage))];
 #endif
@@ -688,7 +688,7 @@ static UIImage * DSAPIInflatedImageFromResponseWithDataAtScale(NSHTTPURLResponse
 - (id)copyWithZone:(NSZone *)zone {
     DSAPIImageResponseSerializer *serializer = [[[self class] allocWithZone:zone] init];
     
-#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+#if TARGET_OS_IPHONE
     serializer.imageScale = self.imageScale;
     serializer.automaticallyInflatesResponseImage = self.automaticallyInflatesResponseImage;
 #endif
