@@ -185,6 +185,7 @@
 		52976D2C1CBED43900B2D074 /* DSAPICustomerFilterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52976D2B1CBED43900B2D074 /* DSAPICustomerFilterTests.m */; };
 		576EB94CE5F441E6625C286E /* Pods_DeskAPIClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E0DFA5E3795AA5473259EC /* Pods_DeskAPIClientTests.framework */; };
 		58D8B8B27FCE7E0E772923CA /* Pods_DeskAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2D7A1243FDC24A84596998 /* Pods_DeskAPIClient.framework */; };
+		C714F0851DF07A2D000812F1 /* DSAPINetworkActivityIndicatorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = C714F0841DF07A2D000812F1 /* DSAPINetworkActivityIndicatorProtocol.h */; };
 		C7A6B1A61C51624B00D8B83F /* DSAPIResource+Testing.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A6B1A51C51624B00D8B83F /* DSAPIResource+Testing.m */; };
 /* End PBXBuildFile section */
 
@@ -372,6 +373,7 @@
 		52976D281CBEC88200B2D074 /* DSAPICustomerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICustomerFilter.m; sourceTree = "<group>"; };
 		52976D2B1CBED43900B2D074 /* DSAPICustomerFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPICustomerFilterTests.m; sourceTree = "<group>"; };
 		8EA7F3331DEC90DD68AE311F /* Pods-DeskAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeskAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DeskAPIClientTests/Pods-DeskAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C714F0841DF07A2D000812F1 /* DSAPINetworkActivityIndicatorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPINetworkActivityIndicatorProtocol.h; sourceTree = "<group>"; };
 		C748B8B11B7A4D3600AF400A /* DSAPINetworkIndicatorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPINetworkIndicatorController.h; sourceTree = "<group>"; };
 		C748B8B21B7A4D3600AF400A /* DSAPINetworkIndicatorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPINetworkIndicatorController.m; sourceTree = "<group>"; };
 		C7A6B1A41C51624B00D8B83F /* DSAPIResource+Testing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DSAPIResource+Testing.h"; sourceTree = "<group>"; };
@@ -484,6 +486,7 @@
 				1C28761417ED2F0C004B4CBF /* DSAPIResource.m */,
 				1CDBDF781A78191A00582BE2 /* DSAPIListProvider.h */,
 				1CDBDF791A78191A00582BE2 /* DSAPIListProvider.m */,
+				C714F0841DF07A2D000812F1 /* DSAPINetworkActivityIndicatorProtocol.h */,
 				C748B8B11B7A4D3600AF400A /* DSAPINetworkIndicatorController.h */,
 				C748B8B21B7A4D3600AF400A /* DSAPINetworkIndicatorController.m */,
 				1C316D7617E9533900ACA543 /* Supporting Files */,
@@ -758,6 +761,7 @@
 				526688811D2183A700AD60FD /* DSAPIMobileDeviceSetting.h in Headers */,
 				526688821D2183A700AD60FD /* DSAPITwitterAccount.h in Headers */,
 				526688831D2183A700AD60FD /* DSAPIPermission.h in Headers */,
+				C714F0851DF07A2D000812F1 /* DSAPINetworkActivityIndicatorProtocol.h in Headers */,
 				526688841D2183A700AD60FD /* DSAPISiteSetting.h in Headers */,
 				526688851D2183A700AD60FD /* DSAPIMailbox.h in Headers */,
 				526688861D2183A700AD60FD /* DSAPITwitterFollow.h in Headers */,

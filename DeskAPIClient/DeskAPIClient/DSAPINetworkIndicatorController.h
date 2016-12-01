@@ -29,8 +29,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DSAPINetworkActivityIndicatorProtocol.h"
 
-@interface DSAPINetworkIndicatorController : NSObject
+@interface DSAPINetworkIndicatorController : NSObject <DSAPINetworkActivityIndicatorProtocol>
 
 + (DSAPINetworkIndicatorController *)sharedController;
 

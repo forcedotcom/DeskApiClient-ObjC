@@ -31,7 +31,11 @@
 #import "DSAPIClient.h"
 #import <DeskCommon/DSCHttpStatusCodes.h>
 #import <DeskCommon/NSURLRequest+DSC.h>
-#import "DSAPINetworkIndicatorController.h"
+
+#if TARGET_OS_IPHONE
+    #import "DSAPINetworkIndicatorController.h"
+#endif
+
 
 typedef enum {
     DSAPIClientAuthTypeBasic,
@@ -119,6 +123,9 @@ static NSDictionary *ClassNames;
     _downloadCompletionBlocks = [NSMutableDictionary new];
     _lock = [NSLock new];
     _lock.name = DSAPIClientLockName;
+#if TARGET_OS_IPHONE
+    _networkIndicatorController = [DSAPINetworkIndicatorController sharedController];
+#endif
 }
 
 - (void)setHostname:(NSString *)hostname APIToken:(NSString *)apiToken
@@ -310,7 +317,7 @@ static NSDictionary *ClassNames;
     return [self.session dataTaskWithRequest:request
                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                                   [[DSAPINetworkIndicatorController sharedController] networkActivityDidEnd];
+                                   [self.networkIndicatorController networkActivityDidEnd];
                                }];
                                
                                // Only execute success/failure blocks if task was not cancelled.
@@ -341,7 +348,7 @@ static NSDictionary *ClassNames;
 - (void)resumeTask:(NSURLSessionTask *)task
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [[DSAPINetworkIndicatorController sharedController] networkActivityDidStart];
+        [self.networkIndicatorController networkActivityDidStart];
     }];
     
     [task resume];
@@ -602,7 +609,7 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)downloadTask didCompleteWithError:(NSError *)error
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [[DSAPINetworkIndicatorController sharedController] networkActivityDidEnd];
+        [self.networkIndicatorController networkActivityDidEnd];
     }];
     
     [self.lock lock];

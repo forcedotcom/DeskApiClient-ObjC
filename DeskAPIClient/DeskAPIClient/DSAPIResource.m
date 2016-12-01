@@ -31,7 +31,6 @@
 #import "DSAPIResource.h"
 #import "DSAPIClient.h"
 #import "DSAPIETagCache.h"
-#import "DSAPINetworkIndicatorController.h"
 
 #import <objc/runtime.h>
 #import <DeskCommon/DSCHttpStatusCodes.h>
@@ -421,7 +420,7 @@
                             }];
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [[DSAPINetworkIndicatorController sharedController] networkActivityDidStart];
+            [client.networkIndicatorController networkActivityDidStart];
         }];
         [task resume];
         

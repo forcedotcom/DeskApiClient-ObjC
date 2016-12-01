@@ -33,6 +33,7 @@
 #import "DSAPIURLResponseSerialization.h"
 #import "DSAPIModels.h"
 #import "NSDictionary+DSAPI.h"
+#import "DSAPINetworkActivityIndicatorProtocol.h"
 
 typedef void (^DSAPIDownloadProgressHandler)(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite);
 typedef void (^DSAPIDownloadCompletionHandler)(NSData *data, NSHTTPURLResponse *response, NSError *error);
@@ -50,6 +51,7 @@ extern NSString * const DSAPIResponseKey;
 @property (nonatomic, copy) NSURL *baseURL;
 @property (nonatomic, strong) DSAPIHTTPRequestSerializer *requestSerializer;
 @property (nonatomic, strong) DSAPIHTTPResponseSerializer *responseSerializer;
+@property (nonatomic, strong, readonly) id<DSAPINetworkActivityIndicatorProtocol> networkIndicatorController;
 
 /**
  Sets the `DSAPIClient` object with the specified hostname and API token.
